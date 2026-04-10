@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>ইসলামিক অ্যাপস | নামাজের সময়সূচি</title>
+    <link rel="stylesheet" href="css/namaz.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- নেভিগেশন বার -->
+        <nav class="top-navbar">
+            <div class="nav-brand">
+                <span class="brand-icon">﷽</span>
+                <h1>ইসলামিক অ্যাপস</h1>
+            </div>
+            <div class="nav-links">
+                <a href="namaz.html" class="nav-link active"><i class="fas fa-home"></i></a>
+                <a href="quran.html" class="nav-link"><i class="fas fa-quran"></i></a>
+                <a href="tasbih.html" class="nav-link"><i class="fas fa-fingerprint"></i></a>
+                <a href="qibla.html" class="nav-link"><i class="fas fa-compass"></i></a>
+                <a href="mosques.html" class="nav-link"><i class="fas fa-mosque"></i></a>
+                <a href="calendar.html" class="nav-link"><i class="fas fa-calendar-alt"></i></a>
+            </div>
+            <div class="nav-actions">
+                <button class="icon-btn" id="settingsNavBtn"><i class="fas fa-cog"></i></button>
+            </div>
+        </nav>
+
+        <!-- সেটিংস প্যানেল -->
+        <div class="settings-panel" id="settingsPanel">
+            <div class="settings-header">
+                <h3><i class="fas fa-sliders-h"></i> সেটিংস</h3>
+                <button class="close-settings" id="closeSettingsBtn">&times;</button>
+            </div>
+            <div class="settings-body">
+                <div class="setting-item">
+                    <label><i class="fas fa-palette"></i> থিম নির্বাচন করুন</label>
+                    <div class="theme-controls">
+                        <button class="theme-btn active" data-theme="light">☀️ লাইট মোড</button>
+                        <button class="theme-btn" data-theme="dark">🌙 ডার্ক মোড</button>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <label><i class="fas fa-bell"></i> নামাজের রিমাইন্ডার</label>
+                    <div class="reminder-controls">
+                        <button class="reminder-btn" id="enableReminderBtn">🔔 রিমাইন্ডার চালু করুন</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- মূল কন্টেন্ট - নামাজ সেকশন -->
+        <main class="main-content">
+            <!-- হেডার সেকশন -->
+            <div class="hero-section">
+                <div class="hero-icon">
+                    <i class="fas fa-mosque"></i>
+                </div>
+                <h1>নামাজের সময়সূচি</h1>
+                <p>দৈনিক পাঁচ ওয়াক্ত ফরজ নামাজের সঠিক সময়</p>
+                <div class="today-date" id="todayDate"></div>
+            </div>
+
+            <!-- লাইভ তথ্য কার্ড -->
+            <div class="info-card-row">
+                <div class="info-card live-time">
+                    <i class="fas fa-clock"></i>
+                    <div class="info-content">
+                        <span class="info-label">বর্তমান সময়</span>
+                        <div class="time-display" id="liveClock">--:--:-- --</div>
+                    </div>
+                </div>
+                <div class="info-card next-prayer">
+                    <i class="fas fa-hourglass-half"></i>
+                    <div class="info-content">
+                        <span class="info-label">পরবর্তী নামাজ</span>
+                        <div class="next-prayer-info">
+                            <strong id="nextPrayerName">ফজর</strong>
+                            <div class="countdown-timer" id="countdownTimer">--:--:--</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- নামাজের তালিকা -->
+            <div class="section-title">
+                <i class="fas fa-star-of-life"></i>
+                <h2>📖 দৈনিক ৫ ওয়াক্ত নামাজ</h2>
+            </div>
+            <div class="prayer-list" id="prayerTimesList"></div>
+
+            <!-- নামাজের গুরুত্ব সেকশন -->
+            <div class="importance-section">
+                <div class="section-title">
+                    <i class="fas fa-lightbulb"></i>
+                    <h2>নামাজের গুরুত্ব</h2>
+                </div>
+                <div class="importance-card">
+                    <i class="fas fa-quran"></i>
+                    <p>"নিশ্চয়ই নামাজ অশ্লীল ও গর্হিত কাজ থেকে বিরত রাখে।"</p>
+                    <span>- সূরা আল-আনকাবুত, আয়াত ৪৫</span>
+                </div>
+                <div class="importance-card">
+                    <i class="fas fa-hadith"></i>
+                    <p>"নামাজ মুমিনের মিরাজ।"</p>
+                    <span>- হাদীস শরীফ</span>
+                </div>
+            </div>
+
+            <!-- লিজেন্ড -->
+            <div class="legend">
+                <span><span class="legend-dot ended"></span> সময় শেষ</span>
+                <span><span class="legend-dot active"></span> চলমান</span>
+                <span><span class="legend-dot upcoming"></span> বাকি</span>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/namaz.js"></script>
+</body>
+</html>

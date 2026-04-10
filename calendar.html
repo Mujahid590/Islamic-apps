@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>ইসলামিক অ্যাপস | ক্যালেন্ডার</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/calendar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- ক্যালেন্ডারের জন্য আলাদা নেভিগেশন বার -->
+        <nav class="calendar-navbar">
+            <div class="nav-brand">
+                <span class="brand-icon">﷽</span>
+                <h1>ইসলামিক ক্যালেন্ডার</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i></a>
+                <a href="quran.html" class="nav-link"><i class="fas fa-quran"></i></a>
+                <a href="tasbih.html" class="nav-link"><i class="fas fa-fingerprint"></i></a>
+                <a href="qibla.html" class="nav-link"><i class="fas fa-compass"></i></a>
+                <a href="mosques.html" class="nav-link"><i class="fas fa-mosque"></i></a>
+            </div>
+            <div class="nav-actions">
+                <button class="icon-btn" id="settingsNavBtn"><i class="fas fa-cog"></i></button>
+            </div>
+        </nav>
+
+        <div class="settings-panel" id="settingsPanel">
+            <div class="settings-header">
+                <h3><i class="fas fa-sliders-h"></i> সেটিংস</h3>
+                <button class="close-settings" id="closeSettingsBtn">&times;</button>
+            </div>
+            <div class="settings-body">
+                <div class="setting-item">
+                    <label><i class="fas fa-palette"></i> থিম</label>
+                    <div class="theme-controls">
+                        <button class="theme-btn active" data-theme="light">লাইট</button>
+                        <button class="theme-btn" data-theme="dark">ডার্ক</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <main class="main-content">
+            <div class="calendar-page">
+                <div class="calendar-tabs">
+                    <button class="cal-tab-btn active" data-tab="hijri">হিজরি ক্যালেন্ডার</button>
+                    <button class="cal-tab-btn" data-tab="gregorian">ইংরেজি ক্যালেন্ডার</button>
+                </div>
+
+                <div id="hijriCalendarPage" class="cal-tab-content active">
+                    <div class="current-date-info" id="hijriCurrentDate">📅 বর্তমান: লোড হচ্ছে...</div>
+                    <div class="calendar-header">
+                        <button class="calendar-nav" id="prevHijriMonth"><i class="fas fa-chevron-left"></i></button>
+                        <h3 id="hijriMonthYear">লোড হচ্ছে...</h3>
+                        <button class="calendar-nav" id="nextHijriMonth"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="calendar-weekdays">
+                        <span>রবি</span><span>সোম</span><span>মঙ্গল</span><span>বুধ</span><span>বৃহস্পতি</span><span>শুক্র</span><span>শনি</span>
+                    </div>
+                    <div class="calendar-days" id="hijriDaysGrid"></div>
+                </div>
+
+                <div id="gregorianCalendarPage" class="cal-tab-content">
+                    <div class="current-date-info" id="gregorianCurrentDate">📅 বর্তমান: লোড হচ্ছে...</div>
+                    <div class="calendar-header">
+                        <button class="calendar-nav" id="prevGregMonth"><i class="fas fa-chevron-left"></i></button>
+                        <h3 id="gregMonthYear">লোড হচ্ছে...</h3>
+                        <button class="calendar-nav" id="nextGregMonth"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="calendar-weekdays">
+                        <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+                    </div>
+                    <div class="calendar-days" id="gregDaysGrid"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/calendar.js"></script>
+</body>
+</html>
