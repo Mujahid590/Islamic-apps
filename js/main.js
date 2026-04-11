@@ -84,9 +84,26 @@ function initSettingsPanel() {
     });
 }
 
-// পেজ লোড হলে সব ফাংশন চালু
+// অ্যাক্টিভ লিংক হাইলাইট করা
+function setActiveNavLink() {
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav-item').forEach(item => {
+        const href = item.getAttribute('href');
+        if (href === currentPath) {
+            item.classList.add('active');
+        } else if (currentPath === 'index.html' && href === 'index.html') {
+            item.classList.add('active');
+        } else if (item.classList.contains('settings-btn')) {
+            // সেটিংস বাটনের জন্য কিছু করবেন না
+        } else {
+            item.classList.remove('active');
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     initTheme();
     setupThemeListeners();
     initSettingsPanel();
+    setActiveNavLink();
 });
