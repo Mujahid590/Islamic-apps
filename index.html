@@ -9,13 +9,13 @@
 </head>
 <body>
     <div class="app-container">
-        <!-- নেভিগেশন বার - ডেস্কটপে উপরে, মোবাইলে নিচে -->
-        <nav class="top-navbar" id="topNavbar">
+        <!-- ডেস্কটপ নেভিগেশন বার (উপরে) -->
+        <nav class="top-navbar">
             <div class="nav-brand">
                 <span class="brand-icon">﷽</span>
                 <h1>ইসলামিক অ্যাপস</h1>
             </div>
-            <div class="nav-links" id="navLinks">
+            <div class="nav-links">
                 <a href="index.html" class="nav-link active"><i class="fas fa-home"></i><span>হোম</span></a>
                 <a href="namaz.html" class="nav-link"><i class="fas fa-clock"></i><span>নামাজ</span></a>
                 <a href="quran.html" class="nav-link"><i class="fas fa-quran"></i><span>কুরআন</span></a>
@@ -27,8 +27,16 @@
             </div>
         </nav>
 
-        <!-- মোবাইলের জন্য নিচের নেভিগেশন বার -->
-        <nav class="bottom-navbar" id="bottomNavbar">
+        <!-- মোবাইলের জন্য নিচের নেভিগেশন বার (৫টি আইকন) -->
+        <nav class="bottom-navbar">
+            <a href="tasbih.html" class="nav-item">
+                <i class="fas fa-fingerprint"></i>
+                <span>তাসবিহ</span>
+            </a>
+            <a href="quran.html" class="nav-item">
+                <i class="fas fa-quran"></i>
+                <span>কুরআন</span>
+            </a>
             <a href="index.html" class="nav-item active">
                 <i class="fas fa-home"></i>
                 <span>হোম</span>
@@ -37,21 +45,13 @@
                 <i class="fas fa-clock"></i>
                 <span>নামাজ</span>
             </a>
-            <a href="quran.html" class="nav-item">
-                <i class="fas fa-quran"></i>
-                <span>কুরআন</span>
-            </a>
-            <a href="tasbih.html" class="nav-item">
-                <i class="fas fa-fingerprint"></i>
-                <span>তাসবিহ</span>
-            </a>
             <a href="qibla.html" class="nav-item">
                 <i class="fas fa-compass"></i>
                 <span>কিবলা</span>
             </a>
         </nav>
 
-        <!-- সেটিংস প্যানেল - উপরে ডান দিকে -->
+        <!-- সেটিংস প্যানেল -->
         <div class="settings-panel" id="settingsPanel">
             <div class="settings-header">
                 <h3><i class="fas fa-sliders-h"></i> সেটিংস</h3>
