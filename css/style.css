@@ -178,7 +178,7 @@ body {
     color: white;
 }
 
-/* ========== মোবাইল নেভিগেশন বার (নিচে) ========== */
+/* ========== মোবাইল নেভিগেশন বার (নিচে - ৫টি আইকন) ========== */
 .bottom-navbar {
     display: none;
     position: fixed;
@@ -207,7 +207,7 @@ body {
     font-size: 0.7rem;
     text-decoration: none;
     transition: all 0.2s;
-    min-width: 55px;
+    min-width: 60px;
 }
 
 .nav-item i {
@@ -590,7 +590,7 @@ body {
     }
     
     .nav-item {
-        min-width: 50px;
+        min-width: 55px;
         padding: 0.3rem 0.3rem;
     }
     
@@ -606,7 +606,7 @@ body {
 /* ========== খুব ছোট মোবাইল (380px এর নিচে) ========== */
 @media (max-width: 380px) {
     .nav-item {
-        min-width: 45px;
+        min-width: 48px;
     }
     
     .nav-item i {
