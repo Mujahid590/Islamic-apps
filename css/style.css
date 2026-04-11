@@ -1,4 +1,4 @@
-/* ========== বাংলা ফন্ট ========== */
+/* ========== বাংলা ফন্ট - Kalpurush ========== */
 @font-face {
     font-family: 'Kalpurush';
     src: url('https://raw.githubusercontent.com/me-shaon/bangla-fonts/main/Kalpurush/Kalpurush.ttf') format('truetype');
@@ -35,6 +35,7 @@
     --text-gray: #64748b;
     --text-light: #94a3b8;
     --gold: #d4af37;
+    --red: #ef4444;
     --shadow: 0 4px 12px rgba(0,0,0,0.08);
     --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.1);
     --radius: 20px;
@@ -79,14 +80,242 @@ body {
     flex-direction: column;
 }
 
+/* ========== ডেস্কটপ নেভিগেশন বার (উপরে) ========== */
+.top-navbar {
+    background: var(--card-bg);
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    box-shadow: var(--shadow);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    height: 65px;
+    min-height: 65px;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand-icon {
+    font-size: 1.8rem;
+    color: var(--primary);
+    font-family: 'Uthman Taha Naskh', serif;
+}
+
+.nav-brand h1 {
+    font-size: 1.2rem;
+    color: var(--primary-dark);
+}
+
+.nav-links {
+    display: flex;
+    gap: 0.5rem;
+    background: var(--gray-light);
+    padding: 0.4rem 0.8rem;
+    border-radius: 50px;
+}
+
+.nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 6px 14px;
+    border-radius: 40px;
+    color: var(--text-gray);
+    font-size: 0.75rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    min-width: 65px;
+}
+
+.nav-link i {
+    font-size: 1.1rem;
+}
+
+.nav-link span {
+    font-size: 0.65rem;
+}
+
+.nav-link.active {
+    background: var(--primary);
+    color: white;
+}
+
+.nav-link:hover:not(.active) {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.nav-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.icon-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--gray-light);
+    border: none;
+    color: var(--text-dark);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.icon-btn:hover {
+    background: var(--primary);
+    color: white;
+}
+
+/* ========== মোবাইল নেভিগেশন বার (নিচে) ========== */
+.bottom-navbar {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--card-bg);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.6rem 0.8rem;
+    border-top: 1px solid var(--border);
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    z-index: 100;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 0.4rem 0.5rem;
+    border-radius: 40px;
+    color: var(--text-gray);
+    font-size: 0.7rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    min-width: 55px;
+}
+
+.nav-item i {
+    font-size: 1.2rem;
+}
+
+.nav-item span {
+    font-size: 0.6rem;
+}
+
+.nav-item.active {
+    background: var(--primary);
+    color: white;
+}
+
+.nav-item:hover:not(.active) {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+/* ========== সেটিংস প্যানেল ========== */
+.settings-panel {
+    position: fixed;
+    top: 70px;
+    right: -320px;
+    width: 280px;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    z-index: 200;
+    transition: right 0.3s ease;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+}
+
+.settings-panel.open {
+    right: 15px;
+}
+
+.settings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.settings-header h3 {
+    color: var(--primary);
+    font-size: 1rem;
+}
+
+.close-settings {
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: var(--text-gray);
+}
+
+.close-settings:hover {
+    color: var(--red);
+}
+
+.settings-body {
+    padding: 1rem;
+}
+
+.setting-item {
+    margin-bottom: 1.2rem;
+}
+
+.setting-item label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-gray);
+}
+
+.theme-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.theme-btn {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+    background: var(--gray-light);
+    border-radius: 30px;
+    cursor: pointer;
+    font-family: 'Kalpurush', sans-serif;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+}
+
+.theme-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
 /* ========== মূল কন্টেন্ট ========== */
 .main-content {
     flex: 1;
     padding: 1.2rem;
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
     width: 100%;
-    padding-bottom: 80px;
 }
 
 /* ========== ওয়েলকাম সেকশন ========== */
@@ -228,145 +457,6 @@ body {
     color: var(--text-gray);
 }
 
-/* ========== নেভিগেশন বার - ডেস্কটপে উপরে, মোবাইলে নিচে ========== */
-.bottom-navbar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: var(--card-bg);
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 0.5rem 0.8rem;
-    border-top: 1px solid var(--border);
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
-    z-index: 100;
-    overflow-x: auto;
-    gap: 0.2rem;
-}
-
-.nav-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
-    padding: 0.4rem 0.6rem;
-    border-radius: 40px;
-    color: var(--text-gray);
-    font-size: 0.7rem;
-    text-decoration: none;
-    transition: all 0.2s;
-    min-width: 55px;
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-.nav-item i {
-    font-size: 1.2rem;
-}
-
-.nav-item span {
-    font-size: 0.6rem;
-}
-
-.nav-item.active {
-    background: var(--primary);
-    color: white;
-}
-
-.nav-item:hover:not(.active) {
-    background: var(--primary-light);
-    color: var(--primary);
-}
-
-.settings-btn {
-    background: none;
-}
-
-/* ========== সেটিংস প্যানেল ========== */
-.settings-panel {
-    position: fixed;
-    bottom: 70px;
-    right: -320px;
-    width: 280px;
-    background: var(--card-bg);
-    border-radius: var(--radius);
-    z-index: 200;
-    transition: right 0.3s ease;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow-lg);
-}
-
-.settings-panel.open {
-    right: 15px;
-}
-
-.settings-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.8rem 1rem;
-    border-bottom: 1px solid var(--border);
-}
-
-.settings-header h3 {
-    color: var(--primary);
-    font-size: 1rem;
-}
-
-.close-settings {
-    background: none;
-    border: none;
-    font-size: 1.3rem;
-    cursor: pointer;
-    color: var(--text-gray);
-}
-
-.close-settings:hover {
-    color: var(--red);
-}
-
-.settings-body {
-    padding: 1rem;
-}
-
-.setting-item {
-    margin-bottom: 1.2rem;
-}
-
-.setting-item label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-size: 0.85rem;
-    color: var(--text-gray);
-}
-
-.theme-controls {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.theme-btn {
-    flex: 1;
-    padding: 0.5rem;
-    border: 1px solid var(--border);
-    background: var(--gray-light);
-    border-radius: 30px;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 0.8rem;
-    transition: all 0.2s;
-}
-
-.theme-btn.active {
-    background: var(--primary);
-    color: white;
-    border-color: var(--primary);
-}
-
 /* ========== টোস্ট মেসেজ ========== */
 .toast {
     position: fixed;
@@ -397,14 +487,11 @@ body {
 /* ========== ডেস্কটপ মোড (768px এর উপরে) ========== */
 @media (min-width: 769px) {
     .bottom-navbar {
-        position: sticky;
-        top: 0;
-        bottom: auto;
-        justify-content: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        border-top: none;
-        border-bottom: 1px solid var(--border);
+        display: none !important;
+    }
+    
+    .top-navbar {
+        display: flex;
     }
     
     .main-content {
@@ -414,33 +501,21 @@ body {
     .toast {
         bottom: 20px;
     }
-    
-    .settings-panel {
-        top: 70px;
-        bottom: auto;
-    }
 }
 
-/* ========== ট্যাবলেট মোড (481px - 768px) ========== */
-@media (min-width: 481px) and (max-width: 768px) {
-    .features-grid {
-        grid-template-columns: repeat(2, 1fr);
+/* ========== মোবাইল/ট্যাবলেট মোড (768px এর নিচে) ========== */
+@media (max-width: 768px) {
+    .top-navbar {
+        display: none !important;
     }
     
-    .nav-item {
-        min-width: 60px;
+    .bottom-navbar {
+        display: flex;
     }
     
-    .nav-item i {
-        font-size: 1.1rem;
-    }
-}
-
-/* ========== মোবাইল মোড (480px এর নিচে) ========== */
-@media (max-width: 480px) {
     .main-content {
         padding: 1rem;
-        padding-bottom: 75px;
+        padding-bottom: 80px;
     }
     
     .welcome-section {
@@ -456,12 +531,12 @@ body {
     }
     
     .features-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
         gap: 0.8rem;
     }
     
     .feature-card {
-        padding: 1rem;
+        padding: 0.8rem;
     }
     
     .feature-icon {
@@ -473,21 +548,12 @@ body {
         font-size: 1.3rem;
     }
     
-    .bottom-navbar {
-        padding: 0.4rem 0.5rem;
+    .feature-card h3 {
+        font-size: 0.85rem;
     }
     
-    .nav-item {
-        min-width: 45px;
-        padding: 0.3rem 0.4rem;
-    }
-    
-    .nav-item i {
-        font-size: 1rem;
-    }
-    
-    .nav-item span {
-        font-size: 0.55rem;
+    .feature-card p {
+        font-size: 0.65rem;
     }
     
     .dua-arabic {
@@ -499,20 +565,48 @@ body {
     }
     
     .settings-panel {
-        width: 260px;
-        bottom: 65px;
+        top: auto;
+        bottom: 70px;
         right: -280px;
     }
     
     .settings-panel.open {
         right: 10px;
     }
+    
+    .toast {
+        bottom: 75px;
+    }
 }
 
-/* ========== খুব ছোট মোবাইল (350px এর নিচে) ========== */
-@media (max-width: 350px) {
+/* ========== ছোট মোবাইল (480px এর নিচে) ========== */
+@media (max-width: 480px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .bottom-navbar {
+        padding: 0.5rem 0.5rem;
+    }
+    
     .nav-item {
-        min-width: 40px;
+        min-width: 50px;
+        padding: 0.3rem 0.3rem;
+    }
+    
+    .nav-item i {
+        font-size: 1rem;
+    }
+    
+    .nav-item span {
+        font-size: 0.55rem;
+    }
+}
+
+/* ========== খুব ছোট মোবাইল (380px এর নিচে) ========== */
+@media (max-width: 380px) {
+    .nav-item {
+        min-width: 45px;
     }
     
     .nav-item i {
