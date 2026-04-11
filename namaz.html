@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>ইসলামিক অ্যাপস | নামাজের সময়সূচি</title>
-    <link rel="stylesheet" href="css/namaz.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
@@ -16,12 +16,13 @@
                 <h1>ইসলামিক অ্যাপস</h1>
             </div>
             <div class="nav-links">
-                <a href="namaz.html" class="nav-link active"><i class="fas fa-home"></i></a>
-                <a href="quran.html" class="nav-link"><i class="fas fa-quran"></i></a>
-                <a href="tasbih.html" class="nav-link"><i class="fas fa-fingerprint"></i></a>
-                <a href="qibla.html" class="nav-link"><i class="fas fa-compass"></i></a>
-                <a href="mosques.html" class="nav-link"><i class="fas fa-mosque"></i></a>
-                <a href="calendar.html" class="nav-link"><i class="fas fa-calendar-alt"></i></a>
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i><span>হোম</span></a>
+                <a href="namaz.html" class="nav-link active"><i class="fas fa-clock"></i><span>নামাজ</span></a>
+                <a href="quran.html" class="nav-link"><i class="fas fa-quran"></i><span>কুরআন</span></a>
+                <a href="tasbih.html" class="nav-link"><i class="fas fa-fingerprint"></i><span>তাসবিহ</span></a>
+                <a href="qibla.html" class="nav-link"><i class="fas fa-compass"></i><span>কিবলা</span></a>
+                <a href="mosques.html" class="nav-link"><i class="fas fa-mosque"></i><span>মসজিদ</span></a>
+                <a href="calendar.html" class="nav-link"><i class="fas fa-calendar-alt"></i><span>ক্যালেন্ডার</span></a>
             </div>
             <div class="nav-actions">
                 <button class="icon-btn" id="settingsNavBtn"><i class="fas fa-cog"></i></button>
@@ -48,12 +49,16 @@
                         <button class="reminder-btn" id="enableReminderBtn">🔔 রিমাইন্ডার চালু করুন</button>
                     </div>
                 </div>
+                <div class="setting-item">
+                    <label><i class="fas fa-undo-alt"></i> নামাজের স্টার রিসেট</label>
+                    <button class="reset-stars-btn" id="resetStarsBtn">🔄 সব স্টার রিসেট করুন</button>
+                </div>
             </div>
         </div>
 
-        <!-- মূল কন্টেন্ট - নামাজ সেকশন -->
+        <!-- মূল কন্টেন্ট -->
         <main class="main-content">
-            <!-- হেডার সেকশন -->
+            <!-- হিরো সেকশন -->
             <div class="hero-section">
                 <div class="hero-icon">
                     <i class="fas fa-mosque"></i>
@@ -61,6 +66,18 @@
                 <h1>নামাজের সময়সূচি</h1>
                 <p>দৈনিক পাঁচ ওয়াক্ত ফরজ নামাজের সঠিক সময়</p>
                 <div class="today-date" id="todayDate"></div>
+            </div>
+
+            <!-- ট্রফি/গিফট সেকশন -->
+            <div class="achievement-section" id="achievementSection" style="display: none;">
+                <div class="achievement-card">
+                    <i class="fas fa-trophy"></i>
+                    <div class="achievement-content">
+                        <h3>অভিনন্দন! 🎉</h3>
+                        <p>আপনি আজকের সব ৫ ওয়াক্ত নামাজ সম্পন্ন করেছেন!</p>
+                        <span>আল্লাহ আপনার ইবাদত কবুল করুন</span>
+                    </div>
+                </div>
             </div>
 
             <!-- লাইভ তথ্য কার্ড -->
@@ -84,6 +101,17 @@
                 </div>
             </div>
 
+            <!-- আজকের অগ্রগতি -->
+            <div class="progress-section">
+                <div class="progress-label">
+                    <span>আজকের অগ্রগতি</span>
+                    <span id="completedCount">0</span>/<span id="totalCount">5</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progressBar" style="width: 0%;"></div>
+                </div>
+            </div>
+
             <!-- নামাজের তালিকা -->
             <div class="section-title">
                 <i class="fas fa-star-of-life"></i>
@@ -91,7 +119,7 @@
             </div>
             <div class="prayer-list" id="prayerTimesList"></div>
 
-            <!-- নামাজের গুরুত্ব সেকশন -->
+            <!-- নামাজের গুরুত্ব -->
             <div class="importance-section">
                 <div class="section-title">
                     <i class="fas fa-lightbulb"></i>
@@ -114,10 +142,12 @@
                 <span><span class="legend-dot ended"></span> সময় শেষ</span>
                 <span><span class="legend-dot active"></span> চলমান</span>
                 <span><span class="legend-dot upcoming"></span> বাকি</span>
+                <span><span class="legend-dot completed"></span> সম্পন্ন (স্টার দেওয়া)</span>
             </div>
         </main>
     </div>
 
+    <script src="js/main.js"></script>
     <script src="js/namaz.js"></script>
 </body>
 </html>
