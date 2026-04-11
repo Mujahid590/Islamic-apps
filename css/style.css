@@ -67,7 +67,7 @@ body.dark-mode {
 }
 
 body {
-    font-family: 'Kalpurush', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Kalpurush', 'Segoe UI', Tahoma, sans-serif;
     background: var(--bg);
     color: var(--text-dark);
     transition: all 0.3s ease;
@@ -102,6 +102,7 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
+    flex-shrink: 0;
 }
 
 .brand-icon {
@@ -113,13 +114,16 @@ body {
 .nav-brand h1 {
     font-size: 1.2rem;
     color: var(--primary-dark);
+    font-family: 'Kalpurush', sans-serif;
+    font-weight: bold;
+    white-space: nowrap;
 }
 
 .nav-links {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.3rem;
     background: var(--gray-light);
-    padding: 0.4rem 0.8rem;
+    padding: 0.3rem 0.6rem;
     border-radius: 50px;
 }
 
@@ -132,10 +136,11 @@ body {
     padding: 6px 14px;
     border-radius: 40px;
     color: var(--text-gray);
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     text-decoration: none;
     transition: all 0.2s;
     min-width: 65px;
+    font-family: 'Kalpurush', sans-serif;
 }
 
 .nav-link i {
@@ -143,7 +148,7 @@ body {
 }
 
 .nav-link span {
-    font-size: 0.65rem;
+    font-size: 0.6rem;
 }
 
 .nav-link.active {
@@ -171,6 +176,9 @@ body {
     font-size: 1.2rem;
     cursor: pointer;
     transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .icon-btn:hover {
@@ -178,7 +186,7 @@ body {
     color: white;
 }
 
-/* ========== মোবাইল নেভিগেশন বার (নিচে - ৫টি আইকন) ========== */
+/* ========== মোবাইল নেভিগেশন বার (নিচে) ========== */
 .bottom-navbar {
     display: none;
     position: fixed;
@@ -208,6 +216,7 @@ body {
     text-decoration: none;
     transition: all 0.2s;
     min-width: 60px;
+    font-family: 'Kalpurush', sans-serif;
 }
 
 .nav-item i {
@@ -257,6 +266,7 @@ body {
 .settings-header h3 {
     color: var(--primary);
     font-size: 1rem;
+    font-family: 'Kalpurush', sans-serif;
 }
 
 .close-settings {
@@ -284,6 +294,7 @@ body {
     margin-bottom: 0.5rem;
     font-size: 0.85rem;
     color: var(--text-gray);
+    font-family: 'Kalpurush', sans-serif;
 }
 
 .theme-controls {
@@ -336,11 +347,13 @@ body {
 .welcome-section h1 {
     font-size: 1.5rem;
     margin-bottom: 0.3rem;
+    font-family: 'Kalpurush', sans-serif;
 }
 
 .welcome-section p {
     font-size: 0.85rem;
     opacity: 0.9;
+    font-family: 'Kalpurush', sans-serif;
 }
 
 .current-time-box {
@@ -351,10 +364,6 @@ body {
     border-radius: 50px;
     font-size: 1rem;
     font-family: monospace;
-}
-
-.current-time-box i {
-    margin-right: 8px;
 }
 
 /* ========== সেকশন টাইটেল ========== */
@@ -372,6 +381,7 @@ body {
 
 .section-title h2 {
     font-size: 1rem;
+    font-family: 'Kalpurush', sans-serif;
 }
 
 /* ========== ফিচার গ্রিড ========== */
@@ -418,11 +428,13 @@ body {
     font-size: 0.95rem;
     color: var(--text-dark);
     margin-bottom: 0.3rem;
+    font-family: 'Kalpurush', sans-serif;
 }
 
 .feature-card p {
     font-size: 0.7rem;
     color: var(--text-gray);
+    font-family: 'Kalpurush', sans-serif;
 }
 
 /* ========== দৈনিক দুআ ========== */
@@ -450,11 +462,13 @@ body {
     font-size: 0.85rem;
     margin-bottom: 0.5rem;
     color: var(--text-dark);
+    font-family: 'Kalpurush', sans-serif;
 }
 
 .dua-reference {
     font-size: 0.65rem;
     color: var(--text-gray);
+    font-family: 'Kalpurush', sans-serif;
 }
 
 /* ========== টোস্ট মেসেজ ========== */
@@ -470,7 +484,7 @@ body {
     z-index: 1000;
     font-size: 0.8rem;
     animation: fadeInUp 0.3s ease;
-    box-shadow: var(--shadow);
+    font-family: 'Kalpurush', sans-serif;
 }
 
 @keyframes fadeInUp {
@@ -488,10 +502,6 @@ body {
 @media (min-width: 769px) {
     .bottom-navbar {
         display: none !important;
-    }
-    
-    .top-navbar {
-        display: flex;
     }
     
     .main-content {
@@ -550,10 +560,6 @@ body {
     
     .feature-card h3 {
         font-size: 0.85rem;
-    }
-    
-    .feature-card p {
-        font-size: 0.65rem;
     }
     
     .dua-arabic {
