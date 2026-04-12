@@ -21,13 +21,15 @@
                 <a href="quran.html" class="nav-link"><i class="fas fa-quran"></i><span>কুরআন</span></a>
                 <a href="tasbih.html" class="nav-link"><i class="fas fa-fingerprint"></i><span>তাসবিহ</span></a>
                 <a href="qibla.html" class="nav-link"><i class="fas fa-compass"></i><span>কিবলা</span></a>
+                <a href="mosques.html" class="nav-link"><i class="fas fa-mosque"></i><span>মসজিদ</span></a>
+                <a href="calendar.html" class="nav-link"><i class="fas fa-calendar-alt"></i><span>ক্যালেন্ডার</span></a>
             </div>
             <div class="nav-actions">
                 <button class="icon-btn" id="settingsNavBtn"><i class="fas fa-cog"></i></button>
             </div>
         </nav>
 
-        <!-- মোবাইলের জন্য হেডার (সেটিংস সহ) -->
+        <!-- মোবাইল হেডার -->
         <div class="mobile-header">
             <div class="mobile-brand">
                 <span class="mobile-brand-icon">﷽</span>
@@ -41,7 +43,7 @@
             </button>
         </div>
 
-        <!-- সেটিংস প্যানেল (মোবাইল ও ডেস্কটপ共用) -->
+        <!-- সেটিংস প্যানেল -->
         <div class="settings-panel" id="settingsPanel">
             <div class="settings-header">
                 <h3><i class="fas fa-sliders-h"></i> সেটিংস</h3>
@@ -60,7 +62,7 @@
 
         <!-- মূল কন্টেন্ট -->
         <main class="main-content">
-            <!-- কার্ড স্টাইলের ওয়েলকাম সেকশন -->
+            <!-- ওয়েলকাম কার্ড -->
             <div class="welcome-card">
                 <div class="welcome-icon">
                     <i class="fas fa-mosque"></i>
@@ -73,7 +75,7 @@
                 </div>
             </div>
 
-            <!-- ফিচার গ্রিড - মোবাইলের জন্য সুন্দর কার্ড -->
+            <!-- ফিচার গ্রিড -->
             <div class="features-grid">
                 <a href="namaz.html" class="feature-card">
                     <div class="feature-icon"><i class="fas fa-clock"></i></div>
@@ -99,14 +101,28 @@
                     </div>
                     <i class="fas fa-chevron-right"></i>
                 </a>
-                <a href="qibla.html" class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-compass"></i></div>
-                    <div class="feature-info">
-                        <h3>কিবলা দিক নির্দেশক</h3>
-                        <p>কাবার সঠিক দিক নির্ণয় করুন</p>
-                    </div>
-                    <i class="fas fa-chevron-right"></i>
-                </a>
+            </div>
+
+            <!-- মোর সেকশন (কিবলা, মসজিদ, ক্যালেন্ডার) -->
+            <div class="more-section">
+                <div class="section-header">
+                    <i class="fas fa-ellipsis-h"></i>
+                    <h3>আরও সেবা</h3>
+                </div>
+                <div class="more-grid">
+                    <a href="qibla.html" class="more-card">
+                        <i class="fas fa-compass"></i>
+                        <span>কিবলা</span>
+                    </a>
+                    <a href="mosques.html" class="more-card">
+                        <i class="fas fa-mosque"></i>
+                        <span>মসজিদ</span>
+                    </a>
+                    <a href="calendar.html" class="more-card">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>ক্যালেন্ডার</span>
+                    </a>
+                </div>
             </div>
 
             <!-- দৈনিক দুআ কার্ড -->
@@ -121,7 +137,7 @@
             </div>
         </main>
 
-        <!-- মোবাইলের জন্য নিচের নেভিগেশন বার -->
+        <!-- মোবাইল নেভিগেশন বার -->
         <nav class="bottom-navbar">
             <a href="tasbih.html" class="nav-item">
                 <i class="fas fa-fingerprint"></i>
@@ -139,11 +155,36 @@
                 <i class="fas fa-clock"></i>
                 <span>নামাজ</span>
             </a>
-            <a href="qibla.html" class="nav-item">
-                <i class="fas fa-compass"></i>
-                <span>কিবলা</span>
-            </a>
+            <div class="nav-item more-menu" id="moreMenuBtn">
+                <i class="fas fa-ellipsis-h"></i>
+                <span>আরও</span>
+            </div>
         </nav>
+
+        <!-- মোবাইলের জন্য মোর মেনু (কিবলা, মসজিদ, ক্যালেন্ডার) -->
+        <div class="more-menu-panel" id="moreMenuPanel">
+            <div class="more-menu-header">
+                <h3><i class="fas fa-list"></i> অন্যান্য সেবা</h3>
+                <button class="close-more-menu" id="closeMoreMenuBtn">&times;</button>
+            </div>
+            <div class="more-menu-items">
+                <a href="qibla.html" class="more-menu-item">
+                    <i class="fas fa-compass"></i>
+                    <span>কিবলা দিক নির্দেশক</span>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+                <a href="mosques.html" class="more-menu-item">
+                    <i class="fas fa-mosque"></i>
+                    <span>নিকটস্থ মসজিদ</span>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+                <a href="calendar.html" class="more-menu-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>ইসলামিক ক্যালেন্ডার</span>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+        </div>
     </div>
 
     <script src="js/main.js"></script>
