@@ -4,62 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>ইসলামিক অ্যাপস | হোম</title>
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="app-container">
         <!-- ডেস্কটপ নেভিগেশন বার -->
         <nav class="top-navbar">
             <div class="nav-brand">
-                <div class="logo">
-                    <i class="fas fa-mosque"></i>
-                </div>
+                <span class="brand-icon">﷽</span>
                 <h1>ইসলামিক অ্যাপস</h1>
             </div>
             <div class="nav-links">
-                <a href="#" class="nav-link active">
-                    <i class="fas fa-home"></i>
-                    <span>হোম</span>
-                </a>
-                <a href="#" class="nav-link">
-                    <i class="fas fa-clock"></i>
-                    <span>নামাজ</span>
-                </a>
-                <a href="#" class="nav-link">
-                    <i class="fas fa-quran"></i>
-                    <span>কুরআন</span>
-                </a>
-                <a href="#" class="nav-link">
-                    <i class="fas fa-fingerprint"></i>
-                    <span>তাসবিহ</span>
-                </a>
-                <a href="#" class="nav-link">
-                    <i class="fas fa-compass"></i>
-                    <span>কিবলা</span>
-                </a>
-                <a href="#" class="nav-link">
-                    <i class="fas fa-mosque"></i>
-                    <span>মসজিদ</span>
-                </a>
-                <a href="#" class="nav-link">
-                    <i class="fas fa-calendar-alt"></i>
-                    <span>ক্যালেন্ডার</span>
-                </a>
+                <a href="index.html" class="nav-link active"><i class="fas fa-home"></i><span>হোম</span></a>
+                <a href="namaz.html" class="nav-link"><i class="fas fa-clock"></i><span>নামাজ</span></a>
+                <a href="quran.html" class="nav-link"><i class="fas fa-quran"></i><span>কুরআন</span></a>
+                <a href="tasbih.html" class="nav-link"><i class="fas fa-fingerprint"></i><span>তাসবিহ</span></a>
+                <a href="qibla.html" class="nav-link"><i class="fas fa-compass"></i><span>কিবলা</span></a>
+                <a href="mosques.html" class="nav-link"><i class="fas fa-mosque"></i><span>মসজিদ</span></a>
+                <a href="calendar.html" class="nav-link"><i class="fas fa-calendar-alt"></i><span>ক্যালেন্ডার</span></a>
             </div>
             <div class="nav-actions">
-                <button class="icon-btn" id="settingsNavBtn">
-                    <i class="fas fa-cog"></i>
-                </button>
+                <button class="icon-btn" id="settingsNavBtn"><i class="fas fa-cog"></i></button>
             </div>
         </nav>
 
         <!-- মোবাইল হেডার -->
         <div class="mobile-header">
             <div class="mobile-brand">
-                <div class="logo">
-                    <i class="fas fa-mosque"></i>
-                </div>
+                <span class="mobile-brand-icon">﷽</span>
                 <div class="mobile-brand-text">
                     <h2>ইসলামিক অ্যাপস</h2>
                     <p>আল-কুরআন ও সুন্নাহ</p>
@@ -80,12 +53,8 @@
                 <div class="setting-item">
                     <label><i class="fas fa-palette"></i> থিম নির্বাচন করুন</label>
                     <div class="theme-controls">
-                        <button class="theme-btn active" data-theme="light">
-                            <i class="fas fa-sun"></i> লাইট
-                        </button>
-                        <button class="theme-btn" data-theme="dark">
-                            <i class="fas fa-moon"></i> ডার্ক
-                        </button>
+                        <button class="theme-btn active" data-theme="light">☀️ লাইট</button>
+                        <button class="theme-btn" data-theme="dark">🌙 ডার্ক</button>
                     </div>
                 </div>
             </div>
@@ -108,30 +77,24 @@
 
             <!-- ফিচার গ্রিড -->
             <div class="features-grid">
-                <a href="#" class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
+                <a href="namaz.html" class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-clock"></i></div>
                     <div class="feature-info">
                         <h3>নামাজের সময়সূচি</h3>
                         <p>দৈনিক ৫ ওয়াক্ত নামাজের সঠিক সময়</p>
                     </div>
                     <i class="fas fa-chevron-right"></i>
                 </a>
-                <a href="#" class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-quran"></i>
-                    </div>
+                <a href="quran.html" class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-quran"></i></div>
                     <div class="feature-info">
                         <h3>পবিত্র কুরআন</h3>
                         <p>আরবি ও বাংলা অনুবাদ সহ</p>
                     </div>
                     <i class="fas fa-chevron-right"></i>
                 </a>
-                <a href="#" class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-fingerprint"></i>
-                    </div>
+                <a href="tasbih.html" class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-fingerprint"></i></div>
                     <div class="feature-info">
                         <h3>ডিজিটাল তাসবিহ</h3>
                         <p>সুবহানাল্লাহ, আলহামদুলিল্লাহ, আল্লাহু আকবার</p>
@@ -140,22 +103,22 @@
                 </a>
             </div>
 
-            <!-- মোর সেকশন (ডেস্কটপ) -->
+            <!-- মোর সেকশন (কিবলা, মসজিদ, ক্যালেন্ডার) -->
             <div class="more-section">
                 <div class="section-header">
                     <i class="fas fa-ellipsis-h"></i>
                     <h3>আরও সেবা</h3>
                 </div>
                 <div class="more-grid">
-                    <a href="#" class="more-card">
+                    <a href="qibla.html" class="more-card">
                         <i class="fas fa-compass"></i>
                         <span>কিবলা</span>
                     </a>
-                    <a href="#" class="more-card">
+                    <a href="mosques.html" class="more-card">
                         <i class="fas fa-mosque"></i>
                         <span>মসজিদ</span>
                     </a>
-                    <a href="#" class="more-card">
+                    <a href="calendar.html" class="more-card">
                         <i class="fas fa-calendar-alt"></i>
                         <span>ক্যালেন্ডার</span>
                     </a>
@@ -168,60 +131,54 @@
                     <i class="fas fa-hands-praying"></i>
                     <h3>আজকের দৈনিক দুআ</h3>
                 </div>
-                <div class="dua-arabic">
-                    رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ
-                </div>
-                <div class="dua-bangla">
-                    হে আমাদের পালনকর্তা! দুনিয়াতে আমাদের কল্যাণ দাও এবং আখিরাতেও কল্যাণ দাও এবং আমাদেরকে দোজখের আযাব থেকে রক্ষা কর।
-                </div>
-                <div class="dua-reference">
-                    সূরা আল-বাকারাহ, আয়াত ২০১
-                </div>
+                <div class="dua-arabic">رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ</div>
+                <div class="dua-bangla">হে আমাদের পালনকর্তা! দুনিয়াতে আমাদের কল্যাণ দাও এবং আখিরাতেও কল্যাণ দাও এবং আমাদেরকে দোজখের আযাব থেকে রক্ষা কর।</div>
+                <div class="dua-reference">সূরা আল-বাকারাহ, আয়াত ২০১</div>
             </div>
         </main>
 
         <!-- মোবাইল নেভিগেশন বার -->
         <nav class="bottom-navbar">
-            <a href="#" class="nav-item">
-                <i class="fas fa-clock"></i>
-                <span>নামাজ</span>
-            </a>
-            <a href="#" class="nav-item">
-                <i class="fas fa-quran"></i>
-                <span>কুরআন</span>
-            </a>
-            <a href="#" class="nav-item active">
-                <i class="fas fa-home"></i>
-                <span>হোম</span>
-            </a>
-            <a href="#" class="nav-item">
+            <a href="tasbih.html" class="nav-item">
                 <i class="fas fa-fingerprint"></i>
                 <span>তাসবিহ</span>
             </a>
-            <div class="nav-item" id="moreMenuBtn">
+            <a href="quran.html" class="nav-item">
+                <i class="fas fa-quran"></i>
+                <span>কুরআন</span>
+            </a>
+            <a href="index.html" class="nav-item active">
+                <i class="fas fa-home"></i>
+                <span>হোম</span>
+            </a>
+            <a href="namaz.html" class="nav-item">
+                <i class="fas fa-clock"></i>
+                <span>নামাজ</span>
+            </a>
+            <div class="nav-item more-menu" id="moreMenuBtn">
                 <i class="fas fa-ellipsis-h"></i>
                 <span>আরও</span>
             </div>
         </nav>
 
-        <!-- মোবাইলের জন্য মোর মেনু -->
+        <!-- মোবাইলের জন্য মোর মেনু (কিবলা, মসজিদ, ক্যালেন্ডার) -->
         <div class="more-menu-panel" id="moreMenuPanel">
             <div class="more-menu-header">
                 <h3><i class="fas fa-list"></i> অন্যান্য সেবা</h3>
                 <button class="close-more-menu" id="closeMoreMenuBtn">&times;</button>
             </div>
             <div class="more-menu-items">
-                <a href="#" class="more-menu-item">
+                <a href="qibla.html" class="more-menu-item">
                     <i class="fas fa-compass"></i>
                     <span>কিবলা দিক নির্দেশক</span>
                     <i class="fas fa-chevron-right"></i>
                 </a>
-                <a href="#" class="more-menu-item">
+                <a href="mosques.html" class="more-menu-item">
                     <i class="fas fa-mosque"></i>
                     <span>নিকটস্থ মসজিদ</span>
                     <i class="fas fa-chevron-right"></i>
                 </a>
-                <a href="#" class="more-menu-item">
+                <a href="calendar.html" class="more-menu-item">
                     <i class="fas fa-calendar-alt"></i>
                     <span>ইসলামিক ক্যালেন্ডার</span>
                     <i class="fas fa-chevron-right"></i>
@@ -230,6 +187,22 @@
         </div>
     </div>
 
-    <script src="main.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        function updateClock() {
+            let now = new Date();
+            let clockSpan = document.getElementById("liveClock");
+            if (clockSpan) {
+                let hours = now.getHours();
+                let minutes = now.getMinutes();
+                let seconds = now.getSeconds();
+                let ampm = hours >= 12 ? 'PM' : 'AM';
+                hours = hours % 12 || 12;
+                clockSpan.innerHTML = `${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')} ${ampm}`;
+            }
+        }
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
 </body>
 </html>
