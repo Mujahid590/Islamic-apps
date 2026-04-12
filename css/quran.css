@@ -183,7 +183,7 @@
     min-width: 0;
 }
 
-/* টপিক সার্চ সেকশন */
+/* বিষয় অনুসন্ধান সেকশন */
 .topic-search-section {
     background: var(--card-bg);
     border-radius: var(--radius);
@@ -240,7 +240,7 @@
     background: var(--gray-light);
     border-radius: 50px;
     padding: 0 16px;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
     border: 1px solid var(--border);
 }
 
@@ -280,25 +280,19 @@
     background: var(--primary-dark);
 }
 
-.popular-topics {
+.search-tip {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.topic-chip {
-    background: var(--gray);
-    padding: 6px 14px;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.7rem;
+    color: var(--text-gray);
+    background: var(--gray-light);
+    padding: 8px 12px;
     border-radius: 30px;
-    font-size: 0.75rem;
-    cursor: pointer;
-    transition: all 0.2s;
-    color: var(--text-dark);
 }
 
-.topic-chip:hover {
-    background: var(--primary);
-    color: white;
+.search-tip i {
+    color: var(--gold);
 }
 
 /* সার্চ রেজাল্ট */
@@ -344,6 +338,7 @@
     border-radius: var(--radius-sm);
     cursor: pointer;
     transition: all 0.2s;
+    border: 1px solid var(--border);
 }
 
 .search-result-item:hover {
@@ -395,7 +390,7 @@
     position: relative;
 }
 
-/* স্টিকি হেডার - স্ক্রোলের সাথে উপরে থাকবে */
+/* স্টিকি হেডার */
 .surah-sticky-header {
     position: sticky;
     top: 0;
@@ -521,7 +516,7 @@
     color: var(--primary);
 }
 
-/* ফ্লোটিং সূরা বাটন (মোবাইলের জন্য) */
+/* ফ্লোটিং সূরা বাটন */
 .floating-surah-btn {
     position: fixed;
     bottom: 80px;
@@ -551,7 +546,7 @@
     font-size: 0.55rem;
 }
 
-/* সাইডবার ওভারলে (মোবাইলের জন্য) */
+/* সাইডবার ওভারলে */
 .sidebar-overlay {
     position: fixed;
     top: 0;
@@ -615,7 +610,7 @@
     font-weight: bold;
 }
 
-/* ========== ডেস্কটপ ভিউ ========== */
+/* ডেস্কটপ ভিউ */
 @media (min-width: 769px) {
     .floating-surah-btn {
         display: none !important;
@@ -630,7 +625,7 @@
     }
 }
 
-/* ========== মোবাইল ভিউ ========== */
+/* মোবাইল ভিউ */
 @media (max-width: 768px) {
     .desktop-layout {
         flex-direction: column;
@@ -665,10 +660,6 @@
         text-align: center;
     }
     
-    .topic-search-section {
-        margin-bottom: 0;
-    }
-    
     .search-input-wrapper {
         flex-wrap: wrap;
         border-radius: 20px;
@@ -688,10 +679,6 @@
         margin-top: 5px;
     }
     
-    .popular-topics {
-        justify-content: center;
-    }
-    
     .floating-surah-btn {
         display: flex;
         bottom: 75px;
@@ -708,18 +695,6 @@
         gap: 0.5rem;
         font-size: 0.6rem;
     }
-    
-    .surah-header-search {
-        padding: 4px 10px;
-    }
-    
-    .surah-header-search input {
-        font-size: 0.75rem;
-    }
-    
-    .ayah-card {
-        padding: 0.8rem;
-    }
 }
 
 @media (max-width: 480px) {
@@ -728,10 +703,5 @@
         right: 10px;
         width: 44px;
         height: 44px;
-    }
-    
-    .topic-chip {
-        padding: 4px 10px;
-        font-size: 0.65rem;
     }
 }
