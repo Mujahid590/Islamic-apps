@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="app-container">
-        <!-- ডেস্কটপ নেভিগেশন বার (উপরে) -->
+        <!-- ডেস্কটপ নেভিগেশন বার -->
         <nav class="top-navbar">
             <div class="nav-brand">
                 <span class="brand-icon">﷽</span>
@@ -26,6 +26,100 @@
                 <button class="icon-btn" id="settingsNavBtn"><i class="fas fa-cog"></i></button>
             </div>
         </nav>
+
+        <!-- মোবাইলের জন্য হেডার (সেটিংস সহ) -->
+        <div class="mobile-header">
+            <div class="mobile-brand">
+                <span class="mobile-brand-icon">﷽</span>
+                <div class="mobile-brand-text">
+                    <h2>ইসলামিক অ্যাপস</h2>
+                    <p>আল-কুরআন ও সুন্নাহ</p>
+                </div>
+            </div>
+            <button class="mobile-settings-btn" id="mobileSettingsBtn">
+                <i class="fas fa-cog"></i>
+            </button>
+        </div>
+
+        <!-- সেটিংস প্যানেল (মোবাইল ও ডেস্কটপ共用) -->
+        <div class="settings-panel" id="settingsPanel">
+            <div class="settings-header">
+                <h3><i class="fas fa-sliders-h"></i> সেটিংস</h3>
+                <button class="close-settings" id="closeSettingsBtn">&times;</button>
+            </div>
+            <div class="settings-body">
+                <div class="setting-item">
+                    <label><i class="fas fa-palette"></i> থিম নির্বাচন করুন</label>
+                    <div class="theme-controls">
+                        <button class="theme-btn active" data-theme="light">☀️ লাইট</button>
+                        <button class="theme-btn" data-theme="dark">🌙 ডার্ক</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- মূল কন্টেন্ট -->
+        <main class="main-content">
+            <!-- কার্ড স্টাইলের ওয়েলকাম সেকশন -->
+            <div class="welcome-card">
+                <div class="welcome-icon">
+                    <i class="fas fa-mosque"></i>
+                </div>
+                <h1>আসসালামু আলাইকুম</h1>
+                <p>ইসলামিক অ্যাপসে আপনাকে স্বাগতম</p>
+                <div class="time-card">
+                    <i class="fas fa-clock"></i>
+                    <span id="liveClock">--:--:-- --</span>
+                </div>
+            </div>
+
+            <!-- ফিচার গ্রিড - মোবাইলের জন্য সুন্দর কার্ড -->
+            <div class="features-grid">
+                <a href="namaz.html" class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-clock"></i></div>
+                    <div class="feature-info">
+                        <h3>নামাজের সময়সূচি</h3>
+                        <p>দৈনিক ৫ ওয়াক্ত নামাজের সঠিক সময়</p>
+                    </div>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+                <a href="quran.html" class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-quran"></i></div>
+                    <div class="feature-info">
+                        <h3>পবিত্র কুরআন</h3>
+                        <p>আরবি ও বাংলা অনুবাদ সহ</p>
+                    </div>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+                <a href="tasbih.html" class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-fingerprint"></i></div>
+                    <div class="feature-info">
+                        <h3>ডিজিটাল তাসবিহ</h3>
+                        <p>সুবহানাল্লাহ, আলহামদুলিল্লাহ, আল্লাহু আকবার</p>
+                    </div>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+                <a href="qibla.html" class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-compass"></i></div>
+                    <div class="feature-info">
+                        <h3>কিবলা দিক নির্দেশক</h3>
+                        <p>কাবার সঠিক দিক নির্ণয় করুন</p>
+                    </div>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+
+            <!-- দৈনিক দুআ কার্ড -->
+            <div class="dua-card">
+                <div class="dua-header">
+                    <i class="fas fa-hands-praying"></i>
+                    <h3>আজকের দৈনিক দুআ</h3>
+                </div>
+                <div class="dua-arabic">رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ</div>
+                <div class="dua-bangla">হে আমাদের পালনকর্তা! দুনিয়াতে আমাদের কল্যাণ দাও এবং আখিরাতেও কল্যাণ দাও এবং আমাদেরকে দোজখের আযাব থেকে রক্ষা কর।</div>
+                <div class="dua-reference">সূরা আল-বাকারাহ, আয়াত ২০১</div>
+            </div>
+        </main>
 
         <!-- মোবাইলের জন্য নিচের নেভিগেশন বার -->
         <nav class="bottom-navbar">
@@ -50,75 +144,6 @@
                 <span>কিবলা</span>
             </a>
         </nav>
-
-        <!-- সেটিংস প্যানেল -->
-        <div class="settings-panel" id="settingsPanel">
-            <div class="settings-header">
-                <h3><i class="fas fa-sliders-h"></i> সেটিংস</h3>
-                <button class="close-settings" id="closeSettingsBtn">&times;</button>
-            </div>
-            <div class="settings-body">
-                <div class="setting-item">
-                    <label><i class="fas fa-palette"></i> থিম নির্বাচন করুন</label>
-                    <div class="theme-controls">
-                        <button class="theme-btn active" data-theme="light">☀️ লাইট মোড</button>
-                        <button class="theme-btn" data-theme="dark">🌙 ডার্ক মোড</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- মূল কন্টেন্ট -->
-        <main class="main-content">
-            <div class="welcome-section">
-                <div class="welcome-icon">
-                    <i class="fas fa-star-and-crescent"></i>
-                </div>
-                <h1>আসসালামু আলাইকুম</h1>
-                <p>ইসলামিক অ্যাপসে আপনাকে স্বাগতম</p>
-                <div class="current-time-box">
-                    <i class="fas fa-clock"></i>
-                    <span id="liveClock">--:--:-- --</span>
-                </div>
-            </div>
-
-            <!-- ফিচার গ্রিড -->
-            <div class="features-grid">
-                <a href="namaz.html" class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-clock"></i></div>
-                    <h3>নামাজের সময়সূচি</h3>
-                    <p>দৈনিক ৫ ওয়াক্ত নামাজের সঠিক সময়</p>
-                </a>
-                <a href="quran.html" class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-quran"></i></div>
-                    <h3>পবিত্র কুরআন</h3>
-                    <p>আরবি ও বাংলা অনুবাদ সহ</p>
-                </a>
-                <a href="tasbih.html" class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-fingerprint"></i></div>
-                    <h3>ডিজিটাল তাসবিহ</h3>
-                    <p>সুবহানাল্লাহ, আলহামদুলিল্লাহ, আল্লাহু আকবার</p>
-                </a>
-                <a href="qibla.html" class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-compass"></i></div>
-                    <h3>কিবলা দিক নির্দেশক</h3>
-                    <p>কাবার সঠিক দিক নির্ণয় করুন</p>
-                </a>
-            </div>
-
-            <!-- দৈনিক দুআ -->
-            <div class="daily-dua">
-                <div class="section-title">
-                    <i class="fas fa-hands-praying"></i>
-                    <h2>আজকের দৈনিক দুআ</h2>
-                </div>
-                <div class="dua-card">
-                    <div class="dua-arabic">رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ</div>
-                    <div class="dua-bangla">হে আমাদের পালনকর্তা! দুনিয়াতে আমাদের কল্যাণ দাও এবং আখিরাতেও কল্যাণ দাও এবং আমাদেরকে দোজখের আযাব থেকে রক্ষা কর।</div>
-                    <div class="dua-reference">সূরা আল-বাকারাহ, আয়াত ২০১</div>
-                </div>
-            </div>
-        </main>
     </div>
 
     <script src="js/main.js"></script>
