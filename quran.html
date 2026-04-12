@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="app-container">
-        <!-- ডেস্কটপ নেভিগেশন বার -->
+        <!-- ডেস্কটপ নেভিগেশন বার (হোম পেজের মতো) -->
         <nav class="top-navbar">
             <div class="nav-brand">
                 <div class="custom-logo">
@@ -103,8 +103,8 @@
                 <span id="searchCount" class="search-count">১১৪ টি সূরা</span>
             </div>
 
-            <!-- ভিউয়ার - আয়াত দেখানোর জায়গা -->
-            <div class="viewer-container" id="viewerContainer">
+            <!-- আয়াত ভিউয়ার -->
+            <div class="viewer-container">
                 <div class="viewer scrollable" id="ayahViewer">
                     <div class="surah-header">
                         <h2>الفاتحة</h2>
@@ -121,13 +121,13 @@
             </div>
         </main>
 
-        <!-- ফ্লোটিং সূরা লিস্ট বাটন (মোবাইলে) -->
+        <!-- ফ্লোটিং সূরা লিস্ট বাটন (আয়াতের পাশে - ডান পাশে) -->
         <button class="floating-surah-btn" id="floatingSurahBtn">
             <i class="fas fa-list-ul"></i>
             <span>সূরা</span>
         </button>
 
-        <!-- সূরা লিস্ট সাইডবার (মোবাইলে স্লাইড) -->
+        <!-- সূরা লিস্ট সাইডবার (ডান দিক থেকে স্লাইড) -->
         <div class="surah-sidebar" id="surahSidebar">
             <div class="surah-sidebar-header">
                 <span><i class="fas fa-quran"></i> সূরা তালিকা</span>
@@ -143,8 +143,16 @@
         </div>
         <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-        <!-- মোবাইল নেভিগেশন বার -->
+        <!-- মোবাইল নেভিগেশন বার (হোম পেজের মতো) -->
         <nav class="bottom-navbar">
+            <a href="tasbih.html" class="nav-item">
+                <i class="fas fa-fingerprint"></i>
+                <span>তাসবিহ</span>
+            </a>
+            <a href="quran.html" class="nav-item active">
+                <i class="fas fa-quran"></i>
+                <span>কুরআন</span>
+            </a>
             <a href="index.html" class="nav-item">
                 <i class="fas fa-home"></i>
                 <span>হোম</span>
@@ -152,14 +160,6 @@
             <a href="namaz.html" class="nav-item">
                 <i class="fas fa-clock"></i>
                 <span>নামাজ</span>
-            </a>
-            <a href="quran.html" class="nav-item active">
-                <i class="fas fa-quran"></i>
-                <span>কুরআন</span>
-            </a>
-            <a href="tasbih.html" class="nav-item">
-                <i class="fas fa-fingerprint"></i>
-                <span>তাসবিহ</span>
             </a>
             <div class="nav-item more-menu" id="moreMenuBtn">
                 <i class="fas fa-ellipsis-h"></i>
