@@ -1,16 +1,5 @@
-/* ========== বাংলা ফন্ট - Kalpurush ========== */
-@font-face {
-    font-family: 'Kalpurush';
-    src: url('https://raw.githubusercontent.com/me-shaon/bangla-fonts/main/Kalpurush/Kalpurush.ttf') format('truetype');
-    font-weight: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Kalpurush';
-    src: url('https://raw.githubusercontent.com/me-shaon/bangla-fonts/main/Kalpurush/Kalpurush-Bold.ttf') format('truetype');
-    font-weight: bold;
-    font-display: swap;
-}
+/* ========== বাংলা ফন্ট ========== */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap');
 
 /* ========== আরবি ফন্ট ========== */
 @font-face {
@@ -22,36 +11,37 @@
 
 /* ========== CSS ভেরিয়েবল ========== */
 :root {
-    --primary: #2a9d6e;
-    --primary-dark: #1e5a3a;
-    --primary-light: #e8f5e9;
+    --primary: #059669;
+    --primary-dark: #047857;
+    --primary-light: #d1fae5;
+    --primary-bg: #ecfdf5;
     --white: #ffffff;
-    --gray-light: #f8fafc;
-    --gray: #e2e8f0;
-    --text-dark: #1e293b;
-    --text-gray: #64748b;
-    --text-light: #94a3b8;
-    --gold: #d4af37;
-    --red: #ef4444;
-    --shadow: 0 4px 12px rgba(0,0,0,0.08);
-    --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.1);
-    --radius: 24px;
-    --radius-sm: 16px;
+    --gray-light: #f9fafb;
+    --gray: #e5e7eb;
+    --gray-dark: #9ca3af;
+    --text-dark: #1f2937;
+    --text-gray: #6b7280;
+    --text-light: #9ca3af;
+    --gold: #d97706;
+    --shadow: 0 1px 3px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+    --radius: 20px;
+    --radius-sm: 12px;
     --bg: #f0fdf4;
     --card-bg: #ffffff;
-    --border: #e2e8f0;
+    --border: #e5e7eb;
 }
 
 body.dark-mode {
-    --primary: #22c55e;
-    --primary-dark: #16a34a;
-    --primary-light: #166534;
-    --white: #1e293b;
-    --gray-light: #0f172a;
-    --gray: #334155;
-    --text-dark: #f1f5f9;
-    --text-gray: #94a3b8;
-    --text-light: #64748b;
+    --primary: #10b981;
+    --primary-dark: #059669;
+    --primary-light: #064e3b;
+    --primary-bg: #022c22;
+    --white: #1f2937;
+    --gray-light: #111827;
+    --gray: #374151;
+    --text-dark: #f9fafb;
+    --text-gray: #9ca3af;
     --bg: #0f172a;
     --card-bg: #1e293b;
     --border: #334155;
@@ -64,10 +54,10 @@ body.dark-mode {
 }
 
 body {
-    font-family: 'Kalpurush', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Noto Sans Bengali', -apple-system, BlinkMacSystemFont, sans-serif;
     background: var(--bg);
     color: var(--text-dark);
-    transition: all 0.3s ease;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 .app-container {
@@ -187,22 +177,16 @@ body {
     justify-content: center;
 }
 
-/* ========== সেটিংস প্যানেল (মোবাইলে নিচ থেকে ওপেন) ========== */
+/* ========== সেটিংস প্যানেল ========== */
 .settings-panel {
     position: fixed;
-    bottom: -400px;
-    left: 0;
-    right: 0;
     background: var(--card-bg);
-    border-radius: var(--radius) var(--radius) 0 0;
     z-index: 200;
-    transition: bottom 0.3s ease;
+    transition: all 0.3s ease;
     box-shadow: var(--shadow-lg);
-    border-top: 1px solid var(--border);
+    border: 1px solid var(--border);
 }
-.settings-panel.open {
-    bottom: 70px;
-}
+.settings-panel.open { display: block; }
 .settings-header {
     display: flex;
     justify-content: space-between;
@@ -234,11 +218,39 @@ body {
     background: var(--gray-light);
     border-radius: 30px;
     cursor: pointer;
-    font-family: 'Kalpurush', sans-serif;
+    font-family: inherit;
     font-size: 0.8rem;
     transition: all 0.2s;
+    color: var(--text-dark);
 }
-.theme-btn.active { background: var(--primary); color: white; }
+.theme-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+
+/* ডেস্কটপে সেটিংস */
+@media (min-width: 769px) {
+    .settings-panel {
+        top: 70px;
+        right: -320px;
+        width: 280px;
+        border-radius: var(--radius);
+    }
+    .settings-panel.open {
+        right: 15px;
+    }
+}
+
+/* মোবাইলে সেটিংস (নিচ থেকে) */
+@media (max-width: 768px) {
+    .settings-panel {
+        bottom: -400px;
+        left: 0;
+        right: 0;
+        border-radius: var(--radius) var(--radius) 0 0;
+        border-bottom: none;
+    }
+    .settings-panel.open {
+        bottom: 70px;
+    }
+}
 
 /* ========== মোর মেনু প্যানেল ========== */
 .more-menu-panel {
@@ -301,6 +313,8 @@ body {
     margin: 0 auto;
     width: 100%;
 }
+
+/* ওয়েলকাম কার্ড */
 .welcome-card {
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     border-radius: var(--radius);
@@ -322,6 +336,8 @@ body {
     font-size: 1rem;
     font-family: monospace;
 }
+
+/* ফিচার গ্রিড */
 .features-grid {
     display: flex;
     flex-direction: column;
@@ -339,6 +355,7 @@ body {
     border: 1px solid var(--border);
     transition: all 0.2s;
 }
+.feature-card:hover { transform: translateX(5px); }
 .feature-icon {
     width: 50px;
     height: 50px;
@@ -354,6 +371,7 @@ body {
 .feature-info p { font-size: 0.65rem; color: var(--text-gray); }
 .feature-card i:last-child { color: var(--text-light); font-size: 0.8rem; }
 
+/* মোর সেকশন */
 .more-section {
     background: var(--card-bg);
     border-radius: var(--radius-sm);
@@ -391,6 +409,7 @@ body {
 .more-card i { font-size: 1.5rem; color: var(--primary); }
 .more-card span { font-size: 0.7rem; color: var(--text-dark); }
 
+/* দুআ কার্ড */
 .dua-card {
     background: var(--card-bg);
     border-radius: var(--radius-sm);
@@ -473,29 +492,15 @@ body {
     to { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
 
-/* ========== ডেস্কটপ ========== */
+/* ========== রেস্পন্সিভ ========== */
 @media (min-width: 769px) {
     .mobile-header, .bottom-navbar, .more-menu-panel { display: none !important; }
     .desktop-only { display: block !important; }
     .top-navbar { display: flex; }
     .main-content { padding-bottom: 1.5rem; }
     .toast { bottom: 20px; }
-    .settings-panel {
-        top: 70px;
-        bottom: auto;
-        right: -320px;
-        left: auto;
-        width: 280px;
-        border-radius: var(--radius);
-        transition: right 0.3s ease;
-    }
-    .settings-panel.open {
-        right: 15px;
-        bottom: auto;
-    }
 }
 
-/* ========== মোবাইল ========== */
 @media (max-width: 768px) {
     .top-navbar, .desktop-only { display: none !important; }
     .mobile-header { display: flex; }
@@ -505,19 +510,8 @@ body {
     .welcome-icon { font-size: 2.5rem; }
     .welcome-card h1 { font-size: 1.1rem; }
     .toast { bottom: 75px; }
-    .settings-panel {
-        top: auto;
-        bottom: -400px;
-        left: 0;
-        right: 0;
-        width: 100%;
-        border-radius: var(--radius) var(--radius) 0 0;
-    }
-    .settings-panel.open {
-        bottom: 70px;
-        right: auto;
-    }
 }
+
 @media (max-width: 480px) {
     .bottom-navbar { padding: 0.4rem 0.5rem; }
     .nav-item { min-width: 50px; }
