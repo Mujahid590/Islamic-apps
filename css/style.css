@@ -3,14 +3,12 @@
     font-family: 'Kalpurush';
     src: url('https://raw.githubusercontent.com/me-shaon/bangla-fonts/main/Kalpurush/Kalpurush.ttf') format('truetype');
     font-weight: normal;
-    font-style: normal;
     font-display: swap;
 }
 @font-face {
     font-family: 'Kalpurush';
     src: url('https://raw.githubusercontent.com/me-shaon/bangla-fonts/main/Kalpurush/Kalpurush-Bold.ttf') format('truetype');
     font-weight: bold;
-    font-style: normal;
     font-display: swap;
 }
 
@@ -19,7 +17,6 @@
     font-family: 'Uthman Taha Naskh';
     src: url('https://raw.githubusercontent.com/mustafa0x/qpc-fonts/f93bf5f3/various-woff2/UthmanTN1%20Ver10.woff2') format('woff2');
     font-weight: normal;
-    font-style: normal;
     font-display: swap;
 }
 
@@ -38,8 +35,8 @@
     --red: #ef4444;
     --shadow: 0 4px 12px rgba(0,0,0,0.08);
     --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.1);
-    --radius: 20px;
-    --radius-sm: 14px;
+    --radius: 24px;
+    --radius-sm: 16px;
     --bg: #f0fdf4;
     --card-bg: #ffffff;
     --border: #e2e8f0;
@@ -73,14 +70,13 @@ body {
     transition: all 0.3s ease;
 }
 
-/* ========== অ্যাপ কন্টেইনার ========== */
 .app-container {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-/* ========== ডেস্কটপ নেভিগেশন বার ========== */
+/* ========== ডেস্কটপ নেভিগেশন ========== */
 .top-navbar {
     background: var(--card-bg);
     padding: 0 1.5rem;
@@ -93,7 +89,6 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
-    width: 100%;
     height: 65px;
 }
 
@@ -128,35 +123,21 @@ body {
     align-items: center;
     justify-content: center;
     gap: 2px;
-    padding: 6px 14px;
+    padding: 6px 12px;
     border-radius: 40px;
     color: var(--text-gray);
     font-size: 0.7rem;
     text-decoration: none;
-    min-width: 65px;
+    min-width: 60px;
 }
 
-.nav-link i {
-    font-size: 1.1rem;
-}
+.nav-link i { font-size: 1rem; }
+.nav-link span { font-size: 0.55rem; }
+.nav-link.active { background: var(--primary); color: white; }
 
-.nav-link span {
-    font-size: 0.6rem;
-}
-
-.nav-link.active {
-    background: var(--primary);
-    color: white;
-}
-
-.nav-actions {
-    display: flex;
-    gap: 0.5rem;
-}
-
+.nav-actions { display: flex; gap: 0.5rem; }
 .icon-btn {
-    width: 42px;
-    height: 42px;
+    width: 42px; height: 42px;
     border-radius: 50%;
     background: var(--gray-light);
     border: none;
@@ -164,13 +145,9 @@ body {
     font-size: 1.2rem;
     cursor: pointer;
 }
+.icon-btn:hover { background: var(--primary); color: white; }
 
-.icon-btn:hover {
-    background: var(--primary);
-    color: white;
-}
-
-/* ========== মোবাইল হেডার (সেটিংস সহ) ========== */
+/* ========== মোবাইল হেডার ========== */
 .mobile-header {
     display: none;
     background: var(--card-bg);
@@ -190,7 +167,7 @@ body {
 }
 
 .mobile-brand-icon {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: var(--primary);
     font-family: 'Uthman Taha Naskh', serif;
     background: var(--primary-light);
@@ -207,15 +184,13 @@ body {
     color: var(--primary-dark);
     margin-bottom: 2px;
 }
-
 .mobile-brand-text p {
     font-size: 0.6rem;
     color: var(--text-gray);
 }
 
 .mobile-settings-btn {
-    width: 44px;
-    height: 44px;
+    width: 44px; height: 44px;
     border-radius: 50%;
     background: var(--gray-light);
     border: none;
@@ -240,10 +215,7 @@ body {
     border: 1px solid var(--border);
     box-shadow: var(--shadow-lg);
 }
-
-.settings-panel.open {
-    right: 15px;
-}
+.settings-panel.open { right: 15px; }
 
 .settings-header {
     display: flex;
@@ -252,12 +224,7 @@ body {
     padding: 0.8rem 1rem;
     border-bottom: 1px solid var(--border);
 }
-
-.settings-header h3 {
-    color: var(--primary);
-    font-size: 1rem;
-}
-
+.settings-header h3 { color: var(--primary); font-size: 1rem; }
 .close-settings {
     background: none;
     border: none;
@@ -266,26 +233,15 @@ body {
     color: var(--text-gray);
 }
 
-.settings-body {
-    padding: 1rem;
-}
-
-.setting-item {
-    margin-bottom: 1.2rem;
-}
-
+.settings-body { padding: 1rem; }
+.setting-item { margin-bottom: 1.2rem; }
 .setting-item label {
     display: block;
     margin-bottom: 0.5rem;
     font-size: 0.85rem;
     color: var(--text-gray);
 }
-
-.theme-controls {
-    display: flex;
-    gap: 0.5rem;
-}
-
+.theme-controls { display: flex; gap: 0.5rem; }
 .theme-btn {
     flex: 1;
     padding: 0.5rem;
@@ -296,11 +252,62 @@ body {
     font-family: 'Kalpurush', sans-serif;
     font-size: 0.8rem;
 }
+.theme-btn.active { background: var(--primary); color: white; }
 
-.theme-btn.active {
-    background: var(--primary);
-    color: white;
+/* ========== মোর মেনু প্যানেল ========== */
+.more-menu-panel {
+    position: fixed;
+    bottom: -400px;
+    left: 0;
+    right: 0;
+    background: var(--card-bg);
+    border-radius: var(--radius) var(--radius) 0 0;
+    z-index: 250;
+    transition: bottom 0.3s ease;
+    box-shadow: var(--shadow-lg);
+    border-top: 1px solid var(--border);
 }
+.more-menu-panel.open { bottom: 70px; }
+
+.more-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+.more-menu-header h3 { color: var(--primary); font-size: 1rem; }
+.close-more-menu {
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: var(--text-gray);
+}
+
+.more-menu-items { padding: 0.5rem; }
+.more-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    text-decoration: none;
+    color: var(--text-dark);
+    border-bottom: 1px solid var(--border);
+}
+.more-menu-item i:first-child {
+    width: 40px;
+    height: 40px;
+    background: var(--primary-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+.more-menu-item span { flex: 1; font-size: 0.9rem; }
+.more-menu-item i:last-child { color: var(--text-light); font-size: 0.8rem; }
 
 /* ========== মূল কন্টেন্ট ========== */
 .main-content {
@@ -311,51 +318,36 @@ body {
     width: 100%;
 }
 
-/* ========== ওয়েলকাম কার্ড ========== */
+/* ওয়েলকাম কার্ড */
 .welcome-card {
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     border-radius: var(--radius);
-    padding: 1.5rem;
+    padding: 1.8rem;
     text-align: center;
     color: white;
     margin-bottom: 1.2rem;
 }
-
-.welcome-icon {
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
-}
-
-.welcome-card h1 {
-    font-size: 1.3rem;
-    margin-bottom: 0.3rem;
-}
-
-.welcome-card p {
-    font-size: 0.8rem;
-    opacity: 0.9;
-    margin-bottom: 1rem;
-}
-
+.welcome-icon { font-size: 3rem; margin-bottom: 0.5rem; }
+.welcome-card h1 { font-size: 1.4rem; margin-bottom: 0.3rem; }
+.welcome-card p { font-size: 0.85rem; opacity: 0.9; margin-bottom: 1rem; }
 .time-card {
     background: rgba(255,255,255,0.2);
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 0.5rem 1.2rem;
+    padding: 0.6rem 1.2rem;
     border-radius: 50px;
     font-size: 1rem;
     font-family: monospace;
 }
 
-/* ========== ফিচার গ্রিড ========== */
+/* ফিচার গ্রিড */
 .features-grid {
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
     margin-bottom: 1.2rem;
 }
-
 .feature-card {
     background: var(--card-bg);
     border-radius: var(--radius-sm);
@@ -365,13 +357,7 @@ body {
     gap: 1rem;
     text-decoration: none;
     border: 1px solid var(--border);
-    transition: all 0.2s;
 }
-
-.feature-card:hover {
-    transform: translateX(3px);
-}
-
 .feature-icon {
     width: 50px;
     height: 50px;
@@ -380,35 +366,52 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
 }
+.feature-icon i { font-size: 1.3rem; color: var(--primary); }
+.feature-info { flex: 1; }
+.feature-info h3 { font-size: 0.9rem; color: var(--text-dark); margin-bottom: 3px; }
+.feature-info p { font-size: 0.65rem; color: var(--text-gray); }
+.feature-card i:last-child { color: var(--text-light); font-size: 0.8rem; }
 
-.feature-icon i {
-    font-size: 1.3rem;
-    color: var(--primary);
+/* মোর সেকশন */
+.more-section {
+    background: var(--card-bg);
+    border-radius: var(--radius-sm);
+    padding: 1rem;
+    margin-bottom: 1.2rem;
+    border: 1px solid var(--border);
 }
-
-.feature-info {
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+}
+.section-header i { font-size: 1rem; color: var(--gold); }
+.section-header h3 { font-size: 0.9rem; color: var(--text-dark); }
+.more-grid {
+    display: flex;
+    justify-content: space-around;
+    gap: 1rem;
+}
+.more-card {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 0.8rem;
+    background: var(--gray-light);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    transition: all 0.2s;
 }
+.more-card i { font-size: 1.5rem; color: var(--primary); }
+.more-card span { font-size: 0.7rem; color: var(--text-dark); }
 
-.feature-info h3 {
-    font-size: 0.9rem;
-    color: var(--text-dark);
-    margin-bottom: 3px;
-}
-
-.feature-info p {
-    font-size: 0.65rem;
-    color: var(--text-gray);
-}
-
-.feature-card i:last-child {
-    color: var(--text-light);
-    font-size: 0.8rem;
-}
-
-/* ========== দুআ কার্ড ========== */
+/* দুআ কার্ড */
 .dua-card {
     background: var(--card-bg);
     border-radius: var(--radius-sm);
@@ -416,7 +419,6 @@ body {
     border: 1px solid var(--border);
     margin-top: 0.5rem;
 }
-
 .dua-header {
     display: flex;
     align-items: center;
@@ -425,17 +427,8 @@ body {
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--border);
 }
-
-.dua-header i {
-    font-size: 1.2rem;
-    color: var(--gold);
-}
-
-.dua-header h3 {
-    font-size: 0.9rem;
-    color: var(--text-dark);
-}
-
+.dua-header i { font-size: 1.2rem; color: var(--gold); }
+.dua-header h3 { font-size: 0.9rem; color: var(--text-dark); }
 .dua-arabic {
     font-family: 'Uthman Taha Naskh', serif;
     font-size: 1rem;
@@ -444,21 +437,10 @@ body {
     margin-bottom: 0.8rem;
     color: var(--primary-dark);
 }
+.dua-bangla { font-size: 0.8rem; text-align: center; margin-bottom: 0.5rem; }
+.dua-reference { font-size: 0.6rem; text-align: center; color: var(--text-gray); }
 
-.dua-bangla {
-    font-size: 0.8rem;
-    text-align: center;
-    margin-bottom: 0.5rem;
-    color: var(--text-dark);
-}
-
-.dua-reference {
-    font-size: 0.6rem;
-    text-align: center;
-    color: var(--text-gray);
-}
-
-/* ========== মোবাইল নেভিগেশন বার ========== */
+/* মোবাইল নেভিগেশন বার */
 .bottom-navbar {
     display: none;
     position: fixed;
@@ -471,10 +453,8 @@ body {
     align-items: center;
     padding: 0.6rem 0.8rem;
     border-top: 1px solid var(--border);
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
     z-index: 100;
 }
-
 .nav-item {
     display: flex;
     flex-direction: column;
@@ -487,22 +467,15 @@ body {
     font-size: 0.7rem;
     text-decoration: none;
     min-width: 55px;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
+.nav-item i { font-size: 1.2rem; }
+.nav-item span { font-size: 0.55rem; }
+.nav-item.active { background: var(--primary); color: white; }
 
-.nav-item i {
-    font-size: 1.2rem;
-}
-
-.nav-item span {
-    font-size: 0.55rem;
-}
-
-.nav-item.active {
-    background: var(--primary);
-    color: white;
-}
-
-/* ========== টোস্ট মেসেজ ========== */
+/* ========== টোস্ট ========== */
 .toast {
     position: fixed;
     bottom: 80px;
@@ -516,148 +489,37 @@ body {
     font-size: 0.8rem;
     animation: fadeInUp 0.3s ease;
 }
-
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateX(-50%) translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-    }
+    from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
 
-/* ========== ডেস্কটপ মোড (769px+) ========== */
+/* ========== ডেস্কটপ ========== */
 @media (min-width: 769px) {
-    .mobile-header {
-        display: none !important;
-    }
-    
-    .bottom-navbar {
-        display: none !important;
-    }
-    
-    .top-navbar {
-        display: flex;
-    }
-    
-    .main-content {
-        padding-bottom: 1.5rem;
-    }
-    
-    .toast {
-        bottom: 20px;
-    }
+    .mobile-header, .bottom-navbar, .more-menu-panel, .more-section { display: none !important; }
+    .top-navbar { display: flex; }
+    .main-content { padding-bottom: 1.5rem; }
+    .toast { bottom: 20px; }
 }
 
-/* ========== মোবাইল মোড (768px-) ========== */
+/* ========== মোবাইল ========== */
 @media (max-width: 768px) {
-    .top-navbar {
-        display: none !important;
-    }
-    
-    .mobile-header {
-        display: flex;
-    }
-    
-    .bottom-navbar {
-        display: flex;
-    }
-    
-    .main-content {
-        padding: 1rem;
-        padding-bottom: 75px;
-    }
-    
-    .welcome-card {
-        padding: 1.2rem;
-    }
-    
-    .welcome-icon {
-        font-size: 2.5rem;
-    }
-    
-    .welcome-card h1 {
-        font-size: 1.1rem;
-    }
-    
-    .feature-card {
-        padding: 0.8rem;
-    }
-    
-    .feature-icon {
-        width: 45px;
-        height: 45px;
-    }
-    
-    .feature-icon i {
-        font-size: 1.1rem;
-    }
-    
-    .feature-info h3 {
-        font-size: 0.85rem;
-    }
-    
-    .feature-info p {
-        font-size: 0.6rem;
-    }
-    
-    .dua-arabic {
-        font-size: 0.9rem;
-    }
-    
-    .dua-bangla {
-        font-size: 0.75rem;
-    }
-    
-    .settings-panel {
-        top: auto;
-        bottom: 70px;
-        right: -280px;
-    }
-    
-    .settings-panel.open {
-        right: 10px;
-    }
-    
-    .toast {
-        bottom: 75px;
-    }
+    .top-navbar { display: none !important; }
+    .mobile-header { display: flex; }
+    .bottom-navbar { display: flex; }
+    .main-content { padding: 1rem; padding-bottom: 75px; }
+    .welcome-card { padding: 1.2rem; }
+    .welcome-icon { font-size: 2.5rem; }
+    .welcome-card h1 { font-size: 1.1rem; }
+    .settings-panel { top: auto; bottom: 70px; right: -280px; }
+    .settings-panel.open { right: 10px; }
+    .toast { bottom: 75px; }
 }
 
-/* ========== ছোট মোবাইল (480px-) ========== */
 @media (max-width: 480px) {
-    .bottom-navbar {
-        padding: 0.4rem 0.5rem;
-    }
-    
-    .nav-item {
-        min-width: 50px;
-        padding: 0.3rem 0.3rem;
-    }
-    
-    .nav-item i {
-        font-size: 1rem;
-    }
-    
-    .nav-item span {
-        font-size: 0.5rem;
-    }
-    
-    .mobile-brand-icon {
-        width: 40px;
-        height: 40px;
-        font-size: 1.6rem;
-    }
-    
-    .mobile-brand-text h2 {
-        font-size: 0.9rem;
-    }
-    
-    .mobile-settings-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
-    }
+    .bottom-navbar { padding: 0.4rem 0.5rem; }
+    .nav-item { min-width: 50px; }
+    .nav-item i { font-size: 1rem; }
+    .nav-item span { font-size: 0.5rem; }
+    .mobile-brand-icon { width: 40px; height: 40px; font-size: 1.5rem; }
 }
