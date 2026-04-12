@@ -103,25 +103,8 @@
                 <span id="searchCount" class="search-count">১১৪ টি সূরা</span>
             </div>
 
-            <!-- মোবাইলে সূরা লিস্ট টগল বাটন -->
-            <button class="toggle-surah-btn" id="toggleSurahBtn">
-                <i class="fas fa-list-ul"></i> সূরা তালিকা <i class="fas fa-chevron-down" id="toggleIcon"></i>
-            </button>
-
-            <!-- দুই কলাম লেআউট -->
-            <div class="two-columns" id="twoColumns">
-                <!-- সাইডবার - সূরা তালিকা -->
-                <div class="sidebar" id="surahSidebar">
-                    <div class="sidebar-header">
-                        <span><i class="fas fa-list"></i> সূরা তালিকা</span>
-                        <span id="totalSurahCount">১১৪</span>
-                    </div>
-                    <div class="sidebar-list scrollable" id="surahList">
-                        <div class="loading"><i class="fas fa-spinner fa-pulse"></i> লোড হচ্ছে...</div>
-                    </div>
-                </div>
-
-                <!-- ভিউয়ার - আয়াত দেখানোর জায়গা -->
+            <!-- ভিউয়ার - আয়াত দেখানোর জায়গা -->
+            <div class="viewer-container" id="viewerContainer">
                 <div class="viewer scrollable" id="ayahViewer">
                     <div class="surah-header">
                         <h2>الفاتحة</h2>
@@ -131,30 +114,37 @@
                             <span><i class="fas fa-map-marker-alt"></i> মক্কী</span>
                         </div>
                     </div>
-                    <div class="ayah-card">
-                        <div class="ayah-number">১</div>
-                        <div class="ayah-arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
-                        <div class="ayah-translation">শুরু করছি আল্লাহর নামে যিনি পরম করুণাময় ও অতি দয়ালু।</div>
-                    </div>
-                    <div class="ayah-card">
-                        <div class="ayah-number">২</div>
-                        <div class="ayah-arabic">الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ</div>
-                        <div class="ayah-translation">সমস্ত প্রশংসা আল্লাহর জন্য, যিনি সমস্ত জগতের পালনকর্তা।</div>
+                    <div class="loading-spinner">
+                        <i class="fas fa-spinner fa-pulse"></i> লোড হচ্ছে...
                     </div>
                 </div>
             </div>
         </main>
 
+        <!-- ফ্লোটিং সূরা লিস্ট বাটন (মোবাইলে) -->
+        <button class="floating-surah-btn" id="floatingSurahBtn">
+            <i class="fas fa-list-ul"></i>
+            <span>সূরা</span>
+        </button>
+
+        <!-- সূরা লিস্ট সাইডবার (মোবাইলে স্লাইড) -->
+        <div class="surah-sidebar" id="surahSidebar">
+            <div class="surah-sidebar-header">
+                <span><i class="fas fa-quran"></i> সূরা তালিকা</span>
+                <button class="close-sidebar" id="closeSidebarBtn">&times;</button>
+            </div>
+            <div class="search-bar-sidebar">
+                <i class="fas fa-search"></i>
+                <input type="text" id="sidebarSearch" placeholder="সূরা খুঁজুন...">
+            </div>
+            <div class="surah-sidebar-list scrollable" id="surahList">
+                <div class="loading"><i class="fas fa-spinner fa-pulse"></i> লোড হচ্ছে...</div>
+            </div>
+        </div>
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
         <!-- মোবাইল নেভিগেশন বার -->
         <nav class="bottom-navbar">
-            <a href="tasbih.html" class="nav-item">
-                <i class="fas fa-fingerprint"></i>
-                <span>তাসবিহ</span>
-            </a>
-            <a href="quran.html" class="nav-item active">
-                <i class="fas fa-quran"></i>
-                <span>কুরআন</span>
-            </a>
             <a href="index.html" class="nav-item">
                 <i class="fas fa-home"></i>
                 <span>হোম</span>
@@ -162,6 +152,14 @@
             <a href="namaz.html" class="nav-item">
                 <i class="fas fa-clock"></i>
                 <span>নামাজ</span>
+            </a>
+            <a href="quran.html" class="nav-item active">
+                <i class="fas fa-quran"></i>
+                <span>কুরআন</span>
+            </a>
+            <a href="tasbih.html" class="nav-item">
+                <i class="fas fa-fingerprint"></i>
+                <span>তাসবিহ</span>
             </a>
             <div class="nav-item more-menu" id="moreMenuBtn">
                 <i class="fas fa-ellipsis-h"></i>
