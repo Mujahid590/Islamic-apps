@@ -41,10 +41,12 @@ function setupThemeListeners() {
 function showToast(message, type = 'info') {
     const oldToasts = document.querySelectorAll('.toast');
     oldToasts.forEach(toast => toast.remove());
+    
     let toast = document.createElement('div');
-    toast.className = `toast toast-${type}`;
+    toast.className = 'toast';
     toast.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i> ${message}`;
     document.body.appendChild(toast);
+    
     setTimeout(() => {
         toast.style.opacity = '0';
         setTimeout(() => toast.remove(), 300);
@@ -62,13 +64,23 @@ function initSettingsPanel() {
     }
     
     if (settingsBtn && settingsPanel) {
-        settingsBtn.addEventListener('click', (e) => { e.stopPropagation(); openSettings(); });
+        settingsBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openSettings();
+        });
     }
+    
     if (mobileSettingsBtn && settingsPanel) {
-        mobileSettingsBtn.addEventListener('click', (e) => { e.stopPropagation(); openSettings(); });
+        mobileSettingsBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openSettings();
+        });
     }
+    
     if (closeSettings && settingsPanel) {
-        closeSettings.addEventListener('click', () => { settingsPanel.classList.remove('open'); });
+        closeSettings.addEventListener('click', () => {
+            settingsPanel.classList.remove('open');
+        });
     }
     
     document.addEventListener('click', (e) => {
@@ -84,7 +96,6 @@ function initSettingsPanel() {
     });
 }
 
-// মোর মেনু ফাংশন
 function initMoreMenu() {
     const moreMenuBtn = document.getElementById('moreMenuBtn');
     const moreMenuPanel = document.getElementById('moreMenuPanel');
@@ -113,15 +124,32 @@ function initMoreMenu() {
 }
 
 function setActiveNavLink() {
-    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-    document.querySelectorAll('.nav-link, .nav-item').forEach(item => {
-        const href = item.getAttribute('href');
-        if (href === currentPath) {
-            item.classList.add('active');
-        } else if (item.id !== 'moreMenuBtn') {
-            item.classList.remove('active');
+    document.querySelectorAll('.nav-link.active, .nav-item.active').forEach(el => {
+        if (el.id !== 'moreMenuBtn') {
+            el.classList.remove('active');
         }
     });
+    
+    const desktopHome = document.querySelector('.top-navbar .nav-link:first-child');
+    if (desktopHome) desktopHome.classList.add('active');
+    
+    const mobileHome = Array.from(document.querySelectorAll('.bottom-navbar .nav-item')).find(
+        item => item.querySelector('span')?.innerText === 'হোম'
+    );
+    if (mobileHome) mobileHome.classList.add('active');
+}
+
+function updateClock() {
+    let now = new Date();
+    let clockSpan = document.getElementById("liveClock");
+    if (clockSpan) {
+        let hours = now.getHours();
+        let minutes = now.getMinutes();
+        let seconds = now.getSeconds();
+        let ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12 || 12;
+        clockSpan.innerHTML = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')} ${ampm}`;
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -130,4 +158,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initSettingsPanel();
     initMoreMenu();
     setActiveNavLink();
+    updateClock();
+    setInterval(updateClock, 1000);
 });
