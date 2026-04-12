@@ -2,7 +2,7 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>ইসলামিক অ্যাপস | পবিত্র কুরআন</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/quran.css">
@@ -10,24 +10,51 @@
 </head>
 <body>
     <div class="app-container">
+        <!-- ডেস্কটপ নেভিগেশন বার -->
         <nav class="top-navbar">
             <div class="nav-brand">
-                <span class="brand-icon">﷽</span>
+                <div class="custom-logo">
+                    <svg class="logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50 10 L65 30 L85 35 L75 55 L80 75 L50 85 L20 75 L25 55 L15 35 L35 30 L50 10Z" fill="currentColor" stroke="white" stroke-width="2"/>
+                        <text x="50" y="55" text-anchor="middle" fill="white" font-size="20" font-family="Arial">﷽</text>
+                    </svg>
+                </div>
                 <h1>ইসলামিক অ্যাপস</h1>
             </div>
             <div class="nav-links">
-                <a href="index.html" class="nav-link"><i class="fas fa-home"></i></a>
-                <a href="quran.html" class="nav-link active"><i class="fas fa-quran"></i></a>
-                <a href="tasbih.html" class="nav-link"><i class="fas fa-fingerprint"></i></a>
-                <a href="qibla.html" class="nav-link"><i class="fas fa-compass"></i></a>
-                <a href="mosques.html" class="nav-link"><i class="fas fa-mosque"></i></a>
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i><span>হোম</span></a>
+                <a href="namaz.html" class="nav-link"><i class="fas fa-clock"></i><span>নামাজ</span></a>
+                <a href="quran.html" class="nav-link active"><i class="fas fa-quran"></i><span>কুরআন</span></a>
+                <a href="tasbih.html" class="nav-link"><i class="fas fa-fingerprint"></i><span>তাসবিহ</span></a>
+                <a href="qibla.html" class="nav-link"><i class="fas fa-compass"></i><span>কিবলা</span></a>
+                <a href="mosques.html" class="nav-link"><i class="fas fa-mosque"></i><span>মসজিদ</span></a>
+                <a href="calendar.html" class="nav-link"><i class="fas fa-calendar-alt"></i><span>ক্যালেন্ডার</span></a>
             </div>
             <div class="nav-actions">
-                <a href="calendar.html" class="icon-btn"><i class="fas fa-calendar-alt"></i></a>
                 <button class="icon-btn" id="settingsNavBtn"><i class="fas fa-cog"></i></button>
             </div>
         </nav>
 
+        <!-- মোবাইল হেডার -->
+        <div class="mobile-header">
+            <div class="mobile-brand">
+                <div class="custom-logo small">
+                    <svg class="logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50 10 L65 30 L85 35 L75 55 L80 75 L50 85 L20 75 L25 55 L15 35 L35 30 L50 10Z" fill="currentColor" stroke="white" stroke-width="2"/>
+                        <text x="50" y="55" text-anchor="middle" fill="white" font-size="20" font-family="Arial">﷽</text>
+                    </svg>
+                </div>
+                <div class="mobile-brand-text">
+                    <h2>পবিত্র কুরআন</h2>
+                    <p>আল-কুরআন ও বাংলা অনুবাদ</p>
+                </div>
+            </div>
+            <button class="mobile-settings-btn" id="mobileSettingsBtn">
+                <i class="fas fa-cog"></i>
+            </button>
+        </div>
+
+        <!-- সেটিংস প্যানেল -->
         <div class="settings-panel" id="settingsPanel">
             <div class="settings-header">
                 <h3><i class="fas fa-sliders-h"></i> সেটিংস</h3>
@@ -35,60 +62,137 @@
             </div>
             <div class="settings-body">
                 <div class="setting-item">
-                    <label><i class="fas fa-palette"></i> থিম</label>
+                    <label><i class="fas fa-palette"></i> থিম নির্বাচন করুন</label>
                     <div class="theme-controls">
-                        <button class="theme-btn active" data-theme="light">লাইট</button>
-                        <button class="theme-btn" data-theme="dark">ডার্ক</button>
+                        <button class="theme-btn active" data-theme="light">☀️ লাইট</button>
+                        <button class="theme-btn" data-theme="dark">🌙 ডার্ক</button>
                     </div>
                 </div>
                 <div class="setting-item">
-                    <label><i class="fas fa-text-height"></i> আয়াতের সাইজ</label>
+                    <label><i class="fas fa-text-height"></i> আরবি আয়াতের সাইজ</label>
                     <div class="font-size-stepper">
                         <button id="decreaseFont">−</button>
-                        <span id="fontSizeValue">16</span>
+                        <span id="fontSizeValue">18</span>
                         <button id="increaseFont">+</button>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <label><i class="fas fa-language"></i> অনুবাদের সাইজ</label>
+                    <div class="font-size-stepper">
+                        <button id="decreaseTranslationFont">−</button>
+                        <span id="translationFontSizeValue">14</span>
+                        <button id="increaseTranslationFont">+</button>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- মূল কন্টেন্ট -->
         <main class="main-content quran-main">
+            <!-- পড়ার অগ্রগতি -->
             <div class="reading-progress">
-                <i class="fas fa-history"></i>
+                <i class="fas fa-book-open"></i>
                 <span>শেষ পড়া: <strong id="lastReadInfo">আল-ফাতিহা, আয়াত ১</strong></span>
-                <button id="continueReadingBtn" class="continue-btn">পড়া চালিয়ে যান</button>
+                <button id="continueReadingBtn" class="continue-btn">পড়া চালিয়ে যান <i class="fas fa-arrow-right"></i></button>
             </div>
 
+            <!-- সার্চ বার -->
             <div class="search-bar">
                 <i class="fas fa-search"></i>
-                <input type="text" id="surahSearch" placeholder="সূরা অনুসন্ধান...">
+                <input type="text" id="surahSearch" placeholder="সূরা অনুসন্ধান... (নাম বা নম্বর)">
                 <span id="searchCount" class="search-count">১১৪ টি সূরা</span>
             </div>
 
-            <div class="two-columns">
-                <div class="sidebar">
+            <!-- মোবাইলে সূরা লিস্ট টগল বাটন -->
+            <button class="toggle-surah-btn" id="toggleSurahBtn">
+                <i class="fas fa-list-ul"></i> সূরা তালিকা <i class="fas fa-chevron-down" id="toggleIcon"></i>
+            </button>
+
+            <!-- দুই কলাম লেআউট -->
+            <div class="two-columns" id="twoColumns">
+                <!-- সাইডবার - সূরা তালিকা -->
+                <div class="sidebar" id="surahSidebar">
                     <div class="sidebar-header">
                         <span><i class="fas fa-list"></i> সূরা তালিকা</span>
                         <span id="totalSurahCount">১১৪</span>
                     </div>
                     <div class="sidebar-list scrollable" id="surahList">
-                        <div class="loading">লোড হচ্ছে...</div>
+                        <div class="loading"><i class="fas fa-spinner fa-pulse"></i> লোড হচ্ছে...</div>
                     </div>
                 </div>
 
+                <!-- ভিউয়ার - আয়াত দেখানোর জায়গা -->
                 <div class="viewer scrollable" id="ayahViewer">
                     <div class="surah-header">
                         <h2>الفاتحة</h2>
-                        <p>আল-ফাতিহা • ৭ আয়াত</p>
+                        <div class="surah-meta">
+                            <span><i class="fas fa-tag"></i> আল-ফাতিহা</span>
+                            <span><i class="fas fa-ayat"></i> ৭ আয়াত</span>
+                            <span><i class="fas fa-map-marker-alt"></i> মক্কী</span>
+                        </div>
                     </div>
                     <div class="ayah-card">
-                        <div class="ayah-number">আয়াত: ১</div>
+                        <div class="ayah-number">১</div>
                         <div class="ayah-arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
                         <div class="ayah-translation">শুরু করছি আল্লাহর নামে যিনি পরম করুণাময় ও অতি দয়ালু।</div>
+                    </div>
+                    <div class="ayah-card">
+                        <div class="ayah-number">২</div>
+                        <div class="ayah-arabic">الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ</div>
+                        <div class="ayah-translation">সমস্ত প্রশংসা আল্লাহর জন্য, যিনি সমস্ত জগতের পালনকর্তা।</div>
                     </div>
                 </div>
             </div>
         </main>
+
+        <!-- মোবাইল নেভিগেশন বার -->
+        <nav class="bottom-navbar">
+            <a href="tasbih.html" class="nav-item">
+                <i class="fas fa-fingerprint"></i>
+                <span>তাসবিহ</span>
+            </a>
+            <a href="quran.html" class="nav-item active">
+                <i class="fas fa-quran"></i>
+                <span>কুরআন</span>
+            </a>
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>হোম</span>
+            </a>
+            <a href="namaz.html" class="nav-item">
+                <i class="fas fa-clock"></i>
+                <span>নামাজ</span>
+            </a>
+            <div class="nav-item more-menu" id="moreMenuBtn">
+                <i class="fas fa-ellipsis-h"></i>
+                <span>আরও</span>
+            </div>
+        </nav>
+
+        <!-- মোর মেনু প্যানেল -->
+        <div class="more-menu-panel" id="moreMenuPanel">
+            <div class="more-menu-header">
+                <h3><i class="fas fa-list"></i> অন্যান্য সেবা</h3>
+                <button class="close-more-menu" id="closeMoreMenuBtn">&times;</button>
+            </div>
+            <div class="more-menu-items">
+                <a href="qibla.html" class="more-menu-item">
+                    <i class="fas fa-compass"></i>
+                    <span>কিবলা দিক নির্দেশক</span>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+                <a href="mosques.html" class="more-menu-item">
+                    <i class="fas fa-mosque"></i>
+                    <span>নিকটস্থ মসজিদ</span>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+                <a href="calendar.html" class="more-menu-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>ইসলামিক ক্যালেন্ডার</span>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+        </div>
     </div>
 
     <script src="js/main.js"></script>
