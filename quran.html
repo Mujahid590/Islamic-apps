@@ -96,92 +96,95 @@
                 <button id="continueReadingBtn" class="continue-btn">পড়া চালিয়ে যান <i class="fas fa-arrow-right"></i></button>
             </div>
 
-            <!-- টপিক ভিত্তিক সার্চ (পিপরা দিয়ে সার্চ) -->
-            <div class="topic-search-section">
-                <div class="topic-search-header">
-                    <i class="fas fa-tags"></i>
-                    <span>বিষয় অনুসন্ধান</span>
-                    <button class="topic-toggle-btn" id="topicToggleBtn">
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                </div>
-                <div class="topic-search-content" id="topicSearchContent">
-                    <div class="search-input-wrapper">
+            <!-- ডেস্কটপের জন্য দুই কলাম -->
+            <div class="desktop-layout">
+                <!-- সূরা লিস্ট সাইডবার (বাম পাশে) -->
+                <div class="surah-sidebar" id="surahSidebar">
+                    <div class="surah-sidebar-header">
+                        <span><i class="fas fa-quran"></i> সূরা তালিকা</span>
+                        <button class="close-sidebar" id="closeSidebarBtn">&times;</button>
+                    </div>
+                    <div class="search-bar-sidebar">
                         <i class="fas fa-search"></i>
-                        <input type="text" id="topicSearchInput" placeholder="যেমন: নামাজ, রোযা, বিয়ে, দান, ধৈর্য, মুহাম্মদ...">
-                        <button id="topicSearchBtn" class="topic-search-btn">খুঁজুন</button>
+                        <input type="text" id="sidebarSearch" placeholder="সূরা খুঁজুন...">
                     </div>
-                    <div class="popular-topics">
-                        <span class="topic-chip" data-topic="নামাজ">নামাজ</span>
-                        <span class="topic-chip" data-topic="রোযা">রোযা</span>
-                        <span class="topic-chip" data-topic="বিয়ে">বিয়ে</span>
-                        <span class="topic-chip" data-topic="দান">দান/যাকাত</span>
-                        <span class="topic-chip" data-topic="মুহাম্মদ">মুহাম্মদ (সা.)</span>
-                        <span class="topic-chip" data-topic="ধৈর্য">ধৈর্য/সবর</span>
-                        <span class="topic-chip" data-topic="ক্ষমা">ক্ষমা</span>
-                        <span class="topic-chip" data-topic="জান্নাত">জান্নাত</span>
-                        <span class="topic-chip" data-topic="জাহান্নাম">জাহান্নাম</span>
-                        <span class="topic-chip" data-topic="মাকরুসা">মাকরুসা</span>
+                    <div class="surah-sidebar-list scrollable" id="surahList">
+                        <div class="loading"><i class="fas fa-spinner fa-pulse"></i> লোড হচ্ছে...</div>
                     </div>
                 </div>
-            </div>
 
-            <!-- টপিক সার্চ রেজাল্ট -->
-            <div class="search-results" id="searchResults" style="display: none;">
-                <div class="search-results-header">
-                    <span><i class="fas fa-search"></i> সার্চ ফলাফল</span>
-                    <button id="closeResultsBtn" class="close-results">&times;</button>
-                </div>
-                <div class="search-results-list" id="searchResultsList"></div>
-            </div>
-
-            <!-- আয়াত ভিউয়ার -->
-            <div class="viewer-wrapper">
-                <div class="viewer-container">
-                    <div class="viewer scrollable" id="ayahViewer">
-                        <div class="surah-header sticky-header" id="surahStickyHeader">
-                            <h2 id="surahNameAr">الفاتحة</h2>
-                            <div class="surah-meta">
-                                <span><i class="fas fa-tag"></i> <span id="surahNameBn">আল-ফাতিহা</span></span>
-                                <span><i class="fas fa-ayat"></i> <span id="surahAyatCount">৭</span> আয়াত</span>
-                                <span><i class="fas fa-map-marker-alt"></i> <span id="surahPlace">মক্কী</span></span>
-                            </div>
-                            <!-- সূরা হেডারের ভিতরে সার্চ -->
-                            <div class="surah-header-search">
+                <!-- ডান পাশের কন্টেন্ট -->
+                <div class="right-content">
+                    <!-- টপিক ভিত্তিক সার্চ -->
+                    <div class="topic-search-section">
+                        <div class="topic-search-header" id="topicSearchHeader">
+                            <i class="fas fa-tags"></i>
+                            <span>বিষয় অনুসন্ধান</span>
+                            <i class="fas fa-chevron-down" id="topicToggleIcon"></i>
+                        </div>
+                        <div class="topic-search-content" id="topicSearchContent">
+                            <div class="search-input-wrapper">
                                 <i class="fas fa-search"></i>
-                                <input type="text" id="surahHeaderSearch" placeholder="এই সূরায় আয়াত খুঁজুন...">
+                                <input type="text" id="topicSearchInput" placeholder="যেমন: নামাজ, রোযা, বিয়ে, দান, ধৈর্য...">
+                                <button id="topicSearchBtn" class="topic-search-btn">খুঁজুন</button>
+                            </div>
+                            <div class="popular-topics">
+                                <span class="topic-chip" data-topic="নামাজ">নামাজ</span>
+                                <span class="topic-chip" data-topic="রোযা">রোযা</span>
+                                <span class="topic-chip" data-topic="বিয়ে">বিয়ে</span>
+                                <span class="topic-chip" data-topic="দান">দান/যাকাত</span>
+                                <span class="topic-chip" data-topic="মুহাম্মদ">মুহাম্মদ (সা.)</span>
+                                <span class="topic-chip" data-topic="ধৈর্য">ধৈর্য/সবর</span>
+                                <span class="topic-chip" data-topic="ক্ষমা">ক্ষমা</span>
+                                <span class="topic-chip" data-topic="জান্নাত">জান্নাত</span>
+                                <span class="topic-chip" data-topic="মাকরুসা">মাকরুসা</span>
                             </div>
                         </div>
-                        <div class="loading-spinner" id="loadingSpinner">
-                            <i class="fas fa-spinner fa-pulse"></i> লোড হচ্ছে...
+                    </div>
+
+                    <!-- সার্চ রেজাল্ট -->
+                    <div class="search-results" id="searchResults" style="display: none;">
+                        <div class="search-results-header">
+                            <span><i class="fas fa-search"></i> সার্চ ফলাফল</span>
+                            <button id="closeResultsBtn" class="close-results">&times;</button>
                         </div>
-                        <div id="ayahsContainer"></div>
+                        <div class="search-results-list" id="searchResultsList"></div>
+                    </div>
+
+                    <!-- আয়াত ভিউয়ার -->
+                    <div class="viewer-container">
+                        <div class="viewer scrollable" id="ayahViewer">
+                            <!-- স্টিকি হেডার - স্ক্রোলের সাথে উপরে থাকবে -->
+                            <div class="surah-sticky-header" id="surahStickyHeader">
+                                <div class="sticky-header-content">
+                                    <h2 id="stickySurahNameAr">الفاتحة</h2>
+                                    <div class="sticky-surah-meta">
+                                        <span><i class="fas fa-tag"></i> <span id="stickySurahNameBn">আল-ফাতিহা</span></span>
+                                        <span><i class="fas fa-ayat"></i> <span id="stickySurahAyatCount">৭</span> আয়াত</span>
+                                        <span><i class="fas fa-map-marker-alt"></i> <span id="stickySurahPlace">মক্কী</span></span>
+                                    </div>
+                                    <div class="surah-header-search">
+                                        <i class="fas fa-search"></i>
+                                        <input type="text" id="surahHeaderSearch" placeholder="এই সূরায় আয়াত খুঁজুন...">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="ayahsContainer">
+                                <div class="loading-spinner">
+                                    <i class="fas fa-spinner fa-pulse"></i> লোড হচ্ছে...
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <!-- ফ্লোটিং সূরা লিস্ট বাটন -->
-                <button class="floating-surah-btn" id="floatingSurahBtn">
-                    <i class="fas fa-list-ul"></i>
-                    <span>সূরা</span>
-                </button>
             </div>
+
+            <!-- মোবাইলের জন্য ফ্লোটিং বাটন -->
+            <button class="floating-surah-btn" id="floatingSurahBtn">
+                <i class="fas fa-list-ul"></i>
+                <span>সূরা</span>
+            </button>
         </main>
-
-        <!-- সূরা লিস্ট সাইডবার -->
-        <div class="surah-sidebar" id="surahSidebar">
-            <div class="surah-sidebar-header">
-                <span><i class="fas fa-quran"></i> সূরা তালিকা</span>
-                <button class="close-sidebar" id="closeSidebarBtn">&times;</button>
-            </div>
-            <div class="search-bar-sidebar">
-                <i class="fas fa-search"></i>
-                <input type="text" id="sidebarSearch" placeholder="সূরা খুঁজুন...">
-            </div>
-            <div class="surah-sidebar-list scrollable" id="surahList">
-                <div class="loading"><i class="fas fa-spinner fa-pulse"></i> লোড হচ্ছে...</div>
-            </div>
-        </div>
-        <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
         <!-- মোবাইল নেভিগেশন বার -->
         <nav class="bottom-navbar">
