@@ -1,521 +1,153 @@
-/* কুরআন পেজের জন্য স্পেসিফিক স্টাইল */
-.quran-main {
-    display: flex;
-    flex-direction: column;
-    min-height: calc(100vh - 65px);
-    padding: 0;
-    position: relative;
+// কুরআন পেজের জন্য জাভাস্ক্রিপ্ট
+let currentSurahId = 1;
+let allSurahs = [];
+let currentFontSize = 18;
+let currentTranslationFontSize = 14;
+let isLoading = false;
+
+// সূরা লিস্ট লোড করা (JSON থেকে)
+async function loadSurahList() {
+    try {
+        const response = await fetch('data/surah-list.json');
+        if (response.ok) {
+            allSurahs = await response.json();
+        } else {
+            allSurahs = getLocalSurahList();
+        }
+        renderSurahList(allSurahs);
+        
+        let totalSpan = document.getElementById('totalSurahCount');
+        let searchSpan = document.getElementById('searchCount');
+        if (totalSpan) totalSpan.innerText = allSurahs.length;
+        if (searchSpan) searchSpan.innerText = `${allSurahs.length} টি সূরা`;
+    } catch (error) {
+        console.log('JSON লোড করতে সমস্যা, লোকাল ডাটা ব্যবহার করা হচ্ছে');
+        allSurahs = getLocalSurahList();
+        renderSurahList(allSurahs);
+    }
 }
 
-/* পড়ার অগ্রগতি বার */
-.reading-progress {
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    border-radius: var(--radius);
-    padding: 0.8rem 1.2rem;
-    margin: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-    flex-shrink: 0;
-    color: white;
+// লোকাল সূরা লিস্ট (ব্যাকআপ)
+function getLocalSurahList() {
+    const surahNamesBn = [
+        "আল-ফাতিহা", "আল-বাকারাহ", "আল-ইমরান", "আন-নিসা", "আল-মায়িদাহ",
+        "আল-আনআম", "আল-আরাফ", "আল-আনফাল", "আত-তাওবাহ", "ইউনুস",
+        "হুদ", "ইউসুফ", "আর-রাদ", "ইব্রাহীম", "আল-হিজর", "আন-নাহল",
+        "বনী-ইসরাঈল", "আল-কাহফ", "মারইয়াম", "ত্বোয়া-হা"
+    ];
+    const surahNamesAr = [
+        "الفاتحة", "البقرة", "آل عمران", "النساء", "المائدة",
+        "الأنعام", "الأعراف", "الأنفال", "التوبة", "يونس",
+        "هود", "يوسف", "الرعد", "إبراهيم", "الحجر", "النحل",
+        "الإسراء", "الكهف", "مريم", "طه"
+    ];
+    const ayatCounts = [7, 286, 200, 176, 120, 165, 206, 75, 129, 109, 123, 111, 43, 52, 99, 128, 111, 110, 98, 135];
+    
+    let surahs = [];
+    for (let i = 1; i <= 114; i++) {
+        surahs.push({
+            id: i,
+            name_ar: i <= 20 ? surahNamesAr[i-1] : `سورة ${i}`,
+            name_bn: i <= 20 ? surahNamesBn[i-1] : `সূরা ${i}`,
+            ayat_count: i <= 20 ? ayatCounts[i-1] : 100,
+            place: getSurahPlace(i)
+        });
+    }
+    return surahs;
 }
 
-.reading-progress i, .reading-progress span {
-    color: white;
+// সূরার স্থান নির্ধারণ
+function getSurahPlace(surahId) {
+    const makkiSurahs = [1,6,7,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114];
+    return makkiSurahs.includes(surahId) ? "মক্কী" : "মাদানী";
 }
 
-.continue-btn {
-    background: rgba(255,255,255,0.2);
-    color: white;
-    border: 1px solid rgba(255,255,255,0.3);
-    padding: 0.4rem 1.2rem;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-family: 'Kalpurush', sans-serif;
+// সূরা লিস্ট রেন্ডার
+function renderSurahList(surahs) {
+    let container = document.getElementById('surahList');
+    if (!container) return;
+    
+    container.innerHTML = '';
+    surahs.forEach(surah => {
+        let div = document.createElement('div');
+        div.className = 'surah-item';
+        if (currentSurahId === surah.id) div.classList.add('active');
+        div.setAttribute('data-surah-id', surah.id);
+        div.innerHTML = `
+            <div class="surah-number">${surah.id}</div>
+            <div class="surah-name">
+                <div class="surah-name-ar">${surah.name_ar}</div>
+                <div class="surah-name-bn">${surah.name_bn}</div>
+            </div>
+            <div class="surah-ayat">${surah.ayat_count}</div>
+        `;
+        div.addEventListener('click', () => loadSurah(surah.id));
+        container.appendChild(div);
+    });
 }
 
-.continue-btn:hover {
-    background: rgba(255,255,255,0.3);
-}
-
-/* সার্চ বার */
-.search-bar {
-    background: var(--card-bg);
-    border-radius: 50px;
-    padding: 0.4rem 1rem;
-    margin: 0 1rem 1rem 1rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    border: 1px solid var(--border);
-    flex-shrink: 0;
-}
-
-.search-bar input {
-    flex: 1;
-    border: none;
-    padding: 10px 0;
-    outline: none;
-    background: transparent;
-    color: var(--text-dark);
-    font-family: 'Kalpurush', sans-serif;
-}
-
-.search-bar input::placeholder {
-    color: var(--text-light);
-}
-
-.search-count {
-    font-size: 0.7rem;
-    background: var(--primary-light);
-    padding: 4px 12px;
-    border-radius: 30px;
-    color: var(--primary-dark);
-    white-space: nowrap;
-}
-
-/* ভিউয়ার কন্টেইনার */
-.viewer-container {
-    flex: 1;
-    padding: 0 1rem 1rem 1rem;
-}
-
-.viewer {
-    background: var(--card-bg);
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    overflow-y: auto;
-    padding: 1rem;
-    max-height: calc(100vh - 220px);
-}
-
-/* সূরা হেডার */
-.surah-header {
-    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-    color: white;
-    padding: 1.2rem;
-    text-align: center;
-    border-radius: var(--radius-sm);
-    margin-bottom: 1.2rem;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
-
-.surah-header h2 {
-    font-family: 'Uthman Taha Naskh', serif;
-    font-size: 1.8rem;
-    margin-bottom: 8px;
-}
-
-.surah-meta {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-    font-size: 0.75rem;
-    opacity: 0.9;
-}
-
-.surah-meta i {
-    margin-right: 4px;
-}
-
-/* আয়াত কার্ড */
-.ayah-card {
-    background: var(--gray-light);
-    border-radius: var(--radius-sm);
-    padding: 1.2rem;
-    margin-bottom: 1rem;
-    border: 1px solid var(--border);
-    transition: all 0.2s;
-    cursor: pointer;
-}
-
-.ayah-card:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow);
-}
-
-.ayah-card.highlight {
-    background: var(--primary-light);
-    border-left: 4px solid var(--primary);
-}
-
-.ayah-arabic {
-    font-family: 'Uthman Taha Naskh', serif;
-    font-size: 1.3rem;
-    line-height: 1.8;
-    text-align: right;
-    direction: rtl;
-    margin-bottom: 12px;
-}
-
-.ayah-translation {
-    font-size: 0.85rem;
-    color: var(--text-gray);
-    padding-top: 10px;
-    border-top: 1px dashed var(--border);
-    line-height: 1.5;
-}
-
-.ayah-number {
-    display: inline-block;
-    background: var(--primary);
-    color: white;
-    font-size: 0.7rem;
-    padding: 2px 10px;
-    border-radius: 20px;
-    margin-bottom: 12px;
-}
-
-/* লোডিং স্পিনার */
-.loading-spinner {
-    text-align: center;
-    padding: 2rem;
-    color: var(--primary);
-}
-
-/* ফ্লোটিং সূরা বাটন (মোবাইলের জন্য) */
-.floating-surah-btn {
-    position: fixed;
-    bottom: 80px;
-    right: 16px;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: var(--primary);
-    color: white;
-    border: none;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    cursor: pointer;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 2px;
-    z-index: 150;
-    transition: all 0.3s ease;
-}
-
-.floating-surah-btn i {
-    font-size: 1.3rem;
-}
-
-.floating-surah-btn span {
-    font-size: 0.6rem;
-}
-
-.floating-surah-btn:hover {
-    transform: scale(1.05);
-    background: var(--primary-dark);
-}
-
-/* সূরা লিস্ট সাইডবার */
-.surah-sidebar {
-    position: fixed;
-    top: 0;
-    left: -320px;
-    width: 320px;
-    height: 100vh;
-    background: var(--card-bg);
-    z-index: 300;
-    transition: left 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    box-shadow: var(--shadow-lg);
-}
-
-.surah-sidebar.open {
-    left: 0;
-}
-
-.surah-sidebar-header {
-    padding: 16px;
-    background: var(--primary);
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-shrink: 0;
-}
-
-.surah-sidebar-header span {
-    font-size: 1rem;
-    font-weight: bold;
-}
-
-.close-sidebar {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.5rem;
-    cursor: pointer;
-}
-
-/* সাইডবারে সার্চ */
-.search-bar-sidebar {
-    padding: 12px;
-    border-bottom: 1px solid var(--border);
-}
-
-.search-bar-sidebar input {
-    width: 100%;
-    padding: 10px 12px;
-    border: 1px solid var(--border);
-    border-radius: 30px;
-    background: var(--gray-light);
-    color: var(--text-dark);
-    font-family: 'Kalpurush', sans-serif;
-    outline: none;
-}
-
-.surah-sidebar-list {
-    flex: 1;
-    overflow-y: auto;
-    padding: 0.5rem;
-}
-
-/* সাইডবার ওভারলে */
-.sidebar-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.5);
-    z-index: 250;
-    display: none;
-}
-
-.sidebar-overlay.show {
-    display: block;
-}
-
-/* সূরা আইটেম */
-.surah-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 12px;
-    margin-bottom: 6px;
-    background: var(--gray-light);
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.surah-item:hover {
-    background: var(--primary-light);
-    transform: translateX(3px);
-}
-
-.surah-item.active {
-    background: var(--primary-light);
-    border-left: 4px solid var(--primary);
-}
-
-.surah-number {
-    width: 34px;
-    height: 34px;
-    background: var(--gray);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.85rem;
-    font-weight: bold;
-    color: var(--primary-dark);
-}
-
-.surah-name {
-    flex: 1;
-}
-
-.surah-name-ar {
-    font-family: 'Uthman Taha Naskh', serif;
-    font-size: 1rem;
-    direction: rtl;
-    text-align: right;
-}
-
-.surah-name-bn {
-    font-size: 0.7rem;
-    color: var(--text-gray);
-}
-
-.surah-ayat {
-    font-size: 0.7rem;
-    color: var(--text-gray);
-    background: var(--gray);
-    padding: 2px 8px;
-    border-radius: 20px;
-}
-
-/* স্ক্রলবার স্টাইল */
-.scrollable::-webkit-scrollbar {
-    width: 5px;
-}
-
-.scrollable::-webkit-scrollbar-track {
-    background: var(--gray);
-    border-radius: 10px;
-}
-
-.scrollable::-webkit-scrollbar-thumb {
-    background: var(--primary);
-    border-radius: 10px;
-}
-
-/* ফন্ট সাইজ কন্ট্রোল */
-.font-size-stepper {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--gray-light);
-    border-radius: 40px;
-    padding: 0.2rem;
-    width: fit-content;
-}
-
-.font-size-stepper button {
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    border: none;
-    background: var(--card-bg);
-    font-size: 1.2rem;
-    cursor: pointer;
-    color: var(--primary);
-    transition: all 0.2s;
-}
-
-.font-size-stepper button:hover {
-    background: var(--primary);
-    color: white;
-}
-
-.font-size-stepper span {
-    min-width: 40px;
-    text-align: center;
-    font-weight: bold;
-}
-
-/* ডেস্কটপ ভিউ */
-@media (min-width: 769px) {
-    .floating-surah-btn {
-        display: none !important;
+// সূরা লোড করা (JSON থেকে)
+async function loadSurah(surahId) {
+    if (isLoading) return;
+    isLoading = true;
+    
+    currentSurahId = surahId;
+    
+    // সাইডবারে অ্যাক্টিভ স্টাইল আপডেট
+    document.querySelectorAll('.surah-item').forEach(item => {
+        item.classList.remove('active');
+        if (parseInt(item.dataset.surahId) === surahId) item.classList.add('active');
+    });
+    
+    let viewer = document.getElementById('ayahViewer');
+    viewer.innerHTML = '<div class="loading-spinner"><i class="fas fa-spinner fa-pulse"></i> লোড হচ্ছে...</div>';
+    
+    try {
+        const response = await fetch(`data/surah-${surahId}.json`);
+        let surahData;
+        
+        if (response.ok) {
+            surahData = await response.json();
+        } else {
+            surahData = getLocalSurahData(surahId);
+        }
+        
+        displaySurah(surahData);
+        saveReadingProgress(surahId, surahData.name_bn, 1);
+        
+    } catch (error) {
+        console.log('সূরা ডাটা লোড করতে সমস্যা');
+        let surahData = getLocalSurahData(surahId);
+        displaySurah(surahData);
     }
     
-    .surah-sidebar {
-        position: static;
-        width: 320px;
-        height: auto;
-        left: auto;
-        border-radius: var(--radius);
-        border: 1px solid var(--border);
-        margin-right: 1rem;
-        display: flex !important;
-    }
+    isLoading = false;
     
-    .sidebar-overlay {
-        display: none !important;
-    }
-    
-    .close-sidebar {
-        display: none;
-    }
-    
-    .viewer-container {
-        flex: 1;
-        padding: 0;
-    }
-    
-    .viewer {
-        max-height: calc(100vh - 180px);
-    }
-    
-    .two-columns-layout {
-        display: flex;
-        padding: 0 1rem 1rem 1rem;
-        gap: 1rem;
-    }
+    // মোবাইলে সাইডবার বন্ধ করা
+    closeSidebar();
 }
 
-/* মোবাইল ভিউ */
-@media (max-width: 768px) {
-    .quran-main {
-        min-height: calc(100vh - 110px);
-    }
-    
-    .reading-progress {
-        margin: 0.8rem;
-        padding: 0.6rem 1rem;
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .search-bar {
-        margin: 0 0.8rem 0.8rem 0.8rem;
-    }
-    
-    .viewer-container {
-        padding: 0 0.8rem 0.8rem 0.8rem;
-    }
-    
-    .viewer {
-        max-height: calc(100vh - 200px);
-    }
-    
-    .floating-surah-btn {
-        display: flex;
-        bottom: 75px;
-        right: 12px;
-        width: 50px;
-        height: 50px;
-    }
-    
-    .surah-sidebar {
-        width: 85%;
-        max-width: 300px;
-    }
-    
-    .surah-header h2 {
-        font-size: 1.5rem;
-    }
-    
-    .surah-meta {
-        gap: 0.6rem;
-        font-size: 0.65rem;
-    }
-    
-    .ayah-card {
-        padding: 0.9rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .floating-surah-btn {
-        bottom: 70px;
-        right: 10px;
-        width: 48px;
-        height: 48px;
-    }
-    
-    .surah-item {
-        padding: 8px 10px;
-    }
-    
-    .surah-number {
-        width: 28px;
-        height: 28px;
-        font-size: 0.7rem;
-    }
-    
-    .surah-name-ar {
-        font-size: 0.85rem;
-    }
-}
+// লোকাল সূরা ডাটা (ব্যাকআপ)
+function getLocalSurahData(surahId) {
+    if (surahId === 1) {
+        return {
+            id: 1, name_ar: "الفاتحة", name_bn: "আল-ফাতিহা", ayat_count: 7, place: "মক্কী",
+            ayahs: [
+                {number:1, arabic:"بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ", translation:"শুরু করছি আল্লাহর নামে যিনি পরম করুণাময় ও অতি দয়ালু।"},
+                {number:2, arabic:"الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ", translation:"সমস্ত প্রশংসা আল্লাহর জন্য, যিনি সমস্ত জগতের পালনকর্তা।"},
+                {number:3, arabic:"الرَّحْمَٰنِ الرَّحِيمِ", translation:"যিনি পরম করুণাময় ও অতি দয়ালু।"},
+                {number:4, arabic:"مَالِكِ يَوْمِ الدِّينِ", translation:"যিনি বিচার দিনের মালিক।"},
+                {number:5, arabic:"إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ", translation:"আমরা শুধুমাত্র তোমারই ইবাদত করি এবং শুধুমাত্র তোমারই সাহায্য প্রার্থনা করি।"},
+                {number:6, arabic:"اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ", translation:"আমাদেরকে সরল পথ দেখাও।"},
+                {number:7, arabic:"صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ", translation:"তাদের পথ, যাদেরকে তুমি নেয়ামত দান করেছ; তাদের পথ নয় যাদের প্রতি তোমার গজব নাযিল হয়েছে এবং তাদের পথ নয় যারা পথভ্রষ্ট হয়েছে।"}
+            ]
+        };
+    } else if (surahId === 112) {
+        return {
+            id: 112, name_ar: "الإخلاص", name_bn: "আল-ইখলাস", ayat_count: 4, place: "মক্কী",
+            ayahs: [
+                {number:1, arabic:"قُلْ هُوَ اللَّهُ أَحَدٌ", translation:"বলুন, তিনিই আল্লাহ, এক।"},
+                {number:2, arabic:"اللَّهُ الصَّمَدُ", translation:"আল্লাহ অমুখাপেক্ষী।"},
+                {number:3, arabic:"لَمْ يَلِدْ وَلَمْ يُولَدْ", translation:"তিনি কাউকে জন্ম দেননি এবং কেউ তাঁকে জন্ম দেয়নি।"},
+                {number:4, arabic:"وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ", translation:"এবং তাঁর সমতুল্য কেউ নেই।"}
+           
