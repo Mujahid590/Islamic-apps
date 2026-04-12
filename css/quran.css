@@ -41,7 +41,7 @@
     background: rgba(255,255,255,0.3);
 }
 
-/* টপিক সার্চ সেকশন */
+/* ========== টপিক সার্চ সেকশন ========== */
 .topic-search-section {
     background: var(--card-bg);
     border-radius: var(--radius);
@@ -77,6 +77,8 @@
     cursor: pointer;
     color: var(--text-gray);
     transition: transform 0.3s ease;
+    font-size: 1rem;
+    padding: 0 8px;
 }
 
 .topic-toggle-btn.open {
@@ -84,70 +86,97 @@
 }
 
 .topic-search-content {
-    padding: 12px 16px;
+    padding: 16px;
     border-top: 1px solid var(--border);
     display: none;
+    background: var(--card-bg);
 }
 
 .topic-search-content.show {
     display: block;
 }
 
+/* সার্চ ইনপুট র‍্যাপার */
 .search-input-wrapper {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     background: var(--gray-light);
     border-radius: 50px;
-    padding: 0.4rem 1rem;
-    margin-bottom: 12px;
+    padding: 0 16px;
+    margin-bottom: 16px;
     border: 1px solid var(--border);
+    transition: all 0.2s ease;
+}
+
+.search-input-wrapper:focus-within {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(42, 157, 110, 0.2);
 }
 
 .search-input-wrapper i {
     color: var(--text-gray);
+    font-size: 0.9rem;
 }
 
 .search-input-wrapper input {
     flex: 1;
     border: none;
-    padding: 8px 0;
+    padding: 12px 0;
     outline: none;
     background: transparent;
     color: var(--text-dark);
     font-family: 'Kalpurush', sans-serif;
+    font-size: 0.9rem;
 }
 
+.search-input-wrapper input::placeholder {
+    color: var(--text-light);
+}
+
+/* টপিক সার্চ বাটন */
 .topic-search-btn {
     background: var(--primary);
     color: white;
     border: none;
-    padding: 6px 16px;
-    border-radius: 30px;
+    padding: 8px 20px;
+    border-radius: 40px;
     cursor: pointer;
     font-family: 'Kalpurush', sans-serif;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    white-space: nowrap;
 }
 
+.topic-search-btn:hover {
+    background: var(--primary-dark);
+    transform: scale(0.98);
+}
+
+/* জনপ্রিয় টপিকস */
 .popular-topics {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 10px;
+    margin-top: 5px;
 }
 
 .topic-chip {
     background: var(--gray);
-    padding: 5px 12px;
+    padding: 6px 14px;
     border-radius: 30px;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.2s ease;
     color: var(--text-dark);
+    border: 1px solid transparent;
 }
 
 .topic-chip:hover {
     background: var(--primary);
     color: white;
+    transform: translateY(-2px);
 }
 
 /* সার্চ রেজাল্ট */
@@ -182,7 +211,7 @@
 
 .search-results-list {
     overflow-y: auto;
-    padding: 8px;
+    padding: 12px;
     max-height: 350px;
 }
 
@@ -190,7 +219,7 @@
     display: flex;
     flex-direction: column;
     padding: 12px;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     background: var(--gray-light);
     border-radius: var(--radius-sm);
     cursor: pointer;
@@ -229,7 +258,7 @@
     line-height: 1.4;
 }
 
-/* ভিউয়ার র‍্যাপার */
+/* ভিউয়ার স্টাইল */
 .viewer-wrapper {
     flex: 1;
     position: relative;
@@ -341,16 +370,6 @@
     border-left: 4px solid var(--primary);
 }
 
-.ayah-card.search-highlight {
-    background: #fff3cd;
-    border-left: 4px solid #ffc107;
-}
-
-body.dark-mode .ayah-card.search-highlight {
-    background: #2d2d1a;
-    border-left: 4px solid #ffc107;
-}
-
 .ayah-arabic {
     font-family: 'Uthman Taha Naskh', serif;
     font-size: 1.2rem;
@@ -415,11 +434,6 @@ body.dark-mode .ayah-card.search-highlight {
     font-size: 0.55rem;
 }
 
-.floating-surah-btn:hover {
-    transform: scale(1.05);
-    background: var(--primary-dark);
-}
-
 /* সূরা লিস্ট সাইডবার */
 .surah-sidebar {
     position: fixed;
@@ -449,11 +463,6 @@ body.dark-mode .ayah-card.search-highlight {
     flex-shrink: 0;
 }
 
-.surah-sidebar-header span {
-    font-size: 1rem;
-    font-weight: bold;
-}
-
 .close-sidebar {
     background: none;
     border: none;
@@ -468,10 +477,6 @@ body.dark-mode .ayah-card.search-highlight {
     display: flex;
     align-items: center;
     gap: 8px;
-}
-
-.search-bar-sidebar i {
-    color: var(--text-gray);
 }
 
 .search-bar-sidebar input {
@@ -615,7 +620,7 @@ body.dark-mode .ayah-card.search-highlight {
     font-weight: bold;
 }
 
-/* ডেস্কটপ ভিউ */
+/* ========== ডেস্কটপ ভিউ ========== */
 @media (min-width: 769px) {
     .floating-surah-btn {
         display: none !important;
@@ -654,13 +659,9 @@ body.dark-mode .ayah-card.search-highlight {
     .viewer {
         max-height: calc(100vh - 200px);
     }
-    
-    .floating-surah-btn {
-        display: none;
-    }
 }
 
-/* মোবাইল ভিউ */
+/* ========== মোবাইল ভিউ ========== */
 @media (max-width: 768px) {
     .quran-main {
         min-height: calc(100vh - 110px);
@@ -677,12 +678,57 @@ body.dark-mode .ayah-card.search-highlight {
         margin: 0 0.8rem 0.8rem 0.8rem;
     }
     
+    .topic-search-header {
+        padding: 10px 14px;
+    }
+    
+    .topic-search-content {
+        padding: 12px;
+    }
+    
+    .search-input-wrapper {
+        padding: 0 12px;
+        gap: 8px;
+        flex-wrap: wrap;
+        border-radius: 20px;
+    }
+    
+    .search-input-wrapper i {
+        display: none;
+    }
+    
+    .search-input-wrapper input {
+        width: 100%;
+        padding: 12px 0;
+        text-align: center;
+    }
+    
+    .topic-search-btn {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+    }
+    
+    .popular-topics {
+        gap: 8px;
+        justify-content: center;
+    }
+    
+    .topic-chip {
+        padding: 5px 12px;
+        font-size: 0.7rem;
+    }
+    
+    .search-results {
+        margin: 0 0.8rem 0.8rem 0.8rem;
+    }
+    
     .viewer-container {
         padding: 0 0.8rem 0.8rem 0.8rem;
     }
     
     .viewer {
-        max-height: calc(100vh - 320px);
+        max-height: calc(100vh - 380px);
     }
     
     .floating-surah-btn {
@@ -699,10 +745,6 @@ body.dark-mode .ayah-card.search-highlight {
         right: -85%;
     }
     
-    .surah-sidebar.open {
-        right: 0;
-    }
-    
     .surah-header h2 {
         font-size: 1.2rem;
     }
@@ -712,17 +754,12 @@ body.dark-mode .ayah-card.search-highlight {
         font-size: 0.6rem;
     }
     
-    .ayah-card {
-        padding: 0.8rem;
-    }
-    
-    .popular-topics {
-        gap: 6px;
-    }
-    
-    .topic-chip {
-        font-size: 0.65rem;
+    .surah-header-search {
         padding: 4px 10px;
+    }
+    
+    .surah-header-search input {
+        font-size: 0.75rem;
     }
 }
 
@@ -734,12 +771,12 @@ body.dark-mode .ayah-card.search-highlight {
         height: 44px;
     }
     
-    .search-input-wrapper {
-        flex-wrap: wrap;
+    .topic-chip {
+        padding: 4px 10px;
+        font-size: 0.65rem;
     }
     
-    .topic-search-btn {
-        width: 100%;
-        padding: 6px;
+    .ayah-card {
+        padding: 0.8rem;
     }
 }
