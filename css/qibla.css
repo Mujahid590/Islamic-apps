@@ -76,33 +76,6 @@ body {
     flex-direction: column;
 }
 
-/* ========== কাস্টম লোগো ========== */
-.custom-logo {
-    width: 45px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, var(--primary-light), var(--primary));
-    border-radius: 50%;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.custom-logo.small {
-    width: 40px;
-    height: 40px;
-}
-
-.logo-svg {
-    width: 32px;
-    height: 32px;
-}
-
-.custom-logo.small .logo-svg {
-    width: 28px;
-    height: 28px;
-}
-
 /* ========== ডেস্কটপ নেভিগেশন ========== */
 .top-navbar {
     background: var(--card-bg);
@@ -122,7 +95,13 @@ body {
 .nav-brand {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
+}
+
+.brand-icon {
+    font-size: 1.8rem;
+    color: var(--primary);
+    font-family: 'Uthman Taha Naskh', serif;
 }
 
 .nav-brand h1 {
@@ -185,6 +164,19 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
+}
+
+.mobile-brand-icon {
+    font-size: 1.8rem;
+    color: var(--primary);
+    font-family: 'Uthman Taha Naskh', serif;
+    background: var(--primary-light);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
 }
 
 .mobile-brand-text h2 {
@@ -529,6 +521,5 @@ body {
     .nav-item { min-width: 50px; }
     .nav-item i { font-size: 1rem; }
     .nav-item span { font-size: 0.5rem; }
-    .custom-logo { width: 38px; height: 38px; }
-    .logo-svg { width: 26px; height: 26px; }
+    .mobile-brand-icon { width: 40px; height: 40px; font-size: 1.5rem; }
 }
