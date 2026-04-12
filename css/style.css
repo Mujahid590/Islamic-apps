@@ -76,33 +76,6 @@ body {
     flex-direction: column;
 }
 
-/* ========== কাস্টম লোগো ========== */
-.custom-logo {
-    width: 45px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, var(--primary-light), var(--primary));
-    border-radius: 50%;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.custom-logo.small {
-    width: 40px;
-    height: 40px;
-}
-
-.logo-svg {
-    width: 32px;
-    height: 32px;
-}
-
-.custom-logo.small .logo-svg {
-    width: 28px;
-    height: 28px;
-}
-
 /* ========== ডেস্কটপ নেভিগেশন ========== */
 .top-navbar {
     background: var(--card-bg);
@@ -124,7 +97,9 @@ body {
     align-items: center;
     gap: 12px;
 }
-
+.brand-icon {
+    font-size: 1.8rem;
+}
 .nav-brand h1 {
     font-size: 1.2rem;
     color: var(--primary-dark);
@@ -150,11 +125,12 @@ body {
     font-size: 0.7rem;
     text-decoration: none;
     min-width: 60px;
+    transition: all 0.2s;
 }
-
 .nav-link i { font-size: 1rem; }
 .nav-link span { font-size: 0.55rem; }
 .nav-link.active { background: var(--primary); color: white; }
+.nav-link:hover { background: var(--primary-light); color: var(--primary); }
 
 .nav-actions { display: flex; gap: 0.5rem; }
 .icon-btn {
@@ -165,6 +141,7 @@ body {
     color: var(--text-dark);
     font-size: 1.2rem;
     cursor: pointer;
+    transition: all 0.2s;
 }
 .icon-btn:hover { background: var(--primary); color: white; }
 
@@ -180,13 +157,14 @@ body {
     top: 0;
     z-index: 100;
 }
-
 .mobile-brand {
     display: flex;
     align-items: center;
     gap: 12px;
 }
-
+.mobile-brand-icon {
+    font-size: 1.8rem;
+}
 .mobile-brand-text h2 {
     font-size: 1rem;
     color: var(--primary-dark);
@@ -196,7 +174,6 @@ body {
     font-size: 0.6rem;
     color: var(--text-gray);
 }
-
 .mobile-settings-btn {
     width: 44px; height: 44px;
     border-radius: 50%;
@@ -210,26 +187,27 @@ body {
     justify-content: center;
 }
 
-/* ========== সেটিংস প্যানেল ========== */
+/* ========== সেটিংস প্যানেল (মোবাইলে নিচ থেকে ওপেন) ========== */
 .settings-panel {
     position: fixed;
-    top: 70px;
-    right: -320px;
-    width: 280px;
+    bottom: -400px;
+    left: 0;
+    right: 0;
     background: var(--card-bg);
-    border-radius: var(--radius);
+    border-radius: var(--radius) var(--radius) 0 0;
     z-index: 200;
-    transition: right 0.3s ease;
-    border: 1px solid var(--border);
+    transition: bottom 0.3s ease;
     box-shadow: var(--shadow-lg);
+    border-top: 1px solid var(--border);
 }
-.settings-panel.open { right: 15px; }
-
+.settings-panel.open {
+    bottom: 70px;
+}
 .settings-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.8rem 1rem;
+    padding: 1rem;
     border-bottom: 1px solid var(--border);
 }
 .settings-header h3 { color: var(--primary); font-size: 1rem; }
@@ -240,7 +218,6 @@ body {
     cursor: pointer;
     color: var(--text-gray);
 }
-
 .settings-body { padding: 1rem; }
 .setting-item { margin-bottom: 1.2rem; }
 .setting-item label {
@@ -259,6 +236,7 @@ body {
     cursor: pointer;
     font-family: 'Kalpurush', sans-serif;
     font-size: 0.8rem;
+    transition: all 0.2s;
 }
 .theme-btn.active { background: var(--primary); color: white; }
 
@@ -276,7 +254,6 @@ body {
     border-top: 1px solid var(--border);
 }
 .more-menu-panel.open { bottom: 70px; }
-
 .more-menu-header {
     display: flex;
     justify-content: space-between;
@@ -292,7 +269,6 @@ body {
     cursor: pointer;
     color: var(--text-gray);
 }
-
 .more-menu-items { padding: 0.5rem; }
 .more-menu-item {
     display: flex;
@@ -325,8 +301,6 @@ body {
     margin: 0 auto;
     width: 100%;
 }
-
-/* ওয়েলকাম কার্ড */
 .welcome-card {
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     border-radius: var(--radius);
@@ -348,8 +322,6 @@ body {
     font-size: 1rem;
     font-family: monospace;
 }
-
-/* ফিচার গ্রিড */
 .features-grid {
     display: flex;
     flex-direction: column;
@@ -365,6 +337,7 @@ body {
     gap: 1rem;
     text-decoration: none;
     border: 1px solid var(--border);
+    transition: all 0.2s;
 }
 .feature-icon {
     width: 50px;
@@ -381,7 +354,6 @@ body {
 .feature-info p { font-size: 0.65rem; color: var(--text-gray); }
 .feature-card i:last-child { color: var(--text-light); font-size: 0.8rem; }
 
-/* মোর সেকশন */
 .more-section {
     background: var(--card-bg);
     border-radius: var(--radius-sm);
@@ -419,7 +391,6 @@ body {
 .more-card i { font-size: 1.5rem; color: var(--primary); }
 .more-card span { font-size: 0.7rem; color: var(--text-dark); }
 
-/* দুআ কার্ড */
 .dua-card {
     background: var(--card-bg);
     border-radius: var(--radius-sm);
@@ -456,7 +427,6 @@ body {
     left: 0;
     right: 0;
     background: var(--card-bg);
-    display: flex;
     justify-content: space-around;
     align-items: center;
     padding: 0.6rem 0.8rem;
@@ -478,6 +448,7 @@ body {
     background: none;
     border: none;
     cursor: pointer;
+    transition: all 0.2s;
 }
 .nav-item i { font-size: 1.2rem; }
 .nav-item span { font-size: 0.55rem; }
@@ -504,31 +475,52 @@ body {
 
 /* ========== ডেস্কটপ ========== */
 @media (min-width: 769px) {
-    .mobile-header, .bottom-navbar, .more-menu-panel, .more-section { display: none !important; }
+    .mobile-header, .bottom-navbar, .more-menu-panel { display: none !important; }
+    .desktop-only { display: block !important; }
     .top-navbar { display: flex; }
     .main-content { padding-bottom: 1.5rem; }
     .toast { bottom: 20px; }
+    .settings-panel {
+        top: 70px;
+        bottom: auto;
+        right: -320px;
+        left: auto;
+        width: 280px;
+        border-radius: var(--radius);
+        transition: right 0.3s ease;
+    }
+    .settings-panel.open {
+        right: 15px;
+        bottom: auto;
+    }
 }
 
 /* ========== মোবাইল ========== */
 @media (max-width: 768px) {
-    .top-navbar { display: none !important; }
+    .top-navbar, .desktop-only { display: none !important; }
     .mobile-header { display: flex; }
     .bottom-navbar { display: flex; }
     .main-content { padding: 1rem; padding-bottom: 75px; }
     .welcome-card { padding: 1.2rem; }
     .welcome-icon { font-size: 2.5rem; }
     .welcome-card h1 { font-size: 1.1rem; }
-    .settings-panel { top: auto; bottom: 70px; right: -280px; }
-    .settings-panel.open { right: 10px; }
     .toast { bottom: 75px; }
+    .settings-panel {
+        top: auto;
+        bottom: -400px;
+        left: 0;
+        right: 0;
+        width: 100%;
+        border-radius: var(--radius) var(--radius) 0 0;
+    }
+    .settings-panel.open {
+        bottom: 70px;
+        right: auto;
+    }
 }
-
 @media (max-width: 480px) {
     .bottom-navbar { padding: 0.4rem 0.5rem; }
     .nav-item { min-width: 50px; }
     .nav-item i { font-size: 1rem; }
     .nav-item span { font-size: 0.5rem; }
-    .custom-logo { width: 38px; height: 38px; }
-    .logo-svg { width: 26px; height: 26px; }
 }
