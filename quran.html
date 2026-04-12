@@ -96,9 +96,9 @@
                 <button id="continueReadingBtn" class="continue-btn">পড়া চালিয়ে যান <i class="fas fa-arrow-right"></i></button>
             </div>
 
-            <!-- ডেস্কটপের জন্য দুই কলাম -->
+            <!-- ডেস্কটপ লেআউট -->
             <div class="desktop-layout">
-                <!-- সূরা লিস্ট সাইডবার (বাম পাশে) -->
+                <!-- সূরা লিস্ট সাইডবার -->
                 <div class="surah-sidebar" id="surahSidebar">
                     <div class="surah-sidebar-header">
                         <span><i class="fas fa-quran"></i> সূরা তালিকা</span>
@@ -115,29 +115,22 @@
 
                 <!-- ডান পাশের কন্টেন্ট -->
                 <div class="right-content">
-                    <!-- টপিক ভিত্তিক সার্চ -->
+                    <!-- বিষয় অনুসন্ধান সেকশন (আপনার ইচ্ছেমতো সার্চ) -->
                     <div class="topic-search-section">
                         <div class="topic-search-header" id="topicSearchHeader">
-                            <i class="fas fa-tags"></i>
+                            <i class="fas fa-search"></i>
                             <span>বিষয় অনুসন্ধান</span>
                             <i class="fas fa-chevron-down" id="topicToggleIcon"></i>
                         </div>
                         <div class="topic-search-content" id="topicSearchContent">
                             <div class="search-input-wrapper">
                                 <i class="fas fa-search"></i>
-                                <input type="text" id="topicSearchInput" placeholder="যেমন: নামাজ, রোযা, বিয়ে, দান, ধৈর্য...">
+                                <input type="text" id="topicSearchInput" placeholder="যে বিষয়ে জানতে চান লিখুন... (আরবি/বাংলা)">
                                 <button id="topicSearchBtn" class="topic-search-btn">খুঁজুন</button>
                             </div>
-                            <div class="popular-topics">
-                                <span class="topic-chip" data-topic="নামাজ">নামাজ</span>
-                                <span class="topic-chip" data-topic="রোযা">রোযা</span>
-                                <span class="topic-chip" data-topic="বিয়ে">বিয়ে</span>
-                                <span class="topic-chip" data-topic="দান">দান/যাকাত</span>
-                                <span class="topic-chip" data-topic="মুহাম্মদ">মুহাম্মদ (সা.)</span>
-                                <span class="topic-chip" data-topic="ধৈর্য">ধৈর্য/সবর</span>
-                                <span class="topic-chip" data-topic="ক্ষমা">ক্ষমা</span>
-                                <span class="topic-chip" data-topic="জান্নাত">জান্নাত</span>
-                                <span class="topic-chip" data-topic="মাকরুসা">মাকরুসা</span>
+                            <div class="search-tip">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>উদাহরণ: নামাজ, صلاة, বিয়ে, زكاة, ধৈর্য, رحمة</span>
                             </div>
                         </div>
                     </div>
@@ -145,7 +138,7 @@
                     <!-- সার্চ রেজাল্ট -->
                     <div class="search-results" id="searchResults" style="display: none;">
                         <div class="search-results-header">
-                            <span><i class="fas fa-search"></i> সার্চ ফলাফল</span>
+                            <span><i class="fas fa-search"></i> সার্চ ফলাফল <span id="resultCount"></span></span>
                             <button id="closeResultsBtn" class="close-results">&times;</button>
                         </div>
                         <div class="search-results-list" id="searchResultsList"></div>
@@ -154,7 +147,6 @@
                     <!-- আয়াত ভিউয়ার -->
                     <div class="viewer-container">
                         <div class="viewer scrollable" id="ayahViewer">
-                            <!-- স্টিকি হেডার - স্ক্রোলের সাথে উপরে থাকবে -->
                             <div class="surah-sticky-header" id="surahStickyHeader">
                                 <div class="sticky-header-content">
                                     <h2 id="stickySurahNameAr">الفاتحة</h2>
