@@ -1,32 +1,60 @@
-// কুরআন ডাটা - ১১৪ সূরার সম্পূর্ণ তথ্য
+// কুরআন পেজের জন্য জাভাস্ক্রিপ্ট
 let currentSurahId = 1;
 let allSurahs = [];
 let currentFontSize = 18;
 let currentTranslationFontSize = 14;
+let isLoading = false;
 
-// সূরার তথ্য ডাটাবেস (প্রথম ২০ সূরা পূর্ণ, বাকিগুলো বেসিক)
-const surahsData = {
-    1: { name_ar: "الفاتحة", name_bn: "আল-ফাতিহা", ayat_count: 7, place: "মক্কী", ayahs: [
-        {number:1, arabic:"بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ", translation:"শুরু করছি আল্লাহর নামে যিনি পরম করুণাময় ও অতি দয়ালু।"},
-        {number:2, arabic:"الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ", translation:"সমস্ত প্রশংসা আল্লাহর জন্য, যিনি সমস্ত জগতের পালনকর্তা।"},
-        {number:3, arabic:"الرَّحْمَٰنِ الرَّحِيمِ", translation:"যিনি পরম করুণাময় ও অতি দয়ালু।"},
-        {number:4, arabic:"مَالِكِ يَوْمِ الدِّينِ", translation:"যিনি বিচার দিনের মালিক।"},
-        {number:5, arabic:"إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ", translation:"আমরা শুধুমাত্র তোমারই ইবাদত করি এবং শুধুমাত্র তোমারই সাহায্য প্রার্থনা করি।"},
-        {number:6, arabic:"اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ", translation:"আমাদেরকে সরল পথ দেখাও।"},
-        {number:7, arabic:"صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ", translation:"তাদের পথ, যাদেরকে তুমি নেয়ামত দান করেছ; তাদের পথ নয় যাদের প্রতি তোমার গজব নাযিল হয়েছে এবং তাদের পথ নয় যারা পথভ্রষ্ট হয়েছে।"}
-    ]},
-    2: { name_ar: "البقرة", name_bn: "আল-বাকারাহ", ayat_count: 286, place: "মাদানী", ayahs: [
-        {number:1, arabic:"الم", translation:"আলিফ-লাম-মীম।"},
-        {number:2, arabic:"ذَٰلِكَ الْكِتَابُ لَا رَيْبَ ۛ فِيهِ ۛ هُدًى لِلْمُتَّقِينَ", translation:"এই কিতাব; এতে কোন সন্দেহ নেই, এটি মুত্তাকীদের জন্য পথনির্দেশ।"},
-        {number:255, arabic:"اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ", translation:"আল্লাহ, তিনি ছাড়া কোন ইলাহ নেই; তিনি চিরঞ্জীব, চিরস্থায়ী।"}
-    ]},
-    112: { name_ar: "الإخلاص", name_bn: "আল-ইখলাস", ayat_count: 4, place: "মক্কী", ayahs: [
-        {number:1, arabic:"قُلْ هُوَ اللَّهُ أَحَدٌ", translation:"বলুন, তিনিই আল্লাহ, এক।"},
-        {number:2, arabic:"اللَّهُ الصَّمَدُ", translation:"আল্লাহ অমুখাপেক্ষী।"},
-        {number:3, arabic:"لَمْ يَلِدْ وَلَمْ يُولَدْ", translation:"তিনি কাউকে জন্ম দেননি এবং কেউ তাঁকে জন্ম দেয়নি।"},
-        {number:4, arabic:"وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ", translation:"এবং তাঁর সমতুল্য কেউ নেই।"}
-    ]}
-};
+// সূরা লিস্ট লোড করা (JSON থেকে)
+async function loadSurahList() {
+    try {
+        const response = await fetch('data/surah-list.json');
+        if (response.ok) {
+            allSurahs = await response.json();
+        } else {
+            allSurahs = getLocalSurahList();
+        }
+        renderSurahList(allSurahs);
+        
+        let totalSpan = document.getElementById('totalSurahCount');
+        let searchSpan = document.getElementById('searchCount');
+        if (totalSpan) totalSpan.innerText = allSurahs.length;
+        if (searchSpan) searchSpan.innerText = `${allSurahs.length} টি সূরা`;
+    } catch (error) {
+        console.log('JSON লোড করতে সমস্যা, লোকাল ডাটা ব্যবহার করা হচ্ছে');
+        allSurahs = getLocalSurahList();
+        renderSurahList(allSurahs);
+    }
+}
+
+// লোকাল সূরা লিস্ট (ব্যাকআপ)
+function getLocalSurahList() {
+    const surahNamesBn = [
+        "আল-ফাতিহা", "আল-বাকারাহ", "আল-ইমরান", "আন-নিসা", "আল-মায়িদাহ",
+        "আল-আনআম", "আল-আরাফ", "আল-আনফাল", "আত-তাওবাহ", "ইউনুস",
+        "হুদ", "ইউসুফ", "আর-রাদ", "ইব্রাহীম", "আল-হিজর", "আন-নাহল",
+        "বনী-ইসরাঈল", "আল-কাহফ", "মারইয়াম", "ত্বোয়া-হা"
+    ];
+    const surahNamesAr = [
+        "الفاتحة", "البقرة", "آل عمران", "النساء", "المائدة",
+        "الأنعام", "الأعراف", "الأنفال", "التوبة", "يونس",
+        "هود", "يوسف", "الرعد", "إبراهيم", "الحجر", "النحل",
+        "الإسراء", "الكهف", "مريم", "طه"
+    ];
+    const ayatCounts = [7, 286, 200, 176, 120, 165, 206, 75, 129, 109, 123, 111, 43, 52, 99, 128, 111, 110, 98, 135];
+    
+    let surahs = [];
+    for (let i = 1; i <= 114; i++) {
+        surahs.push({
+            id: i,
+            name_ar: i <= 20 ? surahNamesAr[i-1] : `سورة ${i}`,
+            name_bn: i <= 20 ? surahNamesBn[i-1] : `সূরা ${i}`,
+            ayat_count: i <= 20 ? ayatCounts[i-1] : 100,
+            place: getSurahPlace(i)
+        });
+    }
+    return surahs;
+}
 
 // সূরার স্থান নির্ধারণ
 function getSurahPlace(surahId) {
@@ -34,68 +62,151 @@ function getSurahPlace(surahId) {
     return makkiSurahs.includes(surahId) ? "মক্কী" : "মাদানী";
 }
 
-// সূরা লোড করা
-function loadSurah(surahId) {
+// সূরা লিস্ট রেন্ডার
+function renderSurahList(surahs) {
+    let container = document.getElementById('surahList');
+    if (!container) return;
+    
+    container.innerHTML = '';
+    surahs.forEach(surah => {
+        let div = document.createElement('div');
+        div.className = 'surah-item';
+        if (currentSurahId === surah.id) div.classList.add('active');
+        div.setAttribute('data-surah-id', surah.id);
+        div.innerHTML = `
+            <div class="surah-number">${surah.id}</div>
+            <div class="surah-name">
+                <div class="surah-name-ar">${surah.name_ar}</div>
+                <div class="surah-name-bn">${surah.name_bn}</div>
+            </div>
+            <div class="surah-ayat">${surah.ayat_count}</div>
+        `;
+        div.addEventListener('click', () => loadSurah(surah.id));
+        container.appendChild(div);
+    });
+}
+
+// সূরা লোড করা (JSON থেকে)
+async function loadSurah(surahId) {
+    if (isLoading) return;
+    isLoading = true;
+    
     currentSurahId = surahId;
     
-    // অ্যাক্টিভ স্টাইল আপডেট
+    // সাইডবারে অ্যাক্টিভ স্টাইল আপডেট
     document.querySelectorAll('.surah-item').forEach(item => {
         item.classList.remove('active');
         if (parseInt(item.dataset.surahId) === surahId) item.classList.add('active');
     });
     
     let viewer = document.getElementById('ayahViewer');
-    viewer.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-pulse"></i><br>লোড হচ্ছে...</div>';
+    viewer.innerHTML = '<div class="loading-spinner"><i class="fas fa-spinner fa-pulse"></i> লোড হচ্ছে...</div>';
     
-    // সিমুলেটেড ডিলে (রিয়েল API এর জন্য)
-    setTimeout(() => {
-        let surah = allSurahs.find(s => s.id === surahId);
-        let surahDetail = surahsData[surahId];
+    try {
+        const response = await fetch(`data/surah-${surahId}.json`);
+        let surahData;
         
-        if (surahDetail && surahDetail.ayahs) {
-            // সম্পূর্ণ সূরা ডাটা আছে
-            let ayahsHtml = `<div class="surah-header">
-                <h2>${surahDetail.name_ar}</h2>
-                <div class="surah-meta">
-                    <span><i class="fas fa-tag"></i> ${surahDetail.name_bn}</span>
-                    <span><i class="fas fa-ayat"></i> ${surahDetail.ayat_count} আয়াত</span>
-                    <span><i class="fas fa-map-marker-alt"></i> ${surahDetail.place}</span>
-                </div>
-            </div>`;
-            
-            surahDetail.ayahs.forEach(ayah => {
-                ayahsHtml += `<div class="ayah-card" data-ayah="${ayah.number}">
-                    <div class="ayah-number">${ayah.number}</div>
-                    <div class="ayah-arabic">${ayah.arabic}</div>
-                    <div class="ayah-translation">${ayah.translation}</div>
-                </div>`;
-            });
-            viewer.innerHTML = ayahsHtml;
+        if (response.ok) {
+            surahData = await response.json();
         } else {
-            // ডেমো কন্টেন্ট
-            let ayahsHtml = `<div class="surah-header">
-                <h2>${surah?.name_ar || 'سورة'}</h2>
-                <div class="surah-meta">
-                    <span><i class="fas fa-tag"></i> ${surah?.name_bn || 'সূরা'}</span>
-                    <span><i class="fas fa-ayat"></i> ${surah?.ayat_count || '?'} আয়াত</span>
-                    <span><i class="fas fa-map-marker-alt"></i> ${getSurahPlace(surahId)}</span>
-                </div>
-            </div>`;
-            
-            // প্রথম ৫ আয়াত ডেমো দেখানো
-            for(let i = 1; i <= Math.min(5, surah?.ayat_count || 5); i++) {
-                ayahsHtml += `<div class="ayah-card" data-ayah="${i}">
-                    <div class="ayah-number">${i}</div>
-                    <div class="ayah-arabic">আয়াত নং ${i}</div>
-                    <div class="ayah-translation">সম্পূর্ণ কুরআনের জন্য API সংযোগ প্রয়োজন। শীঘ্রই আপডেট হবে ইনশাআল্লাহ।</div>
-                </div>`;
-            }
-            viewer.innerHTML = ayahsHtml;
+            surahData = getLocalSurahData(surahId);
         }
         
-        updateFontSizeDisplay();
-        saveReadingProgress(surahId, surah?.name_bn || `সূরা ${surahId}`, 1);
-    }, 300);
+        displaySurah(surahData);
+        saveReadingProgress(surahId, surahData.name_bn, 1);
+        
+    } catch (error) {
+        console.log('সূরা ডাটা লোড করতে সমস্যা');
+        let surahData = getLocalSurahData(surahId);
+        displaySurah(surahData);
+    }
+    
+    isLoading = false;
+    
+    // মোবাইলে সাইডবার বন্ধ করা
+    closeSidebar();
+}
+
+// লোকাল সূরা ডাটা (ব্যাকআপ)
+function getLocalSurahData(surahId) {
+    if (surahId === 1) {
+        return {
+            id: 1, name_ar: "الفاتحة", name_bn: "আল-ফাতিহা", ayat_count: 7, place: "মক্কী",
+            ayahs: [
+                {number:1, arabic:"بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ", translation:"শুরু করছি আল্লাহর নামে যিনি পরম করুণাময় ও অতি দয়ালু।"},
+                {number:2, arabic:"الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ", translation:"সমস্ত প্রশংসা আল্লাহর জন্য, যিনি সমস্ত জগতের পালনকর্তা।"},
+                {number:3, arabic:"الرَّحْمَٰنِ الرَّحِيمِ", translation:"যিনি পরম করুণাময় ও অতি দয়ালু।"},
+                {number:4, arabic:"مَالِكِ يَوْمِ الدِّينِ", translation:"যিনি বিচার দিনের মালিক।"},
+                {number:5, arabic:"إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ", translation:"আমরা শুধুমাত্র তোমারই ইবাদত করি এবং শুধুমাত্র তোমারই সাহায্য প্রার্থনা করি।"},
+                {number:6, arabic:"اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ", translation:"আমাদেরকে সরল পথ দেখাও।"},
+                {number:7, arabic:"صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ", translation:"তাদের পথ, যাদেরকে তুমি নেয়ামত দান করেছ; তাদের পথ নয় যাদের প্রতি তোমার গজব নাযিল হয়েছে এবং তাদের পথ নয় যারা পথভ্রষ্ট হয়েছে।"}
+            ]
+        };
+    } else if (surahId === 112) {
+        return {
+            id: 112, name_ar: "الإخلاص", name_bn: "আল-ইখলাস", ayat_count: 4, place: "মক্কী",
+            ayahs: [
+                {number:1, arabic:"قُلْ هُوَ اللَّهُ أَحَدٌ", translation:"বলুন, তিনিই আল্লাহ, এক।"},
+                {number:2, arabic:"اللَّهُ الصَّمَدُ", translation:"আল্লাহ অমুখাপেক্ষী।"},
+                {number:3, arabic:"لَمْ يَلِدْ وَلَمْ يُولَدْ", translation:"তিনি কাউকে জন্ম দেননি এবং কেউ তাঁকে জন্ম দেয়নি।"},
+                {number:4, arabic:"وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ", translation:"এবং তাঁর সমতুল্য কেউ নেই।"}
+            ]
+        };
+    } else {
+        let surah = allSurahs.find(s => s.id === surahId);
+        return {
+            id: surahId,
+            name_ar: surah?.name_ar || `سورة ${surahId}`,
+            name_bn: surah?.name_bn || `সূরা ${surahId}`,
+            ayat_count: surah?.ayat_count || 100,
+            place: getSurahPlace(surahId),
+            ayahs: []
+        };
+    }
+}
+
+// আয়াত ডিসপ্লে করা
+function displaySurah(surahData) {
+    let viewer = document.getElementById('ayahViewer');
+    
+    let ayahsHtml = `<div class="surah-header">
+        <h2>${surahData.name_ar}</h2>
+        <div class="surah-meta">
+            <span><i class="fas fa-tag"></i> ${surahData.name_bn}</span>
+            <span><i class="fas fa-ayat"></i> ${surahData.ayat_count} আয়াত</span>
+            <span><i class="fas fa-map-marker-alt"></i> ${surahData.place}</span>
+        </div>
+    </div>`;
+    
+    if (surahData.ayahs && surahData.ayahs.length > 0) {
+        surahData.ayahs.forEach(ayah => {
+            ayahsHtml += `<div class="ayah-card" data-ayah="${ayah.number}">
+                <div class="ayah-number">${ayah.number}</div>
+                <div class="ayah-arabic">${ayah.arabic}</div>
+                <div class="ayah-translation">${ayah.translation}</div>
+            </div>`;
+        });
+    } else {
+        // ডেমো কন্টেন্ট
+        for(let i = 1; i <= Math.min(10, surahData.ayat_count); i++) {
+            ayahsHtml += `<div class="ayah-card" data-ayah="${i}">
+                <div class="ayah-number">${i}</div>
+                <div class="ayah-arabic">আয়াত নং ${i}</div>
+                <div class="ayah-translation">সম্পূর্ণ কুরআনের জন্য API সংযোগ প্রয়োজন। শীঘ্রই আপডেট হবে ইনশাআল্লাহ।</div>
+            </div>`;
+        }
+        
+        if (surahData.ayat_count > 10) {
+            ayahsHtml += `<div class="ayah-card">
+                <div class="ayah-number">...</div>
+                <div class="ayah-arabic">মোট ${surahData.ayat_count}টি আয়াত</div>
+                <div class="ayah-translation">শীঘ্রই সম্পূর্ণ সূরা যোগ করা হবে ইনশাআল্লাহ</div>
+            </div>`;
+        }
+    }
+    
+    viewer.innerHTML = ayahsHtml;
+    updateFontSizeDisplay();
 }
 
 // ফন্ট সাইজ আপডেট
@@ -190,100 +301,7 @@ function initFontSizeControl() {
     if (translationFontSizeValue) translationFontSizeValue.innerText = currentTranslationFontSize;
 }
 
-// সূরা লিস্ট লোড
-function loadSurahList() {
-    let container = document.getElementById('surahList');
-    if (!container) return;
-    
-    // ১১৪ সূরার তালিকা তৈরি
-    const surahNamesBn = [
-        "আল-ফাতিহা", "আল-বাকারাহ", "আল-ইমরান", "আন-নিসা", "আল-মায়িদাহ", "আল-আনআম", "আল-আরাফ", "আল-আনফাল", "আত-তাওবাহ", "ইউনুস",
-        "হুদ", "ইউসুফ", "আর-রাদ", "ইব্রাহীম", "আল-হিজর", "আন-নাহল", "বনী-ইসরাঈল", "আল-কাহফ", "মারইয়াম", "ত্বোয়া-হা",
-        "আল-আম্বিয়া", "আল-হাজ্জ", "আল-মু'মিনূন", "আন-নূর", "আল-ফুরকান", "আশ-শু'আরা", "আন-নামল", "আল-কাসাস", "আল-আনকাবুত", "আর-রূম",
-        "লুকমান", "আস-সাজদাহ", "আল-আহযাব", "সাবা", "ফাতির", "ইয়াসীন", "আস-সাফফাত", "সোয়াদ", "আজ-জুমার", "আল-মু'মিন",
-        "হা-মীম সেজদাহ", "আশ-শূরা", "আজ-যুখরুফ", "আদ-দুখান", "আল-জাসিয়াহ", "আল-আহকাফ", "মুহাম্মদ", "আল-ফাতহ", "আল-হুজুরাত", "কাফ",
-        "আয-যারিয়াত", "আত-তূর", "আন-নাজম", "আল-কামার", "আর-রহমান", "আল-ওয়াকিয়াহ", "আল-হাদিদ", "আল-মুজাদালাহ", "আল-হাশর", "আল-মুমতাহিনাহ",
-        "আস-সাফ", "আল-জুমুআ", "আল-মুনাফিকুন", "আত-তাগাবুন", "আত-তালাক", "আত-তাহরিম", "আল-মুলক", "আল-কালাম", "আল-হাক্কাহ", "আল-মাআরিজ",
-        "নূহ", "আল-জিন", "আল-মুযযাম্মিল", "আল-মুদ্দাসসির", "আল-কিয়ামাহ", "আদ-দাহর", "আল-মুরসালাত", "আন-নাবা", "আন-নাযি'আত", "আবাসা",
-        "আত-তাকভীর", "আল-ইনফিতার", "আল-মুত্বাফফিফীন", "আল-ইনশিকাক", "আল-বুরুজ", "আত-তারিক", "আল-আ'লা", "আল-গাশিয়াহ", "আল-ফাজর", "আল-বালাদ",
-        "আশ-শামস", "আল-লাইল", "আদ-দুহা", "আল-ইনশিরাহ", "আত-তীন", "আল-আলাক", "আল-কদর", "আল-বাইয়্যিনাহ", "আয-যিলযাল", "আল-আদিয়াত",
-        "আল-কারিয়াহ", "আত-তাকাসুর", "আল-আসর", "আল-হুমাজাহ", "আল-ফীল", "কুরাইশ", "আল-মাউন", "আল-কাওসার", "আল-কাফিরুন", "আন-নাসর",
-        "আল-মাসাদ", "আল-ইখলাস", "আল-ফালাক", "আন-নাস"
-    ];
-    
-    const surahNamesAr = [
-        "الفاتحة", "البقرة", "آل عمران", "النساء", "المائدة", "الأنعام", "الأعراف", "الأنفال", "التوبة", "يونس",
-        "هود", "يوسف", "الرعد", "إبراهيم", "الحجر", "النحل", "الإسراء", "الكهف", "مريم", "طه",
-        "الأنبياء", "الحج", "المؤمنون", "النور", "الفرقان", "الشعراء", "النمل", "القصص", "العنكبوت", "الروم",
-        "لقمان", "السجدة", "الأحزاب", "سبأ", "فاطر", "يس", "الصافات", "ص", "الزمر", "غافر",
-        "فصلت", "الشورى", "الزخرف", "الدخان", "الجاثية", "الأحقاف", "محمد", "الفتح", "الحجرات", "ق",
-        "الذاريات", "الطور", "النجم", "القمر", "الرحمن", "الواقعة", "الحديد", "المجادلة", "الحشر", "الممتحنة",
-        "الصف", "الجمعة", "المنافقون", "التغابن", "الطلاق", "التحريم", "الملك", "القلم", "الحاقة", "المعارج",
-        "نوح", "الجن", "المزمل", "المدثر", "القيامة", "الإنسان", "المرسلات", "النبأ", "النازعات", "عبس",
-        "التكوير", "الإنفطار", "المطففين", "الإنشقاق", "البروج", "الطارق", "الأعلى", "الغاشية", "الفجر", "البلد",
-        "الشمس", "الليل", "الضحى", "الشرح", "التين", "العلق", "القدر", "البينة", "الزلزلة", "العاديات",
-        "القارعة", "التكاثر", "العصر", "الهمزة", "الفيل", "قريش", "الماعون", "الكوثر", "الكافرون", "النصر",
-        "المسد", "الإخلاص", "الفلق", "الناس"
-    ];
-    
-    const ayatCounts = [
-        7, 286, 200, 176, 120, 165, 206, 75, 129, 109,
-        123, 111, 43, 52, 99, 128, 111, 110, 98, 135,
-        112, 78, 118, 64, 77, 227, 93, 88, 69, 60,
-        34, 30, 73, 54, 45, 83, 182, 88, 75, 85,
-        54, 53, 89, 59, 37, 35, 38, 29, 18, 45,
-        60, 49, 62, 55, 78, 96, 29, 22, 24, 13,
-        14, 11, 11, 18, 12, 12, 30, 52, 52, 44,
-        28, 28, 20, 56, 40, 31, 50, 40, 46, 42,
-        29, 19, 36, 25, 22, 17, 19, 26, 30, 20,
-        15, 21, 11, 8, 8, 19, 5, 8, 8, 11,
-        11, 8, 3, 9, 5, 4, 7, 3, 6, 3,
-        5, 4, 5, 6
-    ];
-    
-    allSurahs = [];
-    for (let i = 1; i <= 114; i++) {
-        allSurahs.push({
-            id: i,
-            name_ar: surahNamesAr[i-1],
-            name_bn: surahNamesBn[i-1],
-            ayat_count: ayatCounts[i-1]
-        });
-    }
-    
-    renderSurahList(allSurahs);
-    
-    let totalSpan = document.getElementById('totalSurahCount');
-    let searchSpan = document.getElementById('searchCount');
-    if (totalSpan) totalSpan.innerText = allSurahs.length;
-    if (searchSpan) searchSpan.innerText = `${allSurahs.length} টি সূরা`;
-}
-
-// সূরা লিস্ট রেন্ডার
-function renderSurahList(surahs) {
-    let container = document.getElementById('surahList');
-    if (!container) return;
-    
-    container.innerHTML = '';
-    surahs.forEach(surah => {
-        let div = document.createElement('div');
-        div.className = 'surah-item';
-        if (currentSurahId === surah.id) div.classList.add('active');
-        div.setAttribute('data-surah-id', surah.id);
-        div.innerHTML = `
-            <div class="surah-number">${surah.id}</div>
-            <div class="surah-name">
-                <div class="surah-name-ar">${surah.name_ar}</div>
-                <div class="surah-name-bn">${surah.name_bn}</div>
-            </div>
-            <div class="surah-ayat">${surah.ayat_count}</div>
-        `;
-        div.addEventListener('click', () => loadSurah(surah.id));
-        container.appendChild(div);
-    });
-}
-
-// সার্চ ফাংশন
+// সার্চ ফাংশন (মেইন সার্চ)
 function initSearch() {
     let searchInput = document.getElementById('surahSearch');
     if (searchInput) {
@@ -301,29 +319,85 @@ function initSearch() {
     }
 }
 
-// মোবাইলে সূরা লিস্ট টগল
-function initToggleSurah() {
-    const toggleBtn = document.getElementById('toggleSurahBtn');
-    const sidebar = document.getElementById('surahSidebar');
-    const toggleIcon = document.getElementById('toggleIcon');
-    
-    if (toggleBtn && sidebar) {
-        toggleBtn.addEventListener('click', () => {
-            sidebar.classList.toggle('open');
-            toggleBtn.classList.toggle('open');
-            if (toggleIcon) {
-                toggleIcon.style.transform = sidebar.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
-            }
+// সাইডবার সার্চ
+function initSidebarSearch() {
+    let searchInput = document.getElementById('sidebarSearch');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            let term = e.target.value.toLowerCase();
+            let filtered = allSurahs.filter(s => 
+                s.name_bn.toLowerCase().includes(term) || 
+                s.name_ar.toLowerCase().includes(term) || 
+                s.id.toString().includes(term)
+            );
+            renderSurahList(filtered);
         });
     }
 }
+
+// সাইডবার খোলা/বন্ধ করা
+function openSidebar() {
+    let sidebar = document.getElementById('surahSidebar');
+    let overlay = document.getElementById('sidebarOverlay');
+    if (sidebar) sidebar.classList.add('open');
+    if (overlay) overlay.classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeSidebar() {
+    let sidebar = document.getElementById('surahSidebar');
+    let overlay = document.getElementById('sidebarOverlay');
+    if (sidebar) sidebar.classList.remove('open');
+    if (overlay) overlay.classList.remove('show');
+    document.body.style.overflow = '';
+}
+
+// ফ্লোটিং বাটন এবং সাইডবার ইভেন্ট
+function initSidebarToggle() {
+    const floatingBtn = document.getElementById('floatingSurahBtn');
+    const closeBtn = document.getElementById('closeSidebarBtn');
+    const overlay = document.getElementById('sidebarOverlay');
+    
+    if (floatingBtn) {
+        floatingBtn.addEventListener('click', openSidebar);
+    }
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeSidebar);
+    }
+    if (overlay) {
+        overlay.addEventListener('click', closeSidebar);
+    }
+}
+
+// ডেস্কটপে সাইডবার ভিউ
+function initDesktopSidebar() {
+    if (window.innerWidth >= 769) {
+        let sidebar = document.getElementById('surahSidebar');
+        if (sidebar) sidebar.classList.add('open');
+    }
+}
+
+// উইন্ডো রিসাইজ ইভেন্ট
+window.addEventListener('resize', () => {
+    if (window.innerWidth >= 769) {
+        let sidebar = document.getElementById('surahSidebar');
+        if (sidebar) sidebar.classList.add('open');
+    } else {
+        let sidebar = document.getElementById('surahSidebar');
+        if (sidebar && !sidebar.classList.contains('open')) {
+            // মোবাইলে বন্ধ রাখো
+        }
+    }
+});
 
 // ডকুমেন্ট রেডি
 document.addEventListener('DOMContentLoaded', () => {
     loadSurahList();
     initSearch();
+    initSidebarSearch();
     loadReadingProgress();
     initFontSizeControl();
-    initToggleSurah();
+    initSidebarToggle();
+    initDesktopSidebar();
     loadSurah(1);
 });
