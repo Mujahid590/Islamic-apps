@@ -79,45 +79,45 @@
                 </div>
             </div>
 
-            <!-- আইকন গ্রিড - প্রথম সারি -->
+            <!-- আইকন গ্রিড - প্রথম সারি (৩টি) -->
             <div class="icon-grid">
                 <a href="namaz.html" class="icon-card">
-                    <div class="icon-circle">
+                    <div class="icon-circle green-bg">
                         <i class="fas fa-clock"></i>
                     </div>
                     <span class="icon-label">নামাজের সময়</span>
                 </a>
                 <a href="quran.html" class="icon-card">
-                    <div class="icon-circle">
+                    <div class="icon-circle green-bg">
                         <i class="fas fa-quran"></i>
                     </div>
                     <span class="icon-label">আল কুরআন</span>
                 </a>
                 <a href="#" class="icon-card" id="asmaBtn">
-                    <div class="icon-circle">
+                    <div class="icon-circle green-bg">
                         <i class="fas fa-star-and-crescent"></i>
                     </div>
                     <span class="icon-label">আসমা-উল-হুসনা</span>
-                    <span class="icon-badge">৫০০</span>
+                    <span class="icon-badge">৯৯</span>
                 </a>
             </div>
 
-            <!-- আইকন গ্রিড - দ্বিতীয় সারি -->
+            <!-- আইকন গ্রিড - দ্বিতীয় সারি (৩টি) -->
             <div class="icon-grid second-row">
                 <a href="tasbih.html" class="icon-card">
-                    <div class="icon-circle">
+                    <div class="icon-circle green-bg">
                         <i class="fas fa-fingerprint"></i>
                     </div>
-                    <span class="icon-label">তসবিহ</span>
+                    <span class="icon-label">তাসবিহ</span>
                 </a>
                 <a href="qibla.html" class="icon-card">
-                    <div class="icon-circle">
+                    <div class="icon-circle green-bg">
                         <i class="fas fa-compass"></i>
                     </div>
                     <span class="icon-label">কিবলা কম্পাস</span>
                 </a>
                 <a href="#" class="icon-card" id="rozaBtn">
-                    <div class="icon-circle">
+                    <div class="icon-circle green-bg">
                         <i class="fas fa-calendar-week"></i>
                     </div>
                     <span class="icon-label">রোজার সময়সূচী</span>
@@ -125,15 +125,26 @@
                 </a>
             </div>
 
-            <!-- দৈনিক দুআ কার্ড -->
-            <div class="dua-card">
-                <div class="dua-header">
-                    <i class="fas fa-hands-praying"></i>
-                    <h3>আজকের দৈনিক দুআ</h3>
-                </div>
-                <div class="dua-arabic">رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ</div>
-                <div class="dua-bangla">হে আমাদের পালনকর্তা! দুনিয়াতে আমাদের কল্যাণ দাও এবং আখিরাতেও কল্যাণ দাও এবং আমাদেরকে দোজখের আযাব থেকে রক্ষা কর।</div>
-                <div class="dua-reference">সূরা আল-বাকারাহ, আয়াত ২০১</div>
+            <!-- আইকন গ্রিড - তৃতীয় সারি (মসজিদ, হাদিস, যাকাত) -->
+            <div class="icon-grid third-row">
+                <a href="mosques.html" class="icon-card">
+                    <div class="icon-circle green-bg">
+                        <i class="fas fa-mosque"></i>
+                    </div>
+                    <span class="icon-label">নিকট মসজিদ</span>
+                </a>
+                <a href="#" class="icon-card" id="hadithBtn">
+                    <div class="icon-circle green-bg">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <span class="icon-label">হাদিস</span>
+                </a>
+                <a href="#" class="icon-card" id="zakatBtn">
+                    <div class="icon-circle green-bg">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <span class="icon-label">যাকাত</span>
+                </a>
             </div>
         </main>
 
@@ -204,6 +215,7 @@
         updateClock();
         setInterval(updateClock, 1000);
         
+        // বাটন ক্লিক ইভেন্ট
         document.getElementById('asmaBtn')?.addEventListener('click', (e) => {
             e.preventDefault();
             alert('আসমা-উল-হুসনা ফিচার শীঘ্রই আসছে। ৯৯ টি নাম সহকারে।');
@@ -211,6 +223,14 @@
         document.getElementById('rozaBtn')?.addEventListener('click', (e) => {
             e.preventDefault();
             alert('রমজান ২০২৬ এর রোজার সময়সূচী শীঘ্রই প্রকাশিত হবে।');
+        });
+        document.getElementById('hadithBtn')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('হাদিস ফিচার শীঘ্রই আসছে। বুখারী, মুসলিম সহ বিভিন্ন কিতাবের হাদিস।');
+        });
+        document.getElementById('zakatBtn')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('যাকাত ক্যালকুলেটর ফিচার শীঘ্রই আসছে।');
         });
     </script>
 </body>
