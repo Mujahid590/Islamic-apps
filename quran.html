@@ -96,7 +96,6 @@
                 <button id="continueReadingBtn" class="continue-btn">পড়া চালিয়ে যান <i class="fas fa-arrow-right"></i></button>
             </div>
 
-            <!-- ডেস্কটপ লেআউট -->
             <div class="desktop-layout">
                 <!-- সূরা লিস্ট সাইডবার -->
                 <div class="surah-sidebar" id="surahSidebar">
@@ -125,7 +124,7 @@
                         <div class="topic-search-content" id="topicSearchContent">
                             <div class="search-input-wrapper">
                                 <i class="fas fa-search"></i>
-                                <input type="text" id="topicSearchInput" placeholder="যেমন: নামাজ, صلاة, বিয়ে, زكاة, ধৈর্য...">
+                                <input type="text" id="topicSearchInput" placeholder="যেমন: নামাজ, صلاة, বিয়ে, رحمة...">
                                 <button id="topicSearchBtn" class="topic-search-btn">খুঁজুন</button>
                             </div>
                         </div>
@@ -145,11 +144,18 @@
                         <div class="viewer scrollable" id="ayahViewer">
                             <div class="surah-sticky-header" id="surahStickyHeader">
                                 <div class="sticky-header-content">
-                                    <h2 id="stickySurahNameAr">الفاتحة</h2>
+                                    <div class="surah-title-row">
+                                        <div class="surah-place-icon" id="surahPlaceIcon">
+                                            <i class="fas fa-kaaba"></i>
+                                        </div>
+                                        <h2 id="stickySurahNameAr">الفاتحة</h2>
+                                    </div>
                                     <div class="sticky-surah-meta">
                                         <span><i class="fas fa-tag"></i> <span id="stickySurahNameBn">আল-ফাতিহা</span></span>
                                         <span><i class="fas fa-ayat"></i> <span id="stickySurahAyatCount">৭</span> আয়াত</span>
-                                        <span><i class="fas fa-map-marker-alt"></i> <span id="stickySurahPlace">মক্কী</span></span>
+                                        <span id="stickySurahPlace">
+                                            <i class="fas fa-map-marker-alt"></i> <span>মক্কী</span>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -217,6 +223,15 @@
                     <i class="fas fa-chevron-right"></i>
                 </a>
             </div>
+        </div>
+    </div>
+
+    <!-- সিজদা নোটিফিকেশন -->
+    <div id="sajdahNotification" class="sajdah-notification" style="display: none;">
+        <div class="sajdah-notification-content">
+            <i class="fas fa-procedures"></i>
+            <span>সিজদার আয়াত! তিলাওয়াতের পর সিজদা করুন</span>
+            <button id="closeSajdahNotif" class="close-notif">&times;</button>
         </div>
     </div>
 
