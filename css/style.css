@@ -357,7 +357,7 @@ body {
     font-family: monospace;
 }
 
-/* ========== আইকন গ্রিড ========== */
+/* ========== আইকন গ্রিড - সবুজ ব্যাকগ্রাউন্ডে সাদা আইকন ========== */
 .icon-grid {
     display: flex;
     justify-content: space-between;
@@ -366,7 +366,11 @@ body {
 }
 
 .icon-grid.second-row {
-    margin-bottom: 20px;
+    margin-bottom: 12px;
+}
+
+.icon-grid.third-row {
+    margin-bottom: 0;
 }
 
 .icon-card {
@@ -387,20 +391,22 @@ body {
     background: var(--gray-light);
 }
 
-.icon-circle {
+/* সবুজ ব্যাকগ্রাউন্ড এবং সাদা আইকন */
+.icon-circle.green-bg {
     width: 55px;
     height: 55px;
-    background: linear-gradient(135deg, var(--primary-light), var(--primary));
+    background: var(--primary);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.icon-circle i {
+.icon-circle.green-bg i {
     font-size: 1.6rem;
-    color: var(--primary-dark);
+    color: white;
 }
 
 .icon-label {
@@ -415,7 +421,7 @@ body {
     position: absolute;
     top: -6px;
     right: -6px;
-    background: var(--primary);
+    background: #ef4444;
     color: white;
     font-size: 0.55rem;
     padding: 2px 6px;
@@ -423,35 +429,6 @@ body {
     font-weight: bold;
     min-width: 28px;
 }
-
-/* দুআ কার্ড */
-.dua-card {
-    background: var(--card-bg);
-    border-radius: 16px;
-    padding: 15px;
-    border: 1px solid var(--border);
-    margin-top: 5px;
-}
-.dua-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 12px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--border);
-}
-.dua-header i { font-size: 1.2rem; color: var(--gold); }
-.dua-header h3 { font-size: 0.9rem; color: var(--text-dark); }
-.dua-arabic {
-    font-family: 'Uthman Taha Naskh', serif;
-    font-size: 1rem;
-    line-height: 1.5;
-    text-align: center;
-    margin-bottom: 10px;
-    color: var(--primary-dark);
-}
-.dua-bangla { font-size: 0.8rem; text-align: center; margin-bottom: 8px; line-height: 1.4; }
-.dua-reference { font-size: 0.6rem; text-align: center; color: var(--text-gray); }
 
 /* মোবাইল নেভিগেশন বার */
 .bottom-navbar {
@@ -513,11 +490,12 @@ body {
 @media (min-width: 769px) {
     .mobile-header, .bottom-navbar, .more-menu-panel { display: none !important; }
     .top-navbar { display: flex; }
-    .main-content { max-width: 1000px; padding: 20px; }
-    .icon-circle { width: 65px; height: 65px; }
-    .icon-circle i { font-size: 1.8rem; }
-    .icon-label { font-size: 0.8rem; }
+    .main-content { max-width: 800px; padding: 20px; }
+    .icon-circle.green-bg { width: 70px; height: 70px; }
+    .icon-circle.green-bg i { font-size: 2rem; }
+    .icon-label { font-size: 0.85rem; }
     .toast { bottom: 20px; }
+    .icon-grid { gap: 16px; }
 }
 
 /* ========== মোবাইল ভিউ ========== */
@@ -539,23 +517,20 @@ body {
     .nav-item span { font-size: 0.5rem; }
     
     .icon-grid { gap: 8px; }
-    .icon-circle { width: 48px; height: 48px; }
-    .icon-circle i { font-size: 1.3rem; }
+    .icon-circle.green-bg { width: 48px; height: 48px; }
+    .icon-circle.green-bg i { font-size: 1.3rem; }
     .icon-label { font-size: 0.6rem; }
     .icon-badge { font-size: 0.5rem; padding: 1px 5px; min-width: 24px; top: -5px; right: -5px; }
     
     .welcome-card { padding: 15px; }
     .welcome-icon { font-size: 2rem; }
     .welcome-card h1 { font-size: 1.1rem; }
-    
-    .dua-arabic { font-size: 0.85rem; }
-    .dua-bangla { font-size: 0.7rem; }
 }
 
 /* ========== খুব ছোট মোবাইল (380px এর নিচে) ========== */
 @media (max-width: 380px) {
-    .icon-circle { width: 42px; height: 42px; }
-    .icon-circle i { font-size: 1.1rem; }
+    .icon-circle.green-bg { width: 42px; height: 42px; }
+    .icon-circle.green-bg i { font-size: 1.1rem; }
     .icon-label { font-size: 0.55rem; }
     .nav-item { min-width: 44px; }
 }
