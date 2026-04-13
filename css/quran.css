@@ -240,7 +240,6 @@
     background: var(--gray-light);
     border-radius: 50px;
     padding: 0 16px;
-    margin-bottom: 12px;
     border: 1px solid var(--border);
 }
 
@@ -278,21 +277,6 @@
 
 .topic-search-btn:hover {
     background: var(--primary-dark);
-}
-
-.search-tip {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.7rem;
-    color: var(--text-gray);
-    background: var(--gray-light);
-    padding: 8px 12px;
-    border-radius: 30px;
-}
-
-.search-tip i {
-    color: var(--gold);
 }
 
 /* সার্চ রেজাল্ট */
@@ -390,7 +374,7 @@
     position: relative;
 }
 
-/* স্টিকি হেডার */
+/* স্টিকি হেডার - সেন্টার align */
 .surah-sticky-header {
     position: sticky;
     top: 0;
@@ -423,37 +407,6 @@
 
 .sticky-surah-meta i {
     margin-right: 4px;
-}
-
-.surah-header-search {
-    margin-top: 10px;
-    padding-top: 8px;
-    border-top: 1px solid rgba(255,255,255,0.2);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(255,255,255,0.15);
-    border-radius: 40px;
-    padding: 6px 14px;
-}
-
-.surah-header-search i {
-    color: rgba(255,255,255,0.8);
-    font-size: 0.8rem;
-}
-
-.surah-header-search input {
-    flex: 1;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: white;
-    font-family: 'Kalpurush', sans-serif;
-    font-size: 0.8rem;
-}
-
-.surah-header-search input::placeholder {
-    color: rgba(255,255,255,0.6);
 }
 
 /* আয়াত কন্টেইনার */
