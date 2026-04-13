@@ -22,35 +22,29 @@
 
 /* ========== CSS ভেরিয়েবল ========== */
 :root {
-    --primary: #10b981;
-    --primary-dark: #059669;
-    --primary-light: #d1fae5;
-    --primary-gradient: linear-gradient(135deg, #10b981, #059669);
-    --secondary: #8b5cf6;
-    --accent: #f59e0b;
+    --primary: #2a9d6e;
+    --primary-dark: #1e5a3a;
+    --primary-light: #e8f5e9;
     --white: #ffffff;
     --gray-light: #f8fafc;
     --gray: #e2e8f0;
-    --text-dark: #0f172a;
+    --text-dark: #1e293b;
     --text-gray: #64748b;
     --text-light: #94a3b8;
-    --gold: #fbbf24;
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-    --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1);
-    --radius-sm: 12px;
-    --radius: 20px;
-    --radius-lg: 28px;
+    --gold: #d4af37;
+    --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.1);
+    --radius: 24px;
+    --radius-sm: 16px;
     --bg: #f0fdf4;
     --card-bg: #ffffff;
     --border: #e2e8f0;
 }
 
 body.dark-mode {
-    --primary: #34d399;
-    --primary-dark: #10b981;
-    --primary-light: #064e3b;
+    --primary: #22c55e;
+    --primary-dark: #16a34a;
+    --primary-light: #166534;
     --white: #1e293b;
     --gray-light: #0f172a;
     --gray: #334155;
@@ -84,21 +78,20 @@ body {
 
 /* ========== লোগো স্টাইল ========== */
 .custom-logo {
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--primary-gradient);
+    background: linear-gradient(135deg, var(--primary-light), var(--primary));
     border-radius: 50%;
     overflow: hidden;
     flex-shrink: 0;
-    box-shadow: var(--shadow);
 }
 
 .custom-logo.small {
-    width: 38px;
-    height: 38px;
+    width: 35px;
+    height: 35px;
 }
 
 .logo-img {
@@ -109,14 +102,14 @@ body {
 }
 
 .custom-logo i {
-    font-size: 1.4rem;
-    color: white;
+    font-size: 1.3rem;
+    color: var(--primary-dark);
 }
 
 /* ========== ডেস্কটপ নেভিগেশন ========== */
 .top-navbar {
     background: var(--card-bg);
-    padding: 0 2rem;
+    padding: 0 1.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -126,32 +119,26 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
-    height: 70px;
+    height: 65px;
 }
 
 .nav-brand {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
 }
 
-.brand-text h1 {
-    font-size: 1.2rem;
+.nav-brand h1 {
+    font-size: 1.1rem;
     color: var(--primary-dark);
-    margin-bottom: 2px;
-}
-
-.brand-text p {
-    font-size: 0.6rem;
-    color: var(--text-gray);
 }
 
 .nav-links {
     display: flex;
     gap: 0.3rem;
     background: var(--gray-light);
-    padding: 0.3rem 0.8rem;
-    border-radius: 60px;
+    padding: 0.3rem 0.6rem;
+    border-radius: 50px;
 }
 
 .nav-link {
@@ -160,38 +147,37 @@ body {
     align-items: center;
     justify-content: center;
     gap: 2px;
-    padding: 8px 14px;
-    border-radius: 50px;
+    padding: 6px 12px;
+    border-radius: 40px;
     color: var(--text-gray);
     font-size: 0.7rem;
     text-decoration: none;
-    min-width: 65px;
+    min-width: 60px;
     transition: all 0.2s;
 }
 
-.nav-link i { font-size: 1.1rem; }
+.nav-link i { font-size: 1rem; }
 .nav-link span { font-size: 0.55rem; }
 .nav-link.active { background: var(--primary); color: white; }
-.nav-link:hover:not(.active) { background: var(--primary-light); color: var(--primary-dark); }
 
 .nav-actions { display: flex; gap: 0.5rem; }
 .icon-btn {
-    width: 40px; height: 40px;
+    width: 38px; height: 38px;
     border-radius: 50%;
     background: var(--gray-light);
     border: none;
     color: var(--text-dark);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     cursor: pointer;
     transition: all 0.2s;
 }
-.icon-btn:hover { background: var(--primary); color: white; transform: rotate(90deg); }
+.icon-btn:hover { background: var(--primary); color: white; }
 
 /* ========== মোবাইল হেডার ========== */
 .mobile-header {
     display: none;
     background: var(--card-bg);
-    padding: 12px 16px;
+    padding: 10px 15px;
     border-bottom: 1px solid var(--border);
     align-items: center;
     justify-content: space-between;
@@ -203,7 +189,7 @@ body {
 .mobile-brand {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
 }
 
 .mobile-brand-text h2 {
@@ -217,12 +203,12 @@ body {
 }
 
 .mobile-settings-btn {
-    width: 40px; height: 40px;
+    width: 38px; height: 38px;
     border-radius: 50%;
     background: var(--gray-light);
     border: none;
     color: var(--text-dark);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -232,9 +218,9 @@ body {
 /* ========== সেটিংস প্যানেল ========== */
 .settings-panel {
     position: fixed;
-    top: 75px;
-    right: -340px;
-    width: 300px;
+    top: 70px;
+    right: -320px;
+    width: 280px;
     background: var(--card-bg);
     border-radius: var(--radius);
     z-index: 200;
@@ -242,31 +228,25 @@ body {
     border: 1px solid var(--border);
     box-shadow: var(--shadow-lg);
 }
-.settings-panel.open { right: 20px; }
+.settings-panel.open { right: 15px; }
 
 .settings-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 1.2rem;
+    padding: 0.8rem 1rem;
     border-bottom: 1px solid var(--border);
-    background: var(--primary-gradient);
-    border-radius: var(--radius) var(--radius) 0 0;
 }
-.settings-header h3 { color: white; font-size: 1rem; }
+.settings-header h3 { color: var(--primary); font-size: 1rem; }
 .close-settings {
-    background: rgba(255,255,255,0.2);
+    background: none;
     border: none;
     font-size: 1.3rem;
     cursor: pointer;
-    color: white;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
+    color: var(--text-gray);
 }
-.close-settings:hover { background: rgba(255,255,255,0.3); }
 
-.settings-body { padding: 1.2rem; }
+.settings-body { padding: 1rem; }
 .setting-item { margin-bottom: 1.2rem; }
 .setting-item label {
     display: block;
@@ -277,54 +257,49 @@ body {
 .theme-controls { display: flex; gap: 0.5rem; }
 .theme-btn {
     flex: 1;
-    padding: 0.6rem;
+    padding: 0.5rem;
     border: 1px solid var(--border);
     background: var(--gray-light);
-    border-radius: 40px;
+    border-radius: 30px;
     cursor: pointer;
     font-family: 'Kalpurush', sans-serif;
     font-size: 0.8rem;
     transition: all 0.2s;
 }
-.theme-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+.theme-btn.active { background: var(--primary); color: white; }
 
-/* ========== মোর মেনু প্যানেল - আপডেটেড ========== */
+/* ========== মোর মেনু প্যানেল ========== */
 .more-menu-panel {
     position: fixed;
-    bottom: -500px;
+    bottom: -400px;
     left: 0;
     right: 0;
     background: var(--card-bg);
-    border-radius: 28px 28px 0 0;
+    border-radius: 20px 20px 0 0;
     z-index: 250;
     transition: bottom 0.3s ease;
     box-shadow: var(--shadow-lg);
     border-top: 1px solid var(--border);
 }
-.more-menu-panel.open { bottom: 70px; }
+.more-menu-panel.open { bottom: 65px; }
 
 .more-menu-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.2rem 1.2rem;
+    padding: 1rem;
     border-bottom: 1px solid var(--border);
-    background: var(--primary-gradient);
-    border-radius: 28px 28px 0 0;
 }
-.more-menu-header h3 { color: white; font-size: 1rem; }
+.more-menu-header h3 { color: var(--primary); font-size: 1rem; }
 .close-more-menu {
-    background: rgba(255,255,255,0.2);
+    background: none;
     border: none;
     font-size: 1.3rem;
     cursor: pointer;
-    color: white;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
+    color: var(--text-gray);
 }
 
-.more-menu-items { padding: 0.8rem; }
+.more-menu-items { padding: 0.5rem; }
 .more-menu-item {
     display: flex;
     align-items: center;
@@ -334,241 +309,118 @@ body {
     color: var(--text-dark);
     border-bottom: 1px solid var(--border);
     transition: all 0.2s;
-    border-radius: 16px;
-    margin-bottom: 4px;
 }
-.more-menu-item:hover { background: var(--gray-light); }
-.more-menu-item .menu-icon {
-    width: 44px;
-    height: 44px;
+.more-menu-item:active { background: var(--gray-light); }
+.more-menu-item i:first-child {
+    width: 40px;
+    height: 40px;
     background: var(--primary-light);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-.more-menu-item .menu-icon i {
-    font-size: 1.2rem;
     color: var(--primary);
+    font-size: 1.1rem;
 }
-.more-menu-item span { flex: 1; font-size: 0.9rem; font-weight: 500; }
+.more-menu-item span { flex: 1; font-size: 0.9rem; }
 .more-menu-item i:last-child { color: var(--text-light); font-size: 0.8rem; }
-
-.more-menu-footer {
-    padding: 1rem;
-    text-align: center;
-    border-top: 1px solid var(--border);
-    background: var(--gray-light);
-    border-radius: 0 0 20px 20px;
-}
-.more-menu-footer p { font-size: 0.7rem; color: var(--text-gray); }
-.more-menu-footer i { color: #ef4444; margin-right: 4px; }
 
 /* ========== মূল কন্টেন্ট ========== */
 .main-content {
     flex: 1;
-    padding: 20px;
-    max-width: 550px;
+    padding: 15px;
+    max-width: 500px;
     margin: 0 auto;
     width: 100%;
 }
 
-/* ওয়েলকাম কার্ড - প্রিমিয়াম ডিজাইন */
+/* ওয়েলকাম কার্ড */
 .welcome-card {
-    background: var(--primary-gradient);
-    border-radius: 28px;
-    padding: 25px 20px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    border-radius: 20px;
+    padding: 20px 15px;
     text-align: center;
     color: white;
-    margin-bottom: 24px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: var(--shadow-lg);
+    margin-bottom: 20px;
 }
-
-.welcome-card::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -20%;
-    width: 200px;
-    height: 200px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 50%;
-}
-
-.welcome-card::after {
-    content: '';
-    position: absolute;
-    bottom: -30%;
-    left: -10%;
-    width: 150px;
-    height: 150px;
-    background: rgba(255,255,255,0.08);
-    border-radius: 50%;
-}
-
-.welcome-badge {
-    margin-bottom: 12px;
-}
-.badge-text {
-    background: rgba(255,255,255,0.2);
-    padding: 5px 12px;
-    border-radius: 50px;
-    font-size: 0.7rem;
-    font-weight: normal;
-}
-.welcome-icon { font-size: 2.8rem; margin-bottom: 8px; position: relative; z-index: 1; }
-.welcome-card h1 { font-size: 1.4rem; margin-bottom: 5px; position: relative; z-index: 1; }
-.welcome-card p { font-size: 0.8rem; opacity: 0.9; margin-bottom: 12px; position: relative; z-index: 1; }
+.welcome-icon { font-size: 2.5rem; margin-bottom: 8px; }
+.welcome-card h1 { font-size: 1.3rem; margin-bottom: 5px; }
+.welcome-card p { font-size: 0.8rem; opacity: 0.9; margin-bottom: 12px; }
 .time-card {
     background: rgba(255,255,255,0.2);
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 8px 18px;
+    padding: 8px 16px;
     border-radius: 50px;
-    font-size: 0.95rem;
-    font-family: monospace;
-    backdrop-filter: blur(10px);
-    position: relative;
-    z-index: 1;
-}
-
-/* প্রিমিয়াম সেকশন */
-.premium-section {
-    margin-bottom: 20px;
-}
-
-.section-title {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 14px;
-    padding-left: 6px;
-}
-.section-title i {
-    color: var(--gold);
     font-size: 0.9rem;
-}
-.section-title h3 {
-    font-size: 0.85rem;
-    color: var(--text-gray);
-    font-weight: normal;
-    letter-spacing: 0.5px;
+    font-family: monospace;
 }
 
-/* আইকন গ্রিড */
+/* ========== আইকন গ্রিড ========== */
 .icon-grid {
     display: flex;
     justify-content: space-between;
-    gap: 14px;
+    gap: 12px;
+    margin-bottom: 12px;
 }
 
-.premium-card {
+.icon-grid.second-row {
+    margin-bottom: 12px;
+}
+
+.icon-grid.third-row {
+    margin-bottom: 0;
+}
+
+.icon-card {
     flex: 1;
     background: var(--card-bg);
-    border-radius: 20px;
-    padding: 16px 8px;
+    border-radius: 16px;
+    padding: 14px 5px;
     text-align: center;
     text-decoration: none;
     border: 1px solid var(--border);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.2s;
     cursor: pointer;
     position: relative;
-    box-shadow: var(--shadow-sm);
 }
 
-.premium-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-md);
-    border-color: var(--primary);
+.icon-card:active {
+    transform: scale(0.96);
+    background: var(--gray-light);
 }
 
-.premium-card:active {
-    transform: translateY(-2px);
-}
-
-.placeholder-card {
+.empty-space {
     visibility: hidden;
     pointer-events: none;
     opacity: 0;
 }
 
-/* সবুজ বৃত্তাকার আইকন */
+/* সবুজ ব্যাকগ্রাউন্ড এবং সাদা আইকন */
 .icon-circle.green-bg {
-    width: 70px;
-    height: 70px;
-    background: var(--primary-gradient);
+    width: 60px;
+    height: 60px;
+    background: var(--primary);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 10px;
-    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
-    transition: all 0.3s;
-}
-
-.premium-card:hover .icon-circle.green-bg {
-    transform: scale(1.05);
-    box-shadow: 0 12px 25px rgba(16, 185, 129, 0.4);
+    box-shadow: 0 4px 10px rgba(42, 157, 110, 0.3);
 }
 
 .icon-circle.green-bg i {
-    font-size: 2rem;
+    font-size: 1.6rem;
     color: white;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
 .icon-label {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: bold;
     color: var(--text-dark);
     display: block;
     line-height: 1.3;
-    margin-bottom: 3px;
-}
-
-.icon-desc {
-    font-size: 0.55rem;
-    color: var(--text-gray);
-    display: block;
-}
-
-.icon-badge {
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    background: linear-gradient(135deg, #f59e0b, #ef4444);
-    color: white;
-    font-size: 0.55rem;
-    padding: 3px 8px;
-    border-radius: 30px;
-    font-weight: bold;
-    min-width: 30px;
-    box-shadow: var(--shadow-sm);
-}
-
-/* টিপস কার্ড */
-.tips-card {
-    background: linear-gradient(135deg, var(--primary-light), var(--card-bg));
-    border-radius: 20px;
-    padding: 16px 18px;
-    border: 1px solid var(--border);
-    margin-top: 8px;
-}
-.tips-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 10px;
-}
-.tips-header i { font-size: 1.1rem; color: var(--gold); }
-.tips-header h3 { font-size: 0.85rem; color: var(--text-dark); }
-.tips-text {
-    font-size: 0.75rem;
-    color: var(--text-gray);
-    line-height: 1.5;
 }
 
 /* মোবাইল নেভিগেশন বার */
@@ -581,10 +433,9 @@ body {
     background: var(--card-bg);
     justify-content: space-around;
     align-items: center;
-    padding: 10px 12px;
+    padding: 8px 10px;
     border-top: 1px solid var(--border);
     z-index: 100;
-    backdrop-filter: blur(20px);
 }
 .nav-item {
     display: flex;
@@ -592,7 +443,7 @@ body {
     align-items: center;
     justify-content: center;
     gap: 3px;
-    padding: 6px 10px;
+    padding: 6px 8px;
     border-radius: 40px;
     color: var(--text-gray);
     font-size: 0.7rem;
@@ -611,17 +462,16 @@ body {
 /* টোস্ট */
 .toast {
     position: fixed;
-    bottom: 90px;
+    bottom: 80px;
     left: 50%;
     transform: translateX(-50%);
-    background: var(--primary-gradient);
+    background: var(--primary);
     color: white;
-    padding: 12px 24px;
-    border-radius: 50px;
+    padding: 10px 20px;
+    border-radius: 30px;
     z-index: 1000;
     font-size: 0.8rem;
     white-space: nowrap;
-    box-shadow: var(--shadow-lg);
     animation: fadeInUp 0.3s ease;
 }
 @keyframes fadeInUp {
@@ -631,55 +481,47 @@ body {
 
 /* ========== রেসপন্সিভ ========== */
 @media (min-width: 769px) {
-    .mobile-header, .bottom-navbar { display: none !important; }
+    .mobile-header, .bottom-navbar, .more-menu-panel { display: none !important; }
     .top-navbar { display: flex; }
-    .main-content { max-width: 850px; padding: 25px; }
-    .icon-circle.green-bg { width: 85px; height: 85px; }
-    .icon-circle.green-bg i { font-size: 2.3rem; }
-    .icon-label { font-size: 0.85rem; }
-    .icon-desc { font-size: 0.6rem; }
-    .toast { bottom: 30px; }
-    .icon-grid { gap: 20px; }
-    .premium-card { padding: 20px 12px; }
+    .main-content { max-width: 800px; padding: 20px; }
+    .icon-circle.green-bg { width: 75px; height: 75px; }
+    .icon-circle.green-bg i { font-size: 2rem; }
+    .icon-label { font-size: 0.8rem; }
+    .toast { bottom: 20px; }
+    .icon-grid { gap: 16px; }
 }
 
 @media (max-width: 768px) {
     .top-navbar { display: none !important; }
     .mobile-header { display: flex; }
     .bottom-navbar { display: flex; }
-    .main-content { padding: 15px; padding-bottom: 80px; max-width: 100%; }
-    .settings-panel { top: auto; bottom: 80px; right: -300px; }
-    .settings-panel.open { right: 15px; }
-    .toast { bottom: 80px; white-space: normal; text-align: center; max-width: 85%; font-size: 0.7rem; }
-    .icon-circle.green-bg { width: 58px; height: 58px; }
-    .icon-circle.green-bg i { font-size: 1.5rem; }
-    .icon-label { font-size: 0.65rem; }
-    .icon-desc { font-size: 0.5rem; }
+    .main-content { padding: 12px; padding-bottom: 70px; max-width: 100%; }
+    .settings-panel { top: auto; bottom: 70px; right: -280px; }
+    .settings-panel.open { right: 10px; }
+    .toast { bottom: 75px; white-space: normal; text-align: center; max-width: 80%; }
+    .icon-circle.green-bg { width: 55px; height: 55px; }
+    .icon-circle.green-bg i { font-size: 1.4rem; }
 }
 
 @media (max-width: 480px) {
-    .bottom-navbar { padding: 8px 8px; }
-    .nav-item { min-width: 48px; padding: 5px 6px; }
+    .bottom-navbar { padding: 6px 5px; }
+    .nav-item { min-width: 48px; padding: 4px 6px; }
     .nav-item i { font-size: 1rem; }
     .nav-item span { font-size: 0.5rem; }
     
     .icon-grid { gap: 8px; }
-    .icon-circle.green-bg { width: 52px; height: 52px; }
+    .icon-circle.green-bg { width: 50px; height: 50px; }
     .icon-circle.green-bg i { font-size: 1.3rem; }
     .icon-label { font-size: 0.6rem; }
-    .icon-desc { display: none; }
-    .premium-card { padding: 12px 5px; }
-    .icon-badge { font-size: 0.5rem; padding: 2px 6px; min-width: 26px; top: -6px; right: -6px; }
+    .icon-card { padding: 10px 3px; }
     
-    .welcome-card { padding: 18px 15px; }
-    .welcome-icon { font-size: 2.2rem; }
+    .welcome-card { padding: 15px; }
+    .welcome-icon { font-size: 2rem; }
     .welcome-card h1 { font-size: 1.1rem; }
-    
-    .tips-text { font-size: 0.7rem; }
 }
 
 @media (max-width: 380px) {
-    .icon-circle.green-bg { width: 46px; height: 46px; }
+    .icon-circle.green-bg { width: 44px; height: 44px; }
     .icon-circle.green-bg i { font-size: 1.1rem; }
     .icon-label { font-size: 0.55rem; }
     .nav-item { min-width: 44px; }
