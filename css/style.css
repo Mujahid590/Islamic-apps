@@ -43,10 +43,11 @@
     --border: #e5e7eb;
 }
 
+/* ডার্ক মোড - সবুজ রং আরও ডার্ক করা হয়েছে */
 body.dark-mode {
-    --primary: #34d399;
-    --primary-dark: #10b981;
-    --primary-light: #047857;
+    --primary: #059669;
+    --primary-dark: #047857;
+    --primary-light: #065f46;
     --primary-soft: #064e3b;
     --white: #1f2937;
     --gray-light: #111827;
@@ -54,9 +55,9 @@ body.dark-mode {
     --text-dark: #f9fafb;
     --text-gray: #9ca3af;
     --text-light: #6b7280;
-    --bg: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-    --card-bg: #1f2937;
-    --border: #374151;
+    --bg: linear-gradient(135deg, #0f172a 0%, #0a0f1a 100%);
+    --card-bg: #1e293b;
+    --border: #334155;
 }
 
 * {
@@ -455,7 +456,7 @@ body {
     opacity: 0;
 }
 
-/* আইকন সার্কেল - আকর্ষণীয় ডিজাইন */
+/* আইকন সার্কেল */
 .icon-circle {
     width: 65px;
     height: 65px;
@@ -565,8 +566,17 @@ body {
     .mobile-header { display: flex; }
     .bottom-navbar { display: flex; }
     .main-content { padding: 15px; padding-bottom: 80px; max-width: 100%; }
-    .settings-panel, .more-menu-panel { top: auto; bottom: 80px; right: -300px; }
-    .settings-panel.open, .more-menu-panel.open { right: 15px; top: auto; bottom: 80px; }
+    /* সেটিংস প্যানেল মোবাইলে উপরে দেখানোর জন্য */
+    .settings-panel, .more-menu-panel { 
+        top: 70px; 
+        bottom: auto; 
+        right: -300px; 
+    }
+    .settings-panel.open, .more-menu-panel.open { 
+        right: 15px; 
+        top: 70px; 
+        bottom: auto; 
+    }
     .toast { bottom: 80px; white-space: normal; text-align: center; max-width: 85%; font-size: 0.75rem; }
     .icon-circle { width: 60px; height: 60px; }
     .icon-circle i { font-size: 1.6rem; }
@@ -588,6 +598,10 @@ body {
     .welcome-card { padding: 18px 15px; }
     .welcome-icon { font-size: 2.2rem; }
     .welcome-card h1 { font-size: 1.2rem; }
+    
+    /* মোবাইলে সেটিংস প্যানেল ছোট স্ক্রিনে */
+    .settings-panel, .more-menu-panel { width: 280px; right: -290px; }
+    .settings-panel.open, .more-menu-panel.open { right: 10px; }
 }
 
 @media (max-width: 380px) {
