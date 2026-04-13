@@ -357,7 +357,7 @@ body {
     font-family: monospace;
 }
 
-/* ========== আইকন গ্রিড - সবুজ ব্যাকগ্রাউন্ডে সাদা আইকন ========== */
+/* ========== আইকন গ্রিড - স্পষ্ট সবুজ ব্যাকগ্রাউন্ডে সাদা আইকন ========== */
 .icon-grid {
     display: flex;
     justify-content: space-between;
@@ -377,7 +377,7 @@ body {
     flex: 1;
     background: var(--card-bg);
     border-radius: 16px;
-    padding: 12px 5px;
+    padding: 14px 5px;
     text-align: center;
     text-decoration: none;
     border: 1px solid var(--border);
@@ -391,26 +391,39 @@ body {
     background: var(--gray-light);
 }
 
-/* সবুজ ব্যাকগ্রাউন্ড এবং সাদা আইকন */
+.empty-space {
+    visibility: hidden;
+    pointer-events: none;
+    opacity: 0;
+}
+
+/* সবুজ ব্যাকগ্রাউন্ড এবং সাদা আইকন - আরও স্পষ্ট */
 .icon-circle.green-bg {
-    width: 55px;
-    height: 55px;
+    width: 65px;
+    height: 65px;
     background: var(--primary);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin: 0 auto 10px;
+    box-shadow: 0 6px 14px rgba(42, 157, 110, 0.3);
+    transition: all 0.2s;
+}
+
+.icon-card:hover .icon-circle.green-bg {
+    transform: scale(1.05);
+    box-shadow: 0 8px 18px rgba(42, 157, 110, 0.4);
 }
 
 .icon-circle.green-bg i {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     color: white;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
 .icon-label {
-    font-size: 0.7rem;
+    font-size: 0.72rem;
     font-weight: bold;
     color: var(--text-dark);
     display: block;
@@ -491,11 +504,11 @@ body {
     .mobile-header, .bottom-navbar, .more-menu-panel { display: none !important; }
     .top-navbar { display: flex; }
     .main-content { max-width: 800px; padding: 20px; }
-    .icon-circle.green-bg { width: 70px; height: 70px; }
-    .icon-circle.green-bg i { font-size: 2rem; }
+    .icon-circle.green-bg { width: 80px; height: 80px; }
+    .icon-circle.green-bg i { font-size: 2.2rem; }
     .icon-label { font-size: 0.85rem; }
     .toast { bottom: 20px; }
-    .icon-grid { gap: 16px; }
+    .icon-grid { gap: 18px; }
 }
 
 /* ========== মোবাইল ভিউ ========== */
@@ -507,6 +520,8 @@ body {
     .settings-panel { top: auto; bottom: 70px; right: -280px; }
     .settings-panel.open { right: 10px; }
     .toast { bottom: 75px; white-space: normal; text-align: center; max-width: 80%; }
+    .icon-circle.green-bg { width: 55px; height: 55px; }
+    .icon-circle.green-bg i { font-size: 1.5rem; }
 }
 
 /* ========== ছোট মোবাইল (480px এর নিচে) ========== */
@@ -517,10 +532,11 @@ body {
     .nav-item span { font-size: 0.5rem; }
     
     .icon-grid { gap: 8px; }
-    .icon-circle.green-bg { width: 48px; height: 48px; }
+    .icon-circle.green-bg { width: 50px; height: 50px; }
     .icon-circle.green-bg i { font-size: 1.3rem; }
     .icon-label { font-size: 0.6rem; }
     .icon-badge { font-size: 0.5rem; padding: 1px 5px; min-width: 24px; top: -5px; right: -5px; }
+    .icon-card { padding: 10px 3px; }
     
     .welcome-card { padding: 15px; }
     .welcome-icon { font-size: 2rem; }
@@ -529,7 +545,7 @@ body {
 
 /* ========== খুব ছোট মোবাইল (380px এর নিচে) ========== */
 @media (max-width: 380px) {
-    .icon-circle.green-bg { width: 42px; height: 42px; }
+    .icon-circle.green-bg { width: 44px; height: 44px; }
     .icon-circle.green-bg i { font-size: 1.1rem; }
     .icon-label { font-size: 0.55rem; }
     .nav-item { min-width: 44px; }
