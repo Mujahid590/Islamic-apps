@@ -628,4 +628,24 @@ body {
     .icon-label { font-size: 0.65rem; }
     .icon-card { padding: 12px 5px; }
     
-    .welcome-card { padding: 18px
+    .welcome-card { padding: 18px 15px; }
+    .welcome-icon { font-size: 2.2rem; }
+    .welcome-card h1 { font-size: 1.2rem; }
+    
+    .settings-panel, .more-menu-panel { width: 280px; right: -290px; }
+    .settings-panel.open, .more-menu-panel.open { right: 0; }
+    
+    .dua-arabic {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .icon-circle { width: 46px; height: 46px; }
+    .icon-circle i { font-size: 1.2rem; }
+    .icon-label { font-size: 0.6rem; }
+    .nav-item { min-width: 46px; }
+    .dua-arabic {
+        font-size: 0.8rem;
+    }
+}
