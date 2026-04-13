@@ -22,38 +22,41 @@
 
 /* ========== CSS ভেরিয়েবল ========== */
 :root {
-    --primary: #2a9d6e;
-    --primary-dark: #1e5a3a;
-    --primary-light: #e8f5e9;
+    --primary: #10b981;
+    --primary-dark: #059669;
+    --primary-light: #a7f3d0;
+    --primary-soft: #d1fae5;
     --white: #ffffff;
-    --gray-light: #f8fafc;
-    --gray: #e2e8f0;
-    --text-dark: #1e293b;
-    --text-gray: #64748b;
-    --text-light: #94a3b8;
-    --gold: #d4af37;
+    --gray-light: #f9fafb;
+    --gray: #e5e7eb;
+    --text-dark: #111827;
+    --text-gray: #6b7280;
+    --text-light: #9ca3af;
+    --gold: #fbbf24;
     --shadow: 0 4px 12px rgba(0,0,0,0.08);
     --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
     --radius: 24px;
     --radius-sm: 16px;
-    --bg: #f0fdf4;
+    --bg: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
     --card-bg: #ffffff;
-    --border: #e2e8f0;
+    --border: #e5e7eb;
 }
 
 body.dark-mode {
-    --primary: #22c55e;
-    --primary-dark: #16a34a;
-    --primary-light: #166534;
-    --white: #1e293b;
-    --gray-light: #0f172a;
-    --gray: #334155;
-    --text-dark: #f1f5f9;
-    --text-gray: #94a3b8;
-    --text-light: #64748b;
-    --bg: #0f172a;
-    --card-bg: #1e293b;
-    --border: #334155;
+    --primary: #34d399;
+    --primary-dark: #10b981;
+    --primary-light: #047857;
+    --primary-soft: #064e3b;
+    --white: #1f2937;
+    --gray-light: #111827;
+    --gray: #374151;
+    --text-dark: #f9fafb;
+    --text-gray: #9ca3af;
+    --text-light: #6b7280;
+    --bg: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    --card-bg: #1f2937;
+    --border: #374151;
 }
 
 * {
@@ -68,6 +71,7 @@ body {
     background: var(--bg);
     color: var(--text-dark);
     transition: all 0.3s ease;
+    min-height: 100vh;
 }
 
 .app-container {
@@ -78,20 +82,21 @@ body {
 
 /* ========== লোগো স্টাইল ========== */
 .custom-logo {
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, var(--primary-light), var(--primary));
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     border-radius: 50%;
     overflow: hidden;
     flex-shrink: 0;
+    box-shadow: var(--shadow-md);
 }
 
 .custom-logo.small {
-    width: 35px;
-    height: 35px;
+    width: 36px;
+    height: 36px;
 }
 
 .logo-img {
@@ -103,13 +108,13 @@ body {
 
 .custom-logo i {
     font-size: 1.3rem;
-    color: var(--primary-dark);
+    color: white;
 }
 
 /* ========== ডেস্কটপ নেভিগেশন ========== */
 .top-navbar {
     background: var(--card-bg);
-    padding: 0 1.5rem;
+    padding: 0 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -119,26 +124,27 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
-    height: 65px;
+    height: 70px;
 }
 
 .nav-brand {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
 .nav-brand h1 {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: var(--primary-dark);
+    font-weight: bold;
 }
 
-.nav-links {
+.nav-links.desktop-nav {
     display: flex;
-    gap: 0.3rem;
+    gap: 0.5rem;
     background: var(--gray-light);
-    padding: 0.3rem 0.6rem;
-    border-radius: 50px;
+    padding: 0.3rem 0.8rem;
+    border-radius: 60px;
 }
 
 .nav-link {
@@ -147,37 +153,39 @@ body {
     align-items: center;
     justify-content: center;
     gap: 2px;
-    padding: 6px 12px;
-    border-radius: 40px;
+    padding: 8px 16px;
+    border-radius: 50px;
     color: var(--text-gray);
     font-size: 0.7rem;
     text-decoration: none;
-    min-width: 60px;
+    min-width: 70px;
     transition: all 0.2s;
+    cursor: pointer;
 }
 
-.nav-link i { font-size: 1rem; }
-.nav-link span { font-size: 0.55rem; }
-.nav-link.active { background: var(--primary); color: white; }
+.nav-link i { font-size: 1.1rem; }
+.nav-link span { font-size: 0.6rem; font-weight: 500; }
+.nav-link.active { background: var(--primary); color: white; box-shadow: var(--shadow-sm); }
+.nav-link:hover:not(.active) { background: var(--primary-soft); color: var(--primary-dark); }
 
 .nav-actions { display: flex; gap: 0.5rem; }
 .icon-btn {
-    width: 38px; height: 38px;
+    width: 42px; height: 42px;
     border-radius: 50%;
     background: var(--gray-light);
     border: none;
     color: var(--text-dark);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     cursor: pointer;
     transition: all 0.2s;
 }
-.icon-btn:hover { background: var(--primary); color: white; }
+.icon-btn:hover { background: var(--primary); color: white; transform: rotate(90deg); }
 
 /* ========== মোবাইল হেডার ========== */
 .mobile-header {
     display: none;
     background: var(--card-bg);
-    padding: 10px 15px;
+    padding: 12px 16px;
     border-bottom: 1px solid var(--border);
     align-items: center;
     justify-content: space-between;
@@ -189,7 +197,7 @@ body {
 .mobile-brand {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
 .mobile-brand-text h2 {
@@ -203,12 +211,12 @@ body {
 }
 
 .mobile-settings-btn {
-    width: 38px; height: 38px;
+    width: 40px; height: 40px;
     border-radius: 50%;
     background: var(--gray-light);
     border: none;
     color: var(--text-dark);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -218,9 +226,9 @@ body {
 /* ========== সেটিংস প্যানেল ========== */
 .settings-panel {
     position: fixed;
-    top: 70px;
-    right: -320px;
-    width: 280px;
+    top: 75px;
+    right: -340px;
+    width: 300px;
     background: var(--card-bg);
     border-radius: var(--radius);
     z-index: 200;
@@ -228,78 +236,91 @@ body {
     border: 1px solid var(--border);
     box-shadow: var(--shadow-lg);
 }
-.settings-panel.open { right: 15px; }
+.settings-panel.open { right: 20px; }
 
 .settings-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.8rem 1rem;
+    padding: 1rem 1.2rem;
     border-bottom: 1px solid var(--border);
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    border-radius: var(--radius) var(--radius) 0 0;
 }
-.settings-header h3 { color: var(--primary); font-size: 1rem; }
+.settings-header h3 { color: white; font-size: 1rem; }
 .close-settings {
-    background: none;
+    background: rgba(255,255,255,0.2);
     border: none;
     font-size: 1.3rem;
     cursor: pointer;
-    color: var(--text-gray);
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    transition: all 0.2s;
 }
+.close-settings:hover { background: rgba(255,255,255,0.3); }
 
-.settings-body { padding: 1rem; }
+.settings-body { padding: 1.2rem; }
 .setting-item { margin-bottom: 1.2rem; }
 .setting-item label {
     display: block;
     margin-bottom: 0.5rem;
     font-size: 0.85rem;
     color: var(--text-gray);
+    font-weight: 500;
 }
 .theme-controls { display: flex; gap: 0.5rem; }
 .theme-btn {
     flex: 1;
-    padding: 0.5rem;
+    padding: 0.6rem;
     border: 1px solid var(--border);
     background: var(--gray-light);
-    border-radius: 30px;
+    border-radius: 40px;
     cursor: pointer;
     font-family: 'Kalpurush', sans-serif;
     font-size: 0.8rem;
     transition: all 0.2s;
 }
-.theme-btn.active { background: var(--primary); color: white; }
+.theme-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
 
 /* ========== মোর মেনু প্যানেল ========== */
 .more-menu-panel {
     position: fixed;
-    bottom: -400px;
-    left: 0;
-    right: 0;
+    top: 75px;
+    right: -340px;
+    width: 300px;
     background: var(--card-bg);
-    border-radius: 20px 20px 0 0;
-    z-index: 250;
-    transition: bottom 0.3s ease;
+    border-radius: var(--radius);
+    z-index: 200;
+    transition: right 0.3s ease;
+    border: 1px solid var(--border);
     box-shadow: var(--shadow-lg);
-    border-top: 1px solid var(--border);
 }
-.more-menu-panel.open { bottom: 65px; }
+.more-menu-panel.open { right: 20px; }
 
 .more-menu-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
+    padding: 1rem 1.2rem;
     border-bottom: 1px solid var(--border);
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    border-radius: var(--radius) var(--radius) 0 0;
 }
-.more-menu-header h3 { color: var(--primary); font-size: 1rem; }
+.more-menu-header h3 { color: white; font-size: 1rem; }
 .close-more-menu {
-    background: none;
+    background: rgba(255,255,255,0.2);
     border: none;
     font-size: 1.3rem;
     cursor: pointer;
-    color: var(--text-gray);
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
 }
 
-.more-menu-items { padding: 0.5rem; }
+.more-menu-items { padding: 0.8rem; max-height: 400px; overflow-y: auto; }
 .more-menu-item {
     display: flex;
     align-items: center;
@@ -309,27 +330,29 @@ body {
     color: var(--text-dark);
     border-bottom: 1px solid var(--border);
     transition: all 0.2s;
+    border-radius: 12px;
+    margin-bottom: 4px;
 }
-.more-menu-item:active { background: var(--gray-light); }
+.more-menu-item:hover { background: var(--gray-light); }
 .more-menu-item i:first-child {
-    width: 40px;
-    height: 40px;
-    background: var(--primary-light);
+    width: 42px;
+    height: 42px;
+    background: var(--primary-soft);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--primary);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
 }
-.more-menu-item span { flex: 1; font-size: 0.9rem; }
+.more-menu-item span { flex: 1; font-size: 0.9rem; font-weight: 500; }
 .more-menu-item i:last-child { color: var(--text-light); font-size: 0.8rem; }
 
 /* ========== মূল কন্টেন্ট ========== */
 .main-content {
     flex: 1;
-    padding: 15px;
-    max-width: 500px;
+    padding: 20px;
+    max-width: 550px;
     margin: 0 auto;
     width: 100%;
 }
@@ -337,36 +360,65 @@ body {
 /* ওয়েলকাম কার্ড */
 .welcome-card {
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    border-radius: 20px;
-    padding: 20px 15px;
+    border-radius: 28px;
+    padding: 24px 20px;
     text-align: center;
     color: white;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
 }
-.welcome-icon { font-size: 2.5rem; margin-bottom: 8px; }
-.welcome-card h1 { font-size: 1.3rem; margin-bottom: 5px; }
-.welcome-card p { font-size: 0.8rem; opacity: 0.9; margin-bottom: 12px; }
+
+.welcome-card::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -20%;
+    width: 180px;
+    height: 180px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 50%;
+}
+
+.welcome-card::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -20%;
+    width: 150px;
+    height: 150px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+}
+
+.welcome-icon { font-size: 2.8rem; margin-bottom: 10px; position: relative; z-index: 1; }
+.welcome-card h1 { font-size: 1.4rem; margin-bottom: 6px; position: relative; z-index: 1; }
+.welcome-card p { font-size: 0.85rem; opacity: 0.9; margin-bottom: 14px; position: relative; z-index: 1; }
 .time-card {
     background: rgba(255,255,255,0.2);
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 8px 16px;
+    padding: 8px 20px;
     border-radius: 50px;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-family: monospace;
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 1;
 }
 
 /* ========== আইকন গ্রিড ========== */
 .icon-grid {
     display: flex;
     justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 12px;
+    gap: 14px;
+    margin-bottom: 14px;
 }
 
 .icon-grid.second-row {
-    margin-bottom: 12px;
+    margin-bottom: 14px;
 }
 
 .icon-grid.third-row {
@@ -376,19 +428,25 @@ body {
 .icon-card {
     flex: 1;
     background: var(--card-bg);
-    border-radius: 16px;
-    padding: 14px 5px;
+    border-radius: 20px;
+    padding: 16px 8px;
     text-align: center;
     text-decoration: none;
     border: 1px solid var(--border);
-    transition: all 0.2s;
+    transition: all 0.3s ease;
     cursor: pointer;
     position: relative;
+    box-shadow: var(--shadow-sm);
+}
+
+.icon-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary);
 }
 
 .icon-card:active {
-    transform: scale(0.96);
-    background: var(--gray-light);
+    transform: translateY(-2px);
 }
 
 .empty-space {
@@ -397,26 +455,33 @@ body {
     opacity: 0;
 }
 
-/* সবুজ ব্যাকগ্রাউন্ড এবং সাদা আইকন */
-.icon-circle.green-bg {
-    width: 60px;
-    height: 60px;
-    background: var(--primary);
+/* আইকন সার্কেল - আকর্ষণীয় ডিজাইন */
+.icon-circle {
+    width: 65px;
+    height: 65px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 10px;
-    box-shadow: 0 4px 10px rgba(42, 157, 110, 0.3);
+    margin: 0 auto 12px;
+    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+    transition: all 0.3s;
 }
 
-.icon-circle.green-bg i {
-    font-size: 1.6rem;
+.icon-card:hover .icon-circle {
+    transform: scale(1.05);
+    box-shadow: 0 12px 28px rgba(16, 185, 129, 0.4);
+}
+
+.icon-circle i {
+    font-size: 1.8rem;
     color: white;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
 .icon-label {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     font-weight: bold;
     color: var(--text-dark);
     display: block;
@@ -433,9 +498,10 @@ body {
     background: var(--card-bg);
     justify-content: space-around;
     align-items: center;
-    padding: 8px 10px;
+    padding: 10px 12px;
     border-top: 1px solid var(--border);
     z-index: 100;
+    backdrop-filter: blur(20px);
 }
 .nav-item {
     display: flex;
@@ -443,12 +509,12 @@ body {
     align-items: center;
     justify-content: center;
     gap: 3px;
-    padding: 6px 8px;
+    padding: 8px 12px;
     border-radius: 40px;
     color: var(--text-gray);
     font-size: 0.7rem;
     text-decoration: none;
-    min-width: 55px;
+    min-width: 60px;
     background: none;
     border: none;
     cursor: pointer;
@@ -456,22 +522,23 @@ body {
 }
 .nav-item:active { transform: scale(0.95); }
 .nav-item i { font-size: 1.2rem; }
-.nav-item span { font-size: 0.55rem; }
+.nav-item span { font-size: 0.55rem; font-weight: 500; }
 .nav-item.active { background: var(--primary); color: white; }
 
 /* টোস্ট */
 .toast {
     position: fixed;
-    bottom: 80px;
+    bottom: 90px;
     left: 50%;
     transform: translateX(-50%);
-    background: var(--primary);
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     color: white;
-    padding: 10px 20px;
-    border-radius: 30px;
+    padding: 12px 24px;
+    border-radius: 50px;
     z-index: 1000;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     white-space: nowrap;
+    box-shadow: var(--shadow-lg);
     animation: fadeInUp 0.3s ease;
 }
 @keyframes fadeInUp {
@@ -479,50 +546,53 @@ body {
     to { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
 
-/* ========== রেসপন্সিভ ========== */
+/* ========== ডেস্কটপ ভিউ ========== */
 @media (min-width: 769px) {
-    .mobile-header, .bottom-navbar, .more-menu-panel { display: none !important; }
+    .mobile-header, .bottom-navbar { display: none !important; }
     .top-navbar { display: flex; }
-    .main-content { max-width: 800px; padding: 20px; }
-    .icon-circle.green-bg { width: 75px; height: 75px; }
-    .icon-circle.green-bg i { font-size: 2rem; }
-    .icon-label { font-size: 0.8rem; }
-    .toast { bottom: 20px; }
-    .icon-grid { gap: 16px; }
+    .main-content { max-width: 850px; padding: 30px; }
+    .icon-circle { width: 80px; height: 80px; }
+    .icon-circle i { font-size: 2.2rem; }
+    .icon-label { font-size: 0.85rem; }
+    .toast { bottom: 30px; }
+    .icon-grid { gap: 20px; }
+    .icon-card { padding: 20px 12px; }
 }
 
+/* ========== মোবাইল ভিউ ========== */
 @media (max-width: 768px) {
     .top-navbar { display: none !important; }
     .mobile-header { display: flex; }
     .bottom-navbar { display: flex; }
-    .main-content { padding: 12px; padding-bottom: 70px; max-width: 100%; }
-    .settings-panel { top: auto; bottom: 70px; right: -280px; }
-    .settings-panel.open { right: 10px; }
-    .toast { bottom: 75px; white-space: normal; text-align: center; max-width: 80%; }
-    .icon-circle.green-bg { width: 55px; height: 55px; }
-    .icon-circle.green-bg i { font-size: 1.4rem; }
+    .main-content { padding: 15px; padding-bottom: 80px; max-width: 100%; }
+    .settings-panel, .more-menu-panel { top: auto; bottom: 80px; right: -300px; }
+    .settings-panel.open, .more-menu-panel.open { right: 15px; top: auto; bottom: 80px; }
+    .toast { bottom: 80px; white-space: normal; text-align: center; max-width: 85%; font-size: 0.75rem; }
+    .icon-circle { width: 60px; height: 60px; }
+    .icon-circle i { font-size: 1.6rem; }
+    .icon-label { font-size: 0.7rem; }
 }
 
 @media (max-width: 480px) {
-    .bottom-navbar { padding: 6px 5px; }
-    .nav-item { min-width: 48px; padding: 4px 6px; }
-    .nav-item i { font-size: 1rem; }
+    .bottom-navbar { padding: 8px 8px; }
+    .nav-item { min-width: 52px; padding: 6px 8px; }
+    .nav-item i { font-size: 1.1rem; }
     .nav-item span { font-size: 0.5rem; }
     
-    .icon-grid { gap: 8px; }
-    .icon-circle.green-bg { width: 50px; height: 50px; }
-    .icon-circle.green-bg i { font-size: 1.3rem; }
-    .icon-label { font-size: 0.6rem; }
-    .icon-card { padding: 10px 3px; }
+    .icon-grid { gap: 10px; }
+    .icon-circle { width: 52px; height: 52px; }
+    .icon-circle i { font-size: 1.4rem; }
+    .icon-label { font-size: 0.65rem; }
+    .icon-card { padding: 12px 5px; }
     
-    .welcome-card { padding: 15px; }
-    .welcome-icon { font-size: 2rem; }
-    .welcome-card h1 { font-size: 1.1rem; }
+    .welcome-card { padding: 18px 15px; }
+    .welcome-icon { font-size: 2.2rem; }
+    .welcome-card h1 { font-size: 1.2rem; }
 }
 
 @media (max-width: 380px) {
-    .icon-circle.green-bg { width: 44px; height: 44px; }
-    .icon-circle.green-bg i { font-size: 1.1rem; }
-    .icon-label { font-size: 0.55rem; }
-    .nav-item { min-width: 44px; }
+    .icon-circle { width: 46px; height: 46px; }
+    .icon-circle i { font-size: 1.2rem; }
+    .icon-label { font-size: 0.6rem; }
+    .nav-item { min-width: 46px; }
 }
