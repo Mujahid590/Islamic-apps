@@ -33,18 +33,18 @@ function setupThemeListeners() {
                     b.classList.remove('active');
                 }
             });
-            showToast(theme === 'dark' ? '🌙 ডার্ক মোড সক্রিয়' : '☀️ লাইট মোড সক্রিয়', 'success');
+            showToast(theme === 'dark' ? '🌙 ডার্ক মোড সক্রিয়' : '☀️ লাইট মোড সক্রিয়');
         });
     });
 }
 
-function showToast(message, type = 'info') {
+function showToast(message) {
     const oldToasts = document.querySelectorAll('.toast');
     oldToasts.forEach(toast => toast.remove());
     
     let toast = document.createElement('div');
     toast.className = 'toast';
-    toast.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i> ${message}`;
+    toast.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
     document.body.appendChild(toast);
     
     setTimeout(() => {
@@ -59,22 +59,17 @@ function initSettingsPanel() {
     let settingsPanel = document.getElementById('settingsPanel');
     let closeSettings = document.getElementById('closeSettingsBtn');
     
-    function openSettings() {
+    function toggleSettings(e) {
+        e.stopPropagation();
         settingsPanel.classList.toggle('open');
     }
     
     if (settingsBtn && settingsPanel) {
-        settingsBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            openSettings();
-        });
+        settingsBtn.addEventListener('click', toggleSettings);
     }
     
     if (mobileSettingsBtn && settingsPanel) {
-        mobileSettingsBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            openSettings();
-        });
+        mobileSettingsBtn.addEventListener('click', toggleSettings);
     }
     
     if (closeSettings && settingsPanel) {
@@ -152,31 +147,21 @@ function updateClock() {
     }
 }
 
-// লোগো ইমেজ হ্যান্ডলিং - ইমেজ ছোট করা ও ফallback
-function initLogo() {
-    const logoImgs = document.querySelectorAll('.logo-img');
-    logoImgs.forEach(img => {
-        // ইমেজ লোড না হলে fallback
-        img.addEventListener('error', function() {
-            this.style.display = 'none';
-            let parent = this.parentElement;
-            if (parent) {
-                parent.style.background = 'linear-gradient(135deg, var(--primary-light), var(--primary))';
-                parent.style.display = 'flex';
-                parent.style.alignItems = 'center';
-                parent.style.justifyContent = 'center';
-                let fallbackIcon = document.createElement('i');
-                fallbackIcon.className = 'fas fa-mosque';
-                fallbackIcon.style.color = 'var(--primary-dark)';
-                fallbackIcon.style.fontSize = '1.2rem';
-                parent.appendChild(fallbackIcon);
+// লোগো হ্যান্ডলিং
+function handleLogoErrors() {
+    const logos = document.querySelectorAll('.logo-img');
+    logos.forEach(logo => {
+        logo.addEventListener('error', function() {
+            const parent = this.parentElement;
+            if (parent && !parent.querySelector('i')) {
+                this.style.display = 'none';
+                const icon = document.createElement('i');
+                icon.className = 'fas fa-mosque';
+                icon.style.fontSize = '1.3rem';
+                icon.style.color = 'var(--primary-dark)';
+                parent.appendChild(icon);
             }
         });
-        
-        // ইমেজ সাইজ কন্ট্রোল - CSS already handles this
-        img.style.width = '100%';
-        img.style.height = '100%';
-        img.style.objectFit = 'cover';
     });
 }
 
@@ -188,5 +173,5 @@ document.addEventListener('DOMContentLoaded', () => {
     setActiveNavLink();
     updateClock();
     setInterval(updateClock, 1000);
-    initLogo();
+    handleLogoErrors();
 });
