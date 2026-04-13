@@ -374,7 +374,7 @@
     position: relative;
 }
 
-/* স্টিকি হেডার - সেন্টার align */
+/* স্টিকি হেডার */
 .surah-sticky-header {
     position: sticky;
     top: 0;
@@ -388,11 +388,34 @@
     text-align: center;
 }
 
+.surah-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 6px;
+}
+
+.surah-place-icon {
+    width: 32px;
+    height: 32px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.surah-place-icon i {
+    font-size: 1rem;
+    color: white;
+}
+
 .sticky-header-content h2 {
     font-family: 'Uthman Taha Naskh', serif;
     font-size: 1.5rem;
-    margin-bottom: 6px;
     color: white;
+    margin: 0;
 }
 
 .sticky-surah-meta {
@@ -423,6 +446,7 @@
     border: 1px solid var(--border);
     transition: all 0.2s;
     cursor: pointer;
+    position: relative;
 }
 
 .ayah-card:hover {
@@ -433,6 +457,51 @@
 .ayah-card.highlight {
     background: var(--primary-light);
     border-left: 4px solid var(--primary);
+}
+
+.ayah-card.sajdah-ayah {
+    background: linear-gradient(135deg, var(--primary-light), var(--card-bg));
+    border-left: 4px solid var(--gold);
+}
+
+.ayah-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.ayah-number {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    font-size: 0.65rem;
+    padding: 2px 8px;
+    border-radius: 20px;
+}
+
+.sajdah-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--gold);
+    color: #333;
+    font-size: 0.65rem;
+    padding: 3px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.sajdah-badge i {
+    font-size: 0.7rem;
+}
+
+.sajdah-badge:hover {
+    transform: scale(1.05);
+    background: #e6c422;
 }
 
 .ayah-arabic {
@@ -452,14 +521,48 @@
     line-height: 1.5;
 }
 
-.ayah-number {
-    display: inline-block;
-    background: var(--primary);
-    color: white;
-    font-size: 0.65rem;
-    padding: 2px 8px;
-    border-radius: 20px;
-    margin-bottom: 10px;
+/* সিজদা নোটিফিকেশন */
+.sajdah-notification {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    animation: slideUp 0.3s ease;
+}
+
+.sajdah-notification-content {
+    background: var(--gold);
+    color: #333;
+    padding: 12px 20px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.sajdah-notification-content i {
+    font-size: 1.2rem;
+}
+
+.close-notif {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #333;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
 }
 
 /* লোডিং স্পিনার */
@@ -642,6 +745,19 @@
     
     .sticky-header-content h2 {
         font-size: 1.2rem;
+    }
+    
+    .surah-title-row {
+        gap: 8px;
+    }
+    
+    .surah-place-icon {
+        width: 26px;
+        height: 26px;
+    }
+    
+    .surah-place-icon i {
+        font-size: 0.8rem;
     }
     
     .sticky-surah-meta {
