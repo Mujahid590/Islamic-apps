@@ -152,6 +152,34 @@ function updateClock() {
     }
 }
 
+// লোগো ইমেজ হ্যান্ডলিং - ইমেজ ছোট করা ও ফallback
+function initLogo() {
+    const logoImgs = document.querySelectorAll('.logo-img');
+    logoImgs.forEach(img => {
+        // ইমেজ লোড না হলে fallback
+        img.addEventListener('error', function() {
+            this.style.display = 'none';
+            let parent = this.parentElement;
+            if (parent) {
+                parent.style.background = 'linear-gradient(135deg, var(--primary-light), var(--primary))';
+                parent.style.display = 'flex';
+                parent.style.alignItems = 'center';
+                parent.style.justifyContent = 'center';
+                let fallbackIcon = document.createElement('i');
+                fallbackIcon.className = 'fas fa-mosque';
+                fallbackIcon.style.color = 'var(--primary-dark)';
+                fallbackIcon.style.fontSize = '1.2rem';
+                parent.appendChild(fallbackIcon);
+            }
+        });
+        
+        // ইমেজ সাইজ কন্ট্রোল - CSS already handles this
+        img.style.width = '100%';
+        img.style.height = '100%';
+        img.style.objectFit = 'cover';
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     initTheme();
     setupThemeListeners();
@@ -160,4 +188,5 @@ document.addEventListener('DOMContentLoaded', () => {
     setActiveNavLink();
     updateClock();
     setInterval(updateClock, 1000);
+    initLogo();
 });
