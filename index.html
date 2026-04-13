@@ -12,7 +12,9 @@
         <!-- ডেস্কটপ নেভিগেশন বার -->
         <nav class="top-navbar">
             <div class="nav-brand">
-                <span class="brand-icon">﷽</span>
+                <div class="custom-logo">
+                    <img src="image/Logo.png" alt="Logo" class="logo-img">
+                </div>
                 <h1>ইসলামিক অ্যাপস</h1>
             </div>
             <div class="nav-links">
@@ -32,7 +34,9 @@
         <!-- মোবাইল হেডার -->
         <div class="mobile-header">
             <div class="mobile-brand">
-                <span class="mobile-brand-icon">﷽</span>
+                <div class="custom-logo small">
+                    <img src="image/Logo.png" alt="Logo" class="logo-img">
+                </div>
                 <div class="mobile-brand-text">
                     <h2>ইসলামিক অ্যাপস</h2>
                     <p>আল-কুরআন ও সুন্নাহ</p>
@@ -75,54 +79,50 @@
                 </div>
             </div>
 
-            <!-- ফিচার গ্রিড -->
-            <div class="features-grid">
-                <a href="namaz.html" class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-clock"></i></div>
-                    <div class="feature-info">
-                        <h3>নামাজের সময়সূচি</h3>
-                        <p>দৈনিক ৫ ওয়াক্ত নামাজের সঠিক সময়</p>
+            <!-- ছবির মতো আইকন গ্রিড - প্রথম সারি -->
+            <div class="icon-grid">
+                <a href="namaz.html" class="icon-card">
+                    <div class="icon-circle">
+                        <i class="fas fa-clock"></i>
                     </div>
-                    <i class="fas fa-chevron-right"></i>
+                    <span class="icon-label">নামাজের সময়</span>
                 </a>
-                <a href="quran.html" class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-quran"></i></div>
-                    <div class="feature-info">
-                        <h3>পবিত্র কুরআন</h3>
-                        <p>আরবি ও বাংলা অনুবাদ সহ</p>
+                <a href="quran.html" class="icon-card">
+                    <div class="icon-circle">
+                        <i class="fas fa-quran"></i>
                     </div>
-                    <i class="fas fa-chevron-right"></i>
+                    <span class="icon-label">আল কুরআন</span>
                 </a>
-                <a href="tasbih.html" class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-fingerprint"></i></div>
-                    <div class="feature-info">
-                        <h3>ডিজিটাল তাসবিহ</h3>
-                        <p>সুবহানাল্লাহ, আলহামদুলিল্লাহ, আল্লাহু আকবার</p>
+                <a href="#" class="icon-card" id="asmaBtn">
+                    <div class="icon-circle">
+                        <i class="fas fa-star-and-crescent"></i>
                     </div>
-                    <i class="fas fa-chevron-right"></i>
+                    <span class="icon-label">আসমা-উল-হুসনা</span>
+                    <span class="icon-badge">৫০০</span>
                 </a>
             </div>
 
-            <!-- মোর সেকশন (কিবলা, মসজিদ, ক্যালেন্ডার) -->
-            <div class="more-section">
-                <div class="section-header">
-                    <i class="fas fa-ellipsis-h"></i>
-                    <h3>আরও সেবা</h3>
-                </div>
-                <div class="more-grid">
-                    <a href="qibla.html" class="more-card">
+            <!-- ছবির মতো আইকন গ্রিড - দ্বিতীয় সারি -->
+            <div class="icon-grid second-row">
+                <a href="tasbih.html" class="icon-card">
+                    <div class="icon-circle">
+                        <i class="fas fa-fingerprint"></i>
+                    </div>
+                    <span class="icon-label">তসবিহ</span>
+                </a>
+                <a href="qibla.html" class="icon-card">
+                    <div class="icon-circle">
                         <i class="fas fa-compass"></i>
-                        <span>কিবলা</span>
-                    </a>
-                    <a href="mosques.html" class="more-card">
-                        <i class="fas fa-mosque"></i>
-                        <span>মসজিদ</span>
-                    </a>
-                    <a href="calendar.html" class="more-card">
-                        <i class="fas fa-calendar-alt"></i>
-                        <span>ক্যালেন্ডার</span>
-                    </a>
-                </div>
+                    </div>
+                    <span class="icon-label">কিবলা কম্পাস</span>
+                </a>
+                <a href="#" class="icon-card" id="rozaBtn">
+                    <div class="icon-circle">
+                        <i class="fas fa-calendar-week"></i>
+                    </div>
+                    <span class="icon-label">রোজার সময়সূচী</span>
+                    <span class="icon-badge">১৯</span>
+                </a>
             </div>
 
             <!-- দৈনিক দুআ কার্ড -->
@@ -161,7 +161,7 @@
             </div>
         </nav>
 
-        <!-- মোবাইলের জন্য মোর মেনু (কিবলা, মসজিদ, ক্যালেন্ডার) -->
+        <!-- মোবাইলের জন্য মোর মেনু -->
         <div class="more-menu-panel" id="moreMenuPanel">
             <div class="more-menu-header">
                 <h3><i class="fas fa-list"></i> অন্যান্য সেবা</h3>
@@ -203,6 +203,15 @@
         }
         updateClock();
         setInterval(updateClock, 1000);
+        
+        document.getElementById('asmaBtn')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('আসমা-উল-হুসনা ফিচার শীঘ্রই আসছে। ৯৯ টি নাম সহকারে।');
+        });
+        document.getElementById('rozaBtn')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('রমজান ২০২৬ এর রোজার সময়সূচী শীঘ্রই প্রকাশিত হবে।');
+        });
     </script>
 </body>
 </html>
