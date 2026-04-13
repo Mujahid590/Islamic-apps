@@ -60,6 +60,7 @@ body.dark-mode {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -75,7 +76,7 @@ body {
     flex-direction: column;
 }
 
-/* ========== লোগো ইমেজ - ছোট করা হয়েছে ========== */
+/* ========== লোগো স্টাইল ========== */
 .custom-logo {
     width: 40px;
     height: 40px;
@@ -84,7 +85,6 @@ body {
     justify-content: center;
     background: linear-gradient(135deg, var(--primary-light), var(--primary));
     border-radius: 50%;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     overflow: hidden;
     flex-shrink: 0;
 }
@@ -101,10 +101,6 @@ body {
     object-position: center;
 }
 
-/* লোগো ইমেজ না থাকলে ফallback */
-.custom-logo:has(img[src=""]) {
-    background: linear-gradient(135deg, var(--primary-light), var(--primary));
-}
 .custom-logo i {
     font-size: 1.3rem;
     color: var(--primary-dark);
@@ -157,6 +153,7 @@ body {
     font-size: 0.7rem;
     text-decoration: none;
     min-width: 60px;
+    transition: all 0.2s;
 }
 
 .nav-link i { font-size: 1rem; }
@@ -172,6 +169,7 @@ body {
     color: var(--text-dark);
     font-size: 1.1rem;
     cursor: pointer;
+    transition: all 0.2s;
 }
 .icon-btn:hover { background: var(--primary); color: white; }
 
@@ -179,7 +177,7 @@ body {
 .mobile-header {
     display: none;
     background: var(--card-bg);
-    padding: 0.8rem 1rem;
+    padding: 10px 15px;
     border-bottom: 1px solid var(--border);
     align-items: center;
     justify-content: space-between;
@@ -195,12 +193,12 @@ body {
 }
 
 .mobile-brand-text h2 {
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: var(--primary-dark);
     margin-bottom: 2px;
 }
 .mobile-brand-text p {
-    font-size: 0.55rem;
+    font-size: 0.6rem;
     color: var(--text-gray);
 }
 
@@ -266,6 +264,7 @@ body {
     cursor: pointer;
     font-family: 'Kalpurush', sans-serif;
     font-size: 0.8rem;
+    transition: all 0.2s;
 }
 .theme-btn.active { background: var(--primary); color: white; }
 
@@ -276,13 +275,13 @@ body {
     left: 0;
     right: 0;
     background: var(--card-bg);
-    border-radius: var(--radius) var(--radius) 0 0;
+    border-radius: 20px 20px 0 0;
     z-index: 250;
     transition: bottom 0.3s ease;
     box-shadow: var(--shadow-lg);
     border-top: 1px solid var(--border);
 }
-.more-menu-panel.open { bottom: 70px; }
+.more-menu-panel.open { bottom: 65px; }
 
 .more-menu-header {
     display: flex;
@@ -309,7 +308,9 @@ body {
     text-decoration: none;
     color: var(--text-dark);
     border-bottom: 1px solid var(--border);
+    transition: all 0.2s;
 }
+.more-menu-item:active { background: var(--gray-light); }
 .more-menu-item i:first-child {
     width: 40px;
     height: 40px;
@@ -327,8 +328,8 @@ body {
 /* ========== মূল কন্টেন্ট ========== */
 .main-content {
     flex: 1;
-    padding: 1rem;
-    max-width: 1000px;
+    padding: 15px;
+    max-width: 500px;
     margin: 0 auto;
     width: 100%;
 }
@@ -336,43 +337,43 @@ body {
 /* ওয়েলকাম কার্ড */
 .welcome-card {
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    border-radius: var(--radius);
-    padding: 1.5rem;
+    border-radius: 20px;
+    padding: 20px 15px;
     text-align: center;
     color: white;
-    margin-bottom: 1.5rem;
+    margin-bottom: 20px;
 }
-.welcome-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
-.welcome-card h1 { font-size: 1.3rem; margin-bottom: 0.3rem; }
-.welcome-card p { font-size: 0.8rem; opacity: 0.9; margin-bottom: 0.8rem; }
+.welcome-icon { font-size: 2.5rem; margin-bottom: 8px; }
+.welcome-card h1 { font-size: 1.3rem; margin-bottom: 5px; }
+.welcome-card p { font-size: 0.8rem; opacity: 0.9; margin-bottom: 12px; }
 .time-card {
     background: rgba(255,255,255,0.2);
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 0.5rem 1rem;
+    padding: 8px 16px;
     border-radius: 50px;
     font-size: 0.9rem;
     font-family: monospace;
 }
 
-/* ========== আইকন গ্রিড (ছবির মতো) ========== */
+/* ========== আইকন গ্রিড ========== */
 .icon-grid {
     display: flex;
     justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 1rem;
+    gap: 12px;
+    margin-bottom: 12px;
 }
 
 .icon-grid.second-row {
-    margin-bottom: 1.5rem;
+    margin-bottom: 20px;
 }
 
 .icon-card {
     flex: 1;
     background: var(--card-bg);
-    border-radius: var(--radius-sm);
-    padding: 0.8rem 0.3rem;
+    border-radius: 16px;
+    padding: 12px 5px;
     text-align: center;
     text-decoration: none;
     border: 1px solid var(--border);
@@ -381,9 +382,9 @@ body {
     position: relative;
 }
 
-.icon-card:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow);
+.icon-card:active {
+    transform: scale(0.96);
+    background: var(--gray-light);
 }
 
 .icon-circle {
@@ -394,7 +395,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 0.6rem;
+    margin: 0 auto 8px;
 }
 
 .icon-circle i {
@@ -407,47 +408,50 @@ body {
     font-weight: bold;
     color: var(--text-dark);
     display: block;
+    line-height: 1.3;
 }
 
 .icon-badge {
     position: absolute;
-    top: -5px;
-    right: -5px;
+    top: -6px;
+    right: -6px;
     background: var(--primary);
     color: white;
     font-size: 0.55rem;
     padding: 2px 6px;
     border-radius: 20px;
     font-weight: bold;
+    min-width: 28px;
 }
 
 /* দুআ কার্ড */
 .dua-card {
     background: var(--card-bg);
-    border-radius: var(--radius-sm);
-    padding: 1rem;
+    border-radius: 16px;
+    padding: 15px;
     border: 1px solid var(--border);
+    margin-top: 5px;
 }
 .dua-header {
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-bottom: 0.8rem;
-    padding-bottom: 0.5rem;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
     border-bottom: 1px solid var(--border);
 }
-.dua-header i { font-size: 1.1rem; color: var(--gold); }
-.dua-header h3 { font-size: 0.85rem; color: var(--text-dark); }
+.dua-header i { font-size: 1.2rem; color: var(--gold); }
+.dua-header h3 { font-size: 0.9rem; color: var(--text-dark); }
 .dua-arabic {
     font-family: 'Uthman Taha Naskh', serif;
-    font-size: 0.9rem;
+    font-size: 1rem;
     line-height: 1.5;
     text-align: center;
-    margin-bottom: 0.6rem;
+    margin-bottom: 10px;
     color: var(--primary-dark);
 }
-.dua-bangla { font-size: 0.75rem; text-align: center; margin-bottom: 0.4rem; }
-.dua-reference { font-size: 0.55rem; text-align: center; color: var(--text-gray); }
+.dua-bangla { font-size: 0.8rem; text-align: center; margin-bottom: 8px; line-height: 1.4; }
+.dua-reference { font-size: 0.6rem; text-align: center; color: var(--text-gray); }
 
 /* মোবাইল নেভিগেশন বার */
 .bottom-navbar {
@@ -459,7 +463,7 @@ body {
     background: var(--card-bg);
     justify-content: space-around;
     align-items: center;
-    padding: 0.5rem 0.5rem;
+    padding: 8px 10px;
     border-top: 1px solid var(--border);
     z-index: 100;
 }
@@ -468,19 +472,21 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 2px;
-    padding: 0.3rem 0.4rem;
+    gap: 3px;
+    padding: 6px 8px;
     border-radius: 40px;
     color: var(--text-gray);
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     text-decoration: none;
-    min-width: 50px;
+    min-width: 55px;
     background: none;
     border: none;
     cursor: pointer;
+    transition: all 0.2s;
 }
-.nav-item i { font-size: 1.1rem; }
-.nav-item span { font-size: 0.5rem; }
+.nav-item:active { transform: scale(0.95); }
+.nav-item i { font-size: 1.2rem; }
+.nav-item span { font-size: 0.55rem; }
 .nav-item.active { background: var(--primary); color: white; }
 
 /* টোস্ট */
@@ -491,10 +497,11 @@ body {
     transform: translateX(-50%);
     background: var(--primary);
     color: white;
-    padding: 8px 16px;
+    padding: 10px 20px;
     border-radius: 30px;
     z-index: 1000;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
     animation: fadeInUp 0.3s ease;
 }
 @keyframes fadeInUp {
@@ -502,35 +509,53 @@ body {
     to { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
 
-/* ========== রেসপন্সিভ ========== */
+/* ========== ডেস্কটপ ভিউ ========== */
 @media (min-width: 769px) {
     .mobile-header, .bottom-navbar, .more-menu-panel { display: none !important; }
     .top-navbar { display: flex; }
-    .main-content { padding-bottom: 1.5rem; }
+    .main-content { max-width: 1000px; padding: 20px; }
+    .icon-circle { width: 65px; height: 65px; }
+    .icon-circle i { font-size: 1.8rem; }
+    .icon-label { font-size: 0.8rem; }
     .toast { bottom: 20px; }
 }
 
+/* ========== মোবাইল ভিউ ========== */
 @media (max-width: 768px) {
     .top-navbar { display: none !important; }
     .mobile-header { display: flex; }
     .bottom-navbar { display: flex; }
-    .main-content { padding: 0.8rem; padding-bottom: 70px; }
+    .main-content { padding: 12px; padding-bottom: 70px; max-width: 100%; }
+    .settings-panel { top: auto; bottom: 70px; right: -280px; }
+    .settings-panel.open { right: 10px; }
+    .toast { bottom: 75px; white-space: normal; text-align: center; max-width: 80%; }
+}
+
+/* ========== ছোট মোবাইল (480px এর নিচে) ========== */
+@media (max-width: 480px) {
+    .bottom-navbar { padding: 6px 5px; }
+    .nav-item { min-width: 48px; padding: 4px 6px; }
+    .nav-item i { font-size: 1rem; }
+    .nav-item span { font-size: 0.5rem; }
+    
+    .icon-grid { gap: 8px; }
     .icon-circle { width: 48px; height: 48px; }
     .icon-circle i { font-size: 1.3rem; }
     .icon-label { font-size: 0.6rem; }
-    .settings-panel { top: auto; bottom: 70px; right: -280px; }
-    .settings-panel.open { right: 10px; }
-    .toast { bottom: 70px; }
+    .icon-badge { font-size: 0.5rem; padding: 1px 5px; min-width: 24px; top: -5px; right: -5px; }
+    
+    .welcome-card { padding: 15px; }
+    .welcome-icon { font-size: 2rem; }
+    .welcome-card h1 { font-size: 1.1rem; }
+    
+    .dua-arabic { font-size: 0.85rem; }
+    .dua-bangla { font-size: 0.7rem; }
 }
 
-@media (max-width: 480px) {
-    .bottom-navbar { padding: 0.4rem 0.3rem; }
-    .nav-item { min-width: 45px; }
-    .nav-item i { font-size: 1rem; }
-    .nav-item span { font-size: 0.45rem; }
-    .icon-grid { gap: 0.6rem; }
+/* ========== খুব ছোট মোবাইল (380px এর নিচে) ========== */
+@media (max-width: 380px) {
     .icon-circle { width: 42px; height: 42px; }
     .icon-circle i { font-size: 1.1rem; }
     .icon-label { font-size: 0.55rem; }
-    .icon-badge { font-size: 0.5rem; padding: 1px 4px; top: -4px; right: -4px; }
+    .nav-item { min-width: 44px; }
 }
