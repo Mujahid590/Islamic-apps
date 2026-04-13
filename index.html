@@ -116,16 +116,15 @@
                     </div>
                     <span class="icon-label">কিবলা কম্পাস</span>
                 </a>
-                <a href="#" class="icon-card" id="rozaBtn">
+                <a href="calendar.html" class="icon-card">
                     <div class="icon-circle green-bg">
-                        <i class="fas fa-calendar-week"></i>
+                        <i class="fas fa-calendar-alt"></i>
                     </div>
-                    <span class="icon-label">রোজার সময়সূচী</span>
-                    <span class="icon-badge">১৯</span>
+                    <span class="icon-label">ইসলামিক ক্যালেন্ডার</span>
                 </a>
             </div>
 
-            <!-- আইকন গ্রিড - তৃতীয় সারি (মসজিদ, হাদিস, যাকাত) -->
+            <!-- আইকন গ্রিড - তৃতীয় সারি (মসজিদ + হাদিস) -->
             <div class="icon-grid third-row">
                 <a href="mosques.html" class="icon-card">
                     <div class="icon-circle green-bg">
@@ -139,12 +138,9 @@
                     </div>
                     <span class="icon-label">হাদিস</span>
                 </a>
-                <a href="#" class="icon-card" id="zakatBtn">
-                    <div class="icon-circle green-bg">
-                        <i class="fas fa-calculator"></i>
-                    </div>
-                    <span class="icon-label">যাকাত</span>
-                </a>
+                <div class="icon-card empty-space">
+                    <!-- খালি জায়গা - শুধু স্পেসিং এর জন্য -->
+                </div>
             </div>
         </main>
 
@@ -220,17 +216,9 @@
             e.preventDefault();
             alert('আসমা-উল-হুসনা ফিচার শীঘ্রই আসছে। ৯৯ টি নাম সহকারে।');
         });
-        document.getElementById('rozaBtn')?.addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('রমজান ২০২৬ এর রোজার সময়সূচী শীঘ্রই প্রকাশিত হবে।');
-        });
         document.getElementById('hadithBtn')?.addEventListener('click', (e) => {
             e.preventDefault();
             alert('হাদিস ফিচার শীঘ্রই আসছে। বুখারী, মুসলিম সহ বিভিন্ন কিতাবের হাদিস।');
-        });
-        document.getElementById('zakatBtn')?.addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('যাকাত ক্যালকুলেটর ফিচার শীঘ্রই আসছে।');
         });
     </script>
 </body>
