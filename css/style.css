@@ -1,4 +1,4 @@
-/* ========== বাংলা ফন্ট - Kalpurush (সব ডিভাইসের জন্য) ========== */
+/* ========== বাংলা ফন্ট - Kalpurush ========== */
 @font-face {
     font-family: 'Kalpurush';
     src: url('https://raw.githubusercontent.com/me-shaon/bangla-fonts/main/Kalpurush/Kalpurush.ttf') format('truetype');
@@ -24,14 +24,14 @@
     font-display: swap;
 }
 
-/* ========== CSS ভেরিয়েবল - প্রফেশনাল সবুজ কালার ========== */
+/* ========== CSS ভেরিয়েবল - গাঢ় সবুজ কালার ========== */
 :root {
-    --primary: #00b894;
-    --primary-dark: #009432;
-    --primary-light: #55efc4;
-    --primary-soft: #c8f7e6;
-    --primary-gradient: linear-gradient(135deg, #00b894, #009432);
-    --primary-gradient-light: linear-gradient(135deg, #55efc4, #00b894);
+    --primary: #008a5e;
+    --primary-dark: #006644;
+    --primary-light: #2ecc71;
+    --primary-soft: #a8e6cf;
+    --primary-gradient: linear-gradient(135deg, #008a5e, #006644);
+    --primary-gradient-light: linear-gradient(135deg, #2ecc71, #008a5e);
     --white: #ffffff;
     --gray-light: #f8f9fa;
     --gray: #e9ecef;
@@ -42,8 +42,8 @@
     --shadow: 0 4px 12px rgba(0,0,0,0.08);
     --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.1);
     --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
-    --shadow-primary: 0 8px 20px rgba(0, 184, 148, 0.25);
-    --shadow-primary-lg: 0 12px 28px rgba(0, 184, 148, 0.35);
+    --shadow-primary: 0 8px 20px rgba(0, 138, 94, 0.3);
+    --shadow-primary-lg: 0 12px 28px rgba(0, 138, 94, 0.4);
     --radius: 24px;
     --radius-sm: 16px;
     --bg: linear-gradient(135deg, #e8f8f5 0%, #d5f5e3 100%);
@@ -51,14 +51,14 @@
     --border: #dfe6e9;
 }
 
-/* ডার্ক মোড - প্রফেশনাল গভীর সবুজ */
+/* ডার্ক মোড - গাঢ় সবুজ */
 body.dark-mode {
-    --primary: #00a884;
-    --primary-dark: #008a6e;
-    --primary-light: #1e8e6e;
-    --primary-soft: #0a4d3a;
-    --primary-gradient: linear-gradient(135deg, #00a884, #008a6e);
-    --primary-gradient-light: linear-gradient(135deg, #1e8e6e, #00a884);
+    --primary: #007a52;
+    --primary-dark: #005a3c;
+    --primary-light: #1a7a5a;
+    --primary-soft: #064e3a;
+    --primary-gradient: linear-gradient(135deg, #007a52, #005a3c);
+    --primary-gradient-light: linear-gradient(135deg, #1a7a5a, #007a52);
     --white: #1e272e;
     --gray-light: #2c3e50;
     --gray: #34495e;
@@ -68,8 +68,8 @@ body.dark-mode {
     --bg: linear-gradient(135deg, #0f172a 0%, #0a0f1a 100%);
     --card-bg: #1e293b;
     --border: #2d3e50;
-    --shadow-primary: 0 8px 20px rgba(0, 168, 132, 0.2);
-    --shadow-primary-lg: 0 12px 28px rgba(0, 168, 132, 0.3);
+    --shadow-primary: 0 8px 20px rgba(0, 122, 82, 0.25);
+    --shadow-primary-lg: 0 12px 28px rgba(0, 122, 82, 0.35);
 }
 
 * {
@@ -225,12 +225,7 @@ body {
 .mobile-brand-text h2 {
     font-size: 1rem;
     color: var(--primary-dark);
-    margin-bottom: 2px;
-    font-family: 'Kalpurush', 'Segoe UI', sans-serif;
-}
-.mobile-brand-text p {
-    font-size: 0.6rem;
-    color: var(--text-gray);
+    margin-bottom: 0;
     font-family: 'Kalpurush', 'Segoe UI', sans-serif;
 }
 
@@ -605,7 +600,7 @@ body {
     .settings-panel.open, .more-menu-panel.open { right: 20px; }
 }
 
-/* ========== মোবাইল ভিউ - ফন্ট সাইজ অ্যাডজাস্ট ========== */
+/* ========== মোবাইল ভিউ ========== */
 @media (max-width: 768px) {
     .top-navbar { display: none !important; }
     .mobile-header { display: flex; }
@@ -616,7 +611,6 @@ body {
     .icon-circle i { font-size: 1.6rem; }
     .icon-label { font-size: 0.7rem; }
     
-    /* মোবাইলে বাংলা ফন্ট সাইজ ঠিক রাখা */
     body, .nav-link, .nav-item, .icon-label, .welcome-card h1, .welcome-card p, .setting-item label, .more-menu-item span {
         font-family: 'Kalpurush', 'Segoe UI', 'Noto Sans Bengali', sans-serif;
     }
@@ -634,25 +628,4 @@ body {
     .icon-label { font-size: 0.65rem; }
     .icon-card { padding: 12px 5px; }
     
-    .welcome-card { padding: 18px 15px; }
-    .welcome-icon { font-size: 2.2rem; }
-    .welcome-card h1 { font-size: 1.2rem; }
-    
-    .settings-panel, .more-menu-panel { width: 280px; right: -290px; }
-    .settings-panel.open, .more-menu-panel.open { right: 0; }
-    
-    /* দুআ আরবি ফন্ট সাইজ */
-    .dua-arabic {
-        font-size: 0.9rem;
-    }
-}
-
-@media (max-width: 380px) {
-    .icon-circle { width: 46px; height: 46px; }
-    .icon-circle i { font-size: 1.2rem; }
-    .icon-label { font-size: 0.6rem; }
-    .nav-item { min-width: 46px; }
-    .dua-arabic {
-        font-size: 0.8rem;
-    }
-}
+    .welcome-card { padding: 18px
