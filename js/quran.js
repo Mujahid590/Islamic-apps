@@ -5,10 +5,45 @@ let currentFontSize = 18;
 let currentTranslationFontSize = 14;
 let isLoading = false;
 
+// সিজদা আয়াতের তালিকা (সূরা নম্বর ও আয়াত নম্বর)
+const sajdahAyahs = [
+    { surah: 7, ayah: 206 },     // সূরা আল-আরাফ
+    { surah: 13, ayah: 15 },     // সূরা আর-রাদ
+    { surah: 16, ayah: 49 },     // সূরা আন-নাহল
+    { surah: 17, ayah: 107 },    // সূরা বনী ইসরাঈল
+    { surah: 19, ayah: 58 },     // সূরা মারইয়াম
+    { surah: 22, ayah: 18 },     // সূরা আল-হাজ্জ
+    { surah: 22, ayah: 77 },     // সূরা আল-হাজ্জ (দ্বিতীয়)
+    { surah: 25, ayah: 60 },     // সূরা আল-ফুরকান
+    { surah: 27, ayah: 25 },     // সূরা আন-নামল
+    { surah: 32, ayah: 15 },     // সূরা আস-সাজদাহ
+    { surah: 38, ayah: 24 },     // সূরা সোয়াদ
+    { surah: 41, ayah: 37 },     // সূরা হা-মীম সেজদাহ
+    { surah: 53, ayah: 62 },     // সূরা আন-নাজম
+    { surah: 84, ayah: 21 },     // সূরা আল-ইনশিকাক
+    { surah: 96, ayah: 19 }      // সূরা আল-আলাক
+];
+
+// সিজদা চেক করার ফাংশন
+function isSajdahAyah(surahId, ayahNumber) {
+    return sajdahAyahs.some(s => s.surah === surahId && s.ayah === ayahNumber);
+}
+
+// সিজদা নোটিফিকেশন দেখানো
+function showSajdahNotification() {
+    const notif = document.getElementById('sajdahNotification');
+    if (notif) {
+        notif.style.display = 'block';
+        setTimeout(() => {
+            notif.style.display = 'none';
+        }, 3000);
+    }
+}
+
 // সূরা লিস্ট লোড করা
 async function loadSurahList() {
     try {
-        const response = await fetch('surah-data/surah-list.json');
+        const response = await fetch('data/surah-list.json');
         if (response.ok) {
             allSurahs = await response.json();
         } else {
@@ -37,6 +72,14 @@ function generateLocalSurahList() {
 function getSurahPlace(surahId) {
     const makkiSurahs = [1,6,7,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114];
     return makkiSurahs.includes(surahId) ? "মক্কী" : "মাদানী";
+}
+
+function getPlaceIcon(place) {
+    if (place === "মক্কী") {
+        return '<i class="fas fa-kaaba"></i>';
+    } else {
+        return '<i class="fas fa-mosque"></i>';
+    }
 }
 
 function renderSurahList(surahs) {
@@ -75,10 +118,18 @@ async function loadSurah(surahId, highlightAyah = null) {
     });
     
     let surah = allSurahs.find(s => s.id === surahId);
+    let surahPlace = getSurahPlace(surahId);
+    let placeIcon = getPlaceIcon(surahPlace);
+    
     document.getElementById('stickySurahNameAr').innerText = surah?.name_ar || `سورة ${surahId}`;
     document.getElementById('stickySurahNameBn').innerText = surah?.name_bn || `সূরা ${surahId}`;
     document.getElementById('stickySurahAyatCount').innerText = surah?.ayat_count || '?';
-    document.getElementById('stickySurahPlace').innerText = getSurahPlace(surahId);
+    document.getElementById('surahPlaceIcon').innerHTML = placeIcon;
+    
+    let placeSpan = document.getElementById('stickySurahPlace');
+    if (placeSpan) {
+        placeSpan.innerHTML = `<i class="fas fa-map-marker-alt"></i> <span>${surahPlace}</span>`;
+    }
     
     let ayahsContainer = document.getElementById('ayahsContainer');
     ayahsContainer.innerHTML = '<div class="loading-spinner"><i class="fas fa-spinner fa-pulse"></i> লোড হচ্ছে...</div>';
@@ -95,7 +146,7 @@ async function loadSurah(surahId, highlightAyah = null) {
 
 async function getSurahData(surahId) {
     try {
-        const response = await fetch(`surah-data/surah-${surahId}.json`);
+        const response = await fetch(`data/surah-${surahId}.json`);
         if (response.ok) {
             return await response.json();
         }
@@ -119,18 +170,38 @@ function displaySurah(surahData, highlightAyah = null) {
         let ayahsHtml = '';
         surahData.ayahs.forEach(ayah => {
             let highlightClass = (highlightAyah === ayah.number) ? ' highlight' : '';
-            ayahsHtml += `<div class="ayah-card${highlightClass}" data-ayah="${ayah.number}">
-                <div class="ayah-number">${ayah.number}</div>
+            let sajdahClass = isSajdahAyah(surahData.id, ayah.number) ? ' sajdah-ayah' : '';
+            let sajdahBadge = '';
+            
+            if (isSajdahAyah(surahData.id, ayah.number)) {
+                sajdahBadge = `<div class="sajdah-badge" data-surah="${surahData.id}" data-ayah="${ayah.number}">
+                    <i class="fas fa-procedures"></i> সিজদা
+                </div>`;
+            }
+            
+            ayahsHtml += `<div class="ayah-card${highlightClass}${sajdahClass}" data-ayah="${ayah.number}">
+                <div class="ayah-header">
+                    <div class="ayah-number">${ayah.number}</div>
+                    ${sajdahBadge}
+                </div>
                 <div class="ayah-arabic">${ayah.arabic}</div>
                 <div class="ayah-translation">${ayah.translation}</div>
             </div>`;
         });
         ayahsContainer.innerHTML = ayahsHtml;
+        
+        // সিজদা বাটনে ক্লিক ইভেন্ট
+        document.querySelectorAll('.sajdah-badge').forEach(badge => {
+            badge.addEventListener('click', (e) => {
+                e.stopPropagation();
+                showSajdahNotification();
+            });
+        });
     } else {
         ayahsContainer.innerHTML = `<div class="loading-spinner">
             <i class="fas fa-info-circle"></i>
             <p>সূরা ${surahData.id} এর আয়াত লোড করা সম্ভব হয়নি</p>
-            <p style="font-size:0.8rem">surah-data/surah-${surahData.id}.json ফাইলটি যোগ করুন</p>
+            <p style="font-size:0.8rem">data/surah-${surahData.id}.json ফাইলটি যোগ করুন</p>
         </div>`;
     }
     
@@ -150,7 +221,7 @@ async function searchInQuran(searchTerm) {
     
     for (let i = 1; i <= 114; i++) {
         try {
-            const response = await fetch(`surah-data/surah-${i}.json`);
+            const response = await fetch(`data/surah-${i}.json`);
             if (response.ok) {
                 const surah = await response.json();
                 if (surah.ayahs) {
@@ -327,6 +398,15 @@ function initTopicToggle() {
     }
 }
 
+function initSajdahNotification() {
+    let closeNotif = document.getElementById('closeSajdahNotif');
+    if (closeNotif) {
+        closeNotif.onclick = () => {
+            document.getElementById('sajdahNotification').style.display = 'none';
+        };
+    }
+}
+
 function openSidebar() {
     let sidebar = document.getElementById('surahSidebar');
     let overlay = document.getElementById('sidebarOverlay');
@@ -359,5 +439,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initTopicSearch();
     initTopicToggle();
     initSidebar();
+    initSajdahNotification();
     loadSurah(1);
 });
