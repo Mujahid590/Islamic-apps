@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>ইসলামিক অ্যাপস | হোম</title>
+    <title>ইসলামিক অ্যাপস | পূর্ণাঙ্গ ইসলামিক টুলস</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -17,14 +17,15 @@
                 </div>
                 <h1>ইসলামিক অ্যাপস</h1>
             </div>
-            <div class="nav-links">
+            <div class="nav-links desktop-nav">
+                <a href="tasbih.html" class="nav-link"><i class="fas fa-fingerprint"></i><span>তাসবিহ</span></a>
+                <a href="quran.html" class="nav-link"><i class="fas fa-quran"></i><span>কুরআন</span></a>
                 <a href="index.html" class="nav-link active"><i class="fas fa-home"></i><span>হোম</span></a>
                 <a href="namaz.html" class="nav-link"><i class="fas fa-clock"></i><span>নামাজ</span></a>
-                <a href="quran.html" class="nav-link"><i class="fas fa-quran"></i><span>কুরআন</span></a>
-                <a href="tasbih.html" class="nav-link"><i class="fas fa-fingerprint"></i><span>তাসবিহ</span></a>
-                <a href="qibla.html" class="nav-link"><i class="fas fa-compass"></i><span>কিবলা</span></a>
-                <a href="mosques.html" class="nav-link"><i class="fas fa-mosque"></i><span>মসজিদ</span></a>
-                <a href="calendar.html" class="nav-link"><i class="fas fa-calendar-alt"></i><span>ক্যালেন্ডার</span></a>
+                <div class="nav-link more-menu-desktop" id="moreMenuDesktopBtn">
+                    <i class="fas fa-ellipsis-h"></i>
+                    <span>আরও</span>
+                </div>
             </div>
             <div class="nav-actions">
                 <button class="icon-btn" id="settingsNavBtn"><i class="fas fa-cog"></i></button>
@@ -82,19 +83,19 @@
             <!-- আইকন গ্রিড - প্রথম সারি -->
             <div class="icon-grid">
                 <a href="namaz.html" class="icon-card">
-                    <div class="icon-circle green-bg">
+                    <div class="icon-circle">
                         <i class="fas fa-clock"></i>
                     </div>
                     <span class="icon-label">নামাজের সময়</span>
                 </a>
                 <a href="quran.html" class="icon-card">
-                    <div class="icon-circle green-bg">
+                    <div class="icon-circle">
                         <i class="fas fa-quran"></i>
                     </div>
                     <span class="icon-label">আল কুরআন</span>
                 </a>
                 <a href="#" class="icon-card" id="asmaBtn">
-                    <div class="icon-circle green-bg">
+                    <div class="icon-circle">
                         <i class="fas fa-star-and-crescent"></i>
                     </div>
                     <span class="icon-label">আসমা-উল-হুসনা</span>
@@ -104,19 +105,19 @@
             <!-- আইকন গ্রিড - দ্বিতীয় সারি -->
             <div class="icon-grid second-row">
                 <a href="tasbih.html" class="icon-card">
-                    <div class="icon-circle green-bg">
+                    <div class="icon-circle">
                         <i class="fas fa-fingerprint"></i>
                     </div>
                     <span class="icon-label">তাসবিহ</span>
                 </a>
                 <a href="qibla.html" class="icon-card">
-                    <div class="icon-circle green-bg">
+                    <div class="icon-circle">
                         <i class="fas fa-compass"></i>
                     </div>
                     <span class="icon-label">কিবলা কম্পাস</span>
                 </a>
                 <a href="calendar.html" class="icon-card">
-                    <div class="icon-circle green-bg">
+                    <div class="icon-circle">
                         <i class="fas fa-calendar-alt"></i>
                     </div>
                     <span class="icon-label">ইসলামিক ক্যালেন্ডার</span>
@@ -126,13 +127,13 @@
             <!-- আইকন গ্রিড - তৃতীয় সারি -->
             <div class="icon-grid third-row">
                 <a href="mosques.html" class="icon-card">
-                    <div class="icon-circle green-bg">
+                    <div class="icon-circle">
                         <i class="fas fa-mosque"></i>
                     </div>
                     <span class="icon-label">নিকট মসজিদ</span>
                 </a>
                 <a href="#" class="icon-card" id="hadithBtn">
-                    <div class="icon-circle green-bg">
+                    <div class="icon-circle">
                         <i class="fas fa-book"></i>
                     </div>
                     <span class="icon-label">হাদিস</span>
@@ -165,7 +166,7 @@
             </div>
         </nav>
 
-        <!-- মোর মেনু প্যানেল -->
+        <!-- মোর মেনু প্যানেল (মোবাইল ও ডেস্কটপ উভয়ের জন্য) -->
         <div class="more-menu-panel" id="moreMenuPanel">
             <div class="more-menu-header">
                 <h3><i class="fas fa-list"></i> অন্যান্য সেবা</h3>
@@ -217,6 +218,16 @@
         }
         updateClock();
         setInterval(updateClock, 1000);
+        
+        // ডেস্কটপ মোর মেনু
+        const moreMenuDesktopBtn = document.getElementById('moreMenuDesktopBtn');
+        const moreMenuPanel = document.getElementById('moreMenuPanel');
+        if (moreMenuDesktopBtn && moreMenuPanel) {
+            moreMenuDesktopBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                moreMenuPanel.classList.toggle('open');
+            });
+        }
         
         document.getElementById('asmaBtn')?.addEventListener('click', (e) => {
             e.preventDefault();
