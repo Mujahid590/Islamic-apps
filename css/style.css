@@ -1,4 +1,4 @@
-/* ========== বাংলা ফন্ট - Kalpurush ========== */
+/* ========== বাংলা ফন্ট - Kalpurush (সব ডিভাইসের জন্য) ========== */
 @font-face {
     font-family: 'Kalpurush';
     src: url('https://raw.githubusercontent.com/me-shaon/bangla-fonts/main/Kalpurush/Kalpurush.ttf') format('truetype');
@@ -80,11 +80,18 @@ body.dark-mode {
 }
 
 body {
-    font-family: 'Kalpurush', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Kalpurush', 'Segoe UI', 'Noto Sans Bengali', sans-serif;
     background: var(--bg);
     color: var(--text-dark);
     transition: all 0.3s ease;
     min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* আরবি টেক্সটের জন্য স্পেসিফিক ফন্ট */
+.arabic-text, .dua-arabic, [class*="arabic"] {
+    font-family: 'Uthman Taha Naskh', 'Traditional Arabic', 'Amiri', serif;
 }
 
 .app-container {
@@ -150,7 +157,7 @@ body {
     font-size: 1.2rem;
     color: var(--primary-dark);
     font-weight: bold;
-    font-family: 'Kalpurush', sans-serif;
+    font-family: 'Kalpurush', 'Segoe UI', sans-serif;
 }
 
 .nav-links.desktop-nav {
@@ -175,7 +182,7 @@ body {
     min-width: 70px;
     transition: all 0.2s;
     cursor: pointer;
-    font-family: 'Kalpurush', sans-serif;
+    font-family: 'Kalpurush', 'Segoe UI', sans-serif;
 }
 
 .nav-link i { font-size: 1.1rem; }
@@ -219,12 +226,12 @@ body {
     font-size: 1rem;
     color: var(--primary-dark);
     margin-bottom: 2px;
-    font-family: 'Kalpurush', sans-serif;
+    font-family: 'Kalpurush', 'Segoe UI', sans-serif;
 }
 .mobile-brand-text p {
     font-size: 0.6rem;
     color: var(--text-gray);
-    font-family: 'Kalpurush', sans-serif;
+    font-family: 'Kalpurush', 'Segoe UI', sans-serif;
 }
 
 .mobile-settings-btn {
@@ -264,7 +271,7 @@ body {
     border-bottom: 1px solid var(--border);
     background: var(--primary-gradient);
 }
-.settings-header h3 { color: white; font-size: 1rem; font-family: 'Kalpurush', sans-serif; }
+.settings-header h3 { color: white; font-size: 1rem; font-family: 'Kalpurush', 'Segoe UI', sans-serif; }
 .close-settings {
     background: rgba(255,255,255,0.2);
     border: none;
@@ -286,7 +293,7 @@ body {
     font-size: 0.85rem;
     color: var(--text-gray);
     font-weight: 500;
-    font-family: 'Kalpurush', sans-serif;
+    font-family: 'Kalpurush', 'Segoe UI', sans-serif;
 }
 .theme-controls { display: flex; gap: 0.5rem; }
 .theme-btn {
@@ -296,7 +303,7 @@ body {
     background: var(--gray-light);
     border-radius: 40px;
     cursor: pointer;
-    font-family: 'Kalpurush', sans-serif;
+    font-family: 'Kalpurush', 'Segoe UI', sans-serif;
     font-size: 0.8rem;
     transition: all 0.2s;
 }
@@ -326,7 +333,7 @@ body {
     border-bottom: 1px solid var(--border);
     background: var(--primary-gradient);
 }
-.more-menu-header h3 { color: white; font-size: 1rem; font-family: 'Kalpurush', sans-serif; }
+.more-menu-header h3 { color: white; font-size: 1rem; font-family: 'Kalpurush', 'Segoe UI', sans-serif; }
 .close-more-menu {
     background: rgba(255,255,255,0.2);
     border: none;
@@ -350,7 +357,7 @@ body {
     transition: all 0.2s;
     border-radius: 12px;
     margin-bottom: 4px;
-    font-family: 'Kalpurush', sans-serif;
+    font-family: 'Kalpurush', 'Segoe UI', sans-serif;
 }
 .more-menu-item:hover { background: var(--gray-light); }
 .more-menu-item i:first-child {
@@ -376,7 +383,7 @@ body {
     width: 100%;
 }
 
-/* ওয়েলকাম কার্ড - প্রফেশনাল গ্রেডিয়েন্ট */
+/* ওয়েলকাম কার্ড */
 .welcome-card {
     background: var(--primary-gradient);
     border-radius: 28px;
@@ -412,8 +419,8 @@ body {
 }
 
 .welcome-icon { font-size: 2.8rem; margin-bottom: 10px; position: relative; z-index: 1; }
-.welcome-card h1 { font-size: 1.4rem; margin-bottom: 6px; position: relative; z-index: 1; font-family: 'Kalpurush', sans-serif; }
-.welcome-card p { font-size: 0.85rem; opacity: 0.9; margin-bottom: 14px; position: relative; z-index: 1; font-family: 'Kalpurush', sans-serif; }
+.welcome-card h1 { font-size: 1.4rem; margin-bottom: 6px; position: relative; z-index: 1; font-family: 'Kalpurush', 'Segoe UI', sans-serif; }
+.welcome-card p { font-size: 0.85rem; opacity: 0.9; margin-bottom: 14px; position: relative; z-index: 1; font-family: 'Kalpurush', 'Segoe UI', sans-serif; }
 .time-card {
     background: rgba(255,255,255,0.2);
     display: inline-flex;
@@ -474,7 +481,7 @@ body {
     opacity: 0;
 }
 
-/* আইকন সার্কেল - প্রফেশনাল গ্রেডিয়েন্ট */
+/* আইকন সার্কেল */
 .icon-circle {
     width: 65px;
     height: 65px;
@@ -505,7 +512,17 @@ body {
     color: var(--text-dark);
     display: block;
     line-height: 1.3;
-    font-family: 'Kalpurush', sans-serif;
+    font-family: 'Kalpurush', 'Segoe UI', sans-serif;
+}
+
+/* দুআ কার্ডের জন্য আরবি ফন্ট */
+.dua-arabic {
+    font-family: 'Uthman Taha Naskh', 'Traditional Arabic', 'Amiri', serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: center;
+    margin-bottom: 0.8rem;
+    color: var(--primary-dark);
 }
 
 /* মোবাইল নেভিগেশন বার */
@@ -539,7 +556,7 @@ body {
     border: none;
     cursor: pointer;
     transition: all 0.2s;
-    font-family: 'Kalpurush', sans-serif;
+    font-family: 'Kalpurush', 'Segoe UI', sans-serif;
 }
 .nav-item:active { transform: scale(0.95); }
 .nav-item i { font-size: 1.2rem; }
@@ -561,6 +578,7 @@ body {
     white-space: nowrap;
     box-shadow: var(--shadow-primary-lg);
     animation: fadeInUp 0.3s ease;
+    font-family: 'Kalpurush', 'Segoe UI', sans-serif;
 }
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateX(-50%) translateY(20px); }
@@ -587,7 +605,7 @@ body {
     .settings-panel.open, .more-menu-panel.open { right: 20px; }
 }
 
-/* ========== মোবাইল ভিউ ========== */
+/* ========== মোবাইল ভিউ - ফন্ট সাইজ অ্যাডজাস্ট ========== */
 @media (max-width: 768px) {
     .top-navbar { display: none !important; }
     .mobile-header { display: flex; }
@@ -597,6 +615,11 @@ body {
     .icon-circle { width: 60px; height: 60px; }
     .icon-circle i { font-size: 1.6rem; }
     .icon-label { font-size: 0.7rem; }
+    
+    /* মোবাইলে বাংলা ফন্ট সাইজ ঠিক রাখা */
+    body, .nav-link, .nav-item, .icon-label, .welcome-card h1, .welcome-card p, .setting-item label, .more-menu-item span {
+        font-family: 'Kalpurush', 'Segoe UI', 'Noto Sans Bengali', sans-serif;
+    }
 }
 
 @media (max-width: 480px) {
@@ -617,6 +640,11 @@ body {
     
     .settings-panel, .more-menu-panel { width: 280px; right: -290px; }
     .settings-panel.open, .more-menu-panel.open { right: 0; }
+    
+    /* দুআ আরবি ফন্ট সাইজ */
+    .dua-arabic {
+        font-size: 0.9rem;
+    }
 }
 
 @media (max-width: 380px) {
@@ -624,4 +652,7 @@ body {
     .icon-circle i { font-size: 1.2rem; }
     .icon-label { font-size: 0.6rem; }
     .nav-item { min-width: 46px; }
+    .dua-arabic {
+        font-size: 0.8rem;
+    }
 }
